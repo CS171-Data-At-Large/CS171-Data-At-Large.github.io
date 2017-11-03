@@ -1,0 +1,285 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  </head>
+  <body>
+    <table>
+    <thead><tr><th></th></tr></thead>    <tbody> <tr class="odd"><td><table>
+<tr><td>IDENTITY THEFT BY STATE, 2013</td></tr>
+<tr><td></td></tr>
+<tr><td><table>
+    <colgroup>                </colgroup>
+    <thead>
+        <tr>
+            <th>State</th>
+            <th>Complaints per 100,000 population   (1)</th>
+            <th>Number of complaints</th>
+            <th>Rank (2)</th>
+            <th>State</th>
+            <th>Complaints per 100,000 population   (1)</th>
+            <th>Number of complaints</th>
+            <th>Rank (2)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Alabama</td>
+            <td>74.7</td>
+            <td>3,610</td>
+            <td>14</td>
+            <td>Montana</td>
+            <td>50.1</td>
+            <td>509</td>
+            <td>40</td>
+        </tr>
+        <tr>
+            <td>Alaska</td>
+            <td>52.2</td>
+            <td>384</td>
+            <td>37</td>
+            <td>Nebraska</td>
+            <td>51.6</td>
+            <td>965</td>
+            <td>39</td>
+        </tr>
+        <tr>
+            <td>Arizona</td>
+            <td>91.2</td>
+            <td>6,043</td>
+            <td>7</td>
+            <td>Nevada</td>
+            <td>97.1</td>
+            <td>2,708</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>Arkansas</td>
+            <td>62.1</td>
+            <td>1,839</td>
+            <td>29</td>
+            <td>New Hampshire</td>
+            <td>51.9</td>
+            <td>687</td>
+            <td>38</td>
+        </tr>
+        <tr>
+            <td>California</td>
+            <td>105.4</td>
+            <td>40,404</td>
+            <td>3</td>
+            <td>New Jersey</td>
+            <td>80.6</td>
+            <td>7,176</td>
+            <td>12</td>
+        </tr>
+        <tr>
+            <td>Colorado</td>
+            <td>79.6</td>
+            <td>4,195</td>
+            <td>13</td>
+            <td>New Mexico</td>
+            <td>69.4</td>
+            <td>1,448</td>
+            <td>19</td>
+        </tr>
+        <tr>
+            <td>Connecticut</td>
+            <td>69.4</td>
+            <td>2,496</td>
+            <td>19</td>
+            <td>New York</td>
+            <td>86.9</td>
+            <td>17,072</td>
+            <td>9</td>
+        </tr>
+        <tr>
+            <td>Delaware</td>
+            <td>81.1</td>
+            <td>751</td>
+            <td>11</td>
+            <td>North Carolina</td>
+            <td>67.8</td>
+            <td>6,679</td>
+            <td>24</td>
+        </tr>
+        <tr>
+            <td>Florida</td>
+            <td>192.9</td>
+            <td>37,720</td>
+            <td>1</td>
+            <td>North Dakota</td>
+            <td>32.1</td>
+            <td>232</td>
+            <td>50</td>
+        </tr>
+        <tr>
+            <td>Georgia</td>
+            <td>134.1</td>
+            <td>13,402</td>
+            <td>2</td>
+            <td>Ohio</td>
+            <td>64.8</td>
+            <td>7,502</td>
+            <td>26</td>
+        </tr>
+        <tr>
+            <td>Hawaii</td>
+            <td>37.8</td>
+            <td>531</td>
+            <td>48</td>
+            <td>Oklahoma</td>
+            <td>60.0</td>
+            <td>2,309</td>
+            <td>34</td>
+        </tr>
+        <tr>
+            <td>Idaho</td>
+            <td>49.5</td>
+            <td>798</td>
+            <td>43</td>
+            <td>Oregon</td>
+            <td>60.3</td>
+            <td>2,370</td>
+            <td>33</td>
+        </tr>
+        <tr>
+            <td>Illinois</td>
+            <td>85.9</td>
+            <td>11,069</td>
+            <td>10</td>
+            <td>Pennsylvania</td>
+            <td>70.0</td>
+            <td>8,943</td>
+            <td>18</td>
+        </tr>
+        <tr>
+            <td>Indiana</td>
+            <td>58.5</td>
+            <td>3,845</td>
+            <td>35</td>
+            <td>Rhode Island</td>
+            <td>60.6</td>
+            <td>637</td>
+            <td>31</td>
+        </tr>
+        <tr>
+            <td>Iowa</td>
+            <td>40.4</td>
+            <td>1,248</td>
+            <td>46</td>
+            <td>South Carolina</td>
+            <td>70.7</td>
+            <td>3,374</td>
+            <td>17</td>
+        </tr>
+        <tr>
+            <td>Kansas</td>
+            <td>61.6</td>
+            <td>1,783</td>
+            <td>30</td>
+            <td>South Dakota</td>
+            <td>33.4</td>
+            <td>282</td>
+            <td>49</td>
+        </tr>
+        <tr>
+            <td>Kentucky</td>
+            <td>50.1</td>
+            <td>2,201</td>
+            <td>40</td>
+            <td>Tennessee</td>
+            <td>68.8</td>
+            <td>4,468</td>
+            <td>22</td>
+        </tr>
+        <tr>
+            <td>Louisiana</td>
+            <td>69.3</td>
+            <td>3,204</td>
+            <td>21</td>
+            <td>Texas</td>
+            <td>88.0</td>
+            <td>23,266</td>
+            <td>8</td>
+        </tr>
+        <tr>
+            <td>Maine</td>
+            <td>38.5</td>
+            <td>511</td>
+            <td>47</td>
+            <td>Utah</td>
+            <td>49.3</td>
+            <td>1,429</td>
+            <td>44</td>
+        </tr>
+        <tr>
+            <td>Maryland</td>
+            <td>95.5</td>
+            <td>5,660</td>
+            <td>6</td>
+            <td>Vermont</td>
+            <td>43.7</td>
+            <td>274</td>
+            <td>45</td>
+        </tr>
+        <tr>
+            <td>Massachusetts</td>
+            <td>63.3</td>
+            <td>4,237</td>
+            <td>27</td>
+            <td>Virginia</td>
+            <td>73.1</td>
+            <td>6,037</td>
+            <td>16</td>
+        </tr>
+        <tr>
+            <td>Michigan</td>
+            <td>97.1</td>
+            <td>9,606</td>
+            <td>4</td>
+            <td>Washington</td>
+            <td>68.0</td>
+            <td>4,739</td>
+            <td>23</td>
+        </tr>
+        <tr>
+            <td>Minnesota</td>
+            <td>53.8</td>
+            <td>2,917</td>
+            <td>36</td>
+            <td>West Virginia</td>
+            <td>60.6</td>
+            <td>1,124</td>
+            <td>31</td>
+        </tr>
+        <tr>
+            <td>Mississippi</td>
+            <td>74.7</td>
+            <td>2,233</td>
+            <td>14</td>
+            <td>Wisconsin</td>
+            <td>63.3</td>
+            <td>3,635</td>
+            <td>27</td>
+        </tr>
+        <tr>
+            <td>Missouri</td>
+            <td>67.0</td>
+            <td>4,052</td>
+            <td>25</td>
+            <td>Wyoming</td>
+            <td>49.6</td>
+            <td>289</td>
+            <td>42</td>
+        </tr>
+    </tbody>
+</table>
+<p>(1) Population figues are based on the 2013 U.S. Census population estimates.<br/>
+(2) Ranked per complaints per 100,000 population. The District of Columbia had 147.9 complaints per 100,000 population and 956 victims. States with the same ratio of complaints per 100,000 population receive the same rank.<br/>
+<br/>
+Source: Federal Trade Commission.</p></td></tr>
+</table></td> </tr>
+      </tbody>
+    </table>
+  </body>
+</html>
