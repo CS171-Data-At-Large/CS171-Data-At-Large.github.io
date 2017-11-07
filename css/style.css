@@ -1,7 +1,10 @@
 p {
     font-size: 1.1em;
 }
-
+.section{
+    height: 100vh;
+    padding: 2.5em;
+}
 
 /*********************/
 /*  Navbar Display */
