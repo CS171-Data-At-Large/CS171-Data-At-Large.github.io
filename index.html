@@ -1,21 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>CS171: Data At Large</title>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CS171 Project: Data At Large</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+    <!--container for navbar-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#myPage">CS171</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#myPage">HOME</a></li>
+                    <li><a href="#the-equifax-case">THE EQUIFAX CASE</a></li>
+                    <li><a href="#about-internet">ABOUT THE INTERNET</a></li>
+                    <li><a href="#data-breaches">CYBERSECURITY BREACHES</a></li>
+                    <li><a href="#consequences">CONSEQUENCES</a></li>
+                    <li><a href="#recommendations">RECOMMENDATIONS</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Container (Intro (Home) Section) -->
+    <div id="intro" class="intro-image bg-1"></div>
+    <div class="intro-text">
+        <h1>Some introductory texts</h1>
+        <p>supplementary texts</p>
+    </div>
+
+
+    <!-- Container (Equifax Section) -->
+    <div id="the-equifax-case" class="bg-2">
+        <div class="container">
+            <h1>Texts about EQUIFAX CASE as introduction</h1>
+            <p>Equifax on Sept. 7 announced the cybersecurity incident, one of the largest in history. Unauthorized data access occurred from mid-May through July 2017. The breach was discovered on July 29.
+
+                The personally identifiable information (PII) that was accessed includes these details:
+
+                Names
+                Social Security numbers
+                Birth dates
+                Addresses
+                Driver’s license numbers (in some cases)
+                The company detailed the data breach in its press release. Among the key facts:
+
+                A U.S. website application vulnerability was exploited by criminals to gain access to some files.
+                There is currently no evidence of unauthorized activity on core consumer or commercial credit reporting databases.
+                The company is conducting an assessment and providing recommendations on next steps.
+                Get LifeLock protection now.
+
+                "This is clearly a disappointing event for our company, and one that strikes at the heart of who we are and what we do,” Equifax’s chairman and CEO said in the press release. “I apologize to consumers and our business customers for the concern and frustration this causes."
+            </p>
+        </div>
+    </div>
+
+    <!-- Container (About Section) -->
+    <div id="about-internet" class="bg-3">
+        <div class="container">
+            <h1>The Rise of the Internet</h1>
+            <p>Visualization 1 and some brief history of internet + how much we depend on it now.</p>
+        </div>
+        <div class="container">
+            <h1>Concerns about using the internet</h1>
+            <p>Visualization 2 here</p>
+        </div>
+    </div>
+
+    <!-- Container (Data Breach Section) -->
+    <div id="data-breaches" class="bg-4">
+
+        <div class="container">
+            <h1>Trends in Company Breaches</h1>
+            <p>Visualization 3 the stacked area chart and bubble chart here.</p>
+        </div>
+        <div class="container">
+            <h1>More details about Company Breaches</h1>
+            <p>Visualization 4 Parallel Coordinate plot here</p>
+        </div>
+    </div>
+
+    <!-- Container (Data Breach Section) -->
+    <div id="consequences" class="bg-5">
+        <div class="container">
+            <h1>Trends in Identity Theft</h1>
+            <p>Visualization 5 polar area chart.</p>
+        </div>
+        <div class="container">
+            <h1>How long does it take to resolve identity theft?</h1>
+            <p>Visualization 6 spin disc here</p>
+        </div>
+    </div>
+
+    <!-- Container (Data Breach Section) -->
+    <div id="recommendations" class="bg-6">
+        <div class="container">
+            <h1>What's going on in the cybersecurity space?</h1>
+            <p>Visualization 7 money pot bar chart.</p>
+        </div>
+        <div class="container">
+            <h1>Recommendations</h1>
+            <p>texts</p>
+        </div>
+    </div>
+
+    <!-- Add footer -->
+    <footer class="text-center">
+        <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+        </a><br><br>
+        <p>A CS171 Visualization Project</p>
+        <p>By Cindy Zhao, Ziqi Guo and Michelle Ho</p>
+    </footer>
 
 
 
     <!-- Load JS libraries: jQuery, bootstrap, D3, D3 Tooltips -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <script src="js/d3-tip.js"></script>
     <script src="js/d3.min.js"></script>
+    <script src="js/d3-tip.js"></script>
     <script src="js/queue.min.js"></script>
+
+    <!--// Add smooth scrolling to all links in navbar and footer-->
+    <script>
+        $(document).ready(function(){
+            // Initialize Tooltip
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Add smooth scrolling to all links in navbar + footer link
+            $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+                // Make sure this.hash has a value before overriding default behavior
+                if (this.hash !== "") {
+
+                    // Prevent default anchor click behavior
+                    event.preventDefault();
+
+                    // Store hash
+                    var hash = this.hash;
+
+                    // Using jQuery's animate() method to add smooth page scroll
+                    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                    $('html, body').animate({
+                        scrollTop: $(hash).offset().top
+                    }, 900, function(){
+
+                        // Add hash (#) to URL when done scrolling (default click behavior)
+                        window.location.hash = hash;
+                    });
+                } // End if
+            });
+        })
+    </script>
 
 
     <!-- Visualization objects -->

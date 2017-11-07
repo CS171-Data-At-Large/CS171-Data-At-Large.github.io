@@ -1,0 +1,115 @@
+p {
+    font-size: 1.1em;
+}
+
+
+/*********************/
+/*  Navbar Display */
+/*********************/
+/* Add a dark background color with a little bit see-through */
+.navbar {
+    margin-bottom: 0;
+    background-color: #2d2d30;
+    border: 0;
+    font-size: 11px !important;
+    letter-spacing: 4px;
+    opacity:0.9;
+}
+
+/* Add a gray color to all navbar links */
+.navbar li a, .navbar .navbar-brand {
+    color: #d5d5d5 !important;
+}
+
+/* On hover, the links will turn white */
+.navbar-nav li a:hover {
+    color: #fff !important;
+}
+
+/* The active link */
+.navbar-nav li.active a {
+    color: #fff !important;
+    background-color:#29292c !important;
+}
+
+/* Remove border color from the collapsible button */
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+}
+
+
+/*********************/
+/*  Intro Page */
+/*********************/
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg-1{
+    display: block;
+}
+
+.intro-image{
+    /* The image used */
+    background: url("../img/img1.png") center no-repeat;
+
+    filter: grayscale(60%) brightness(60%); /* make all photos black and white */
+    /*opacity: 0.8;*/
+
+    /* Full height and width */
+    height: 100%;
+    width: 100%;
+    display: block;
+
+    /* Center and scale the image nicely */
+    background-size: cover;
+}
+
+/* Place text in the middle of the image */
+.intro-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+
+
+/*********************/
+/*  The Equifax Case */
+/*********************/
+.bg-2{
+}
+
+/*********************/
+/*  The Internet Age */
+/*********************/
+.bg-3{
+}
+
+/*********************/
+/*  Data Breaches    */
+/*********************/
+.bg-4 {
+
+}
+
+/*********************/
+/*  Consequences */
+/*********************/
+.bg-5{
+    /*background: #96858f;*/
+}
+
+/*********************/
+/*  Recommendation */
+/*********************/
+.bg-6{
+
+}
+
+footer{
+}
