@@ -1,6 +1,15 @@
-p {
-    font-size: 1.1em;
+body{
+    font-family: 'Raleway', sans-serif;
 }
+
+h1, h2{
+    font-family: 'Kanit', sans-serif;
+}
+
+p {
+    font-size: 1.2em;
+}
+
 .section{
     height: 100vh;
     padding: 2.5em;
@@ -14,8 +23,8 @@ p {
     margin-bottom: 0;
     background-color: #2d2d30;
     border: 0;
-    font-size: 11px !important;
-    letter-spacing: 4px;
+    font-size: 12px !important;
+    letter-spacing: 3px;
     opacity:0.9;
 }
 
@@ -79,6 +88,13 @@ body, html {
     color: white;
 }
 
+.intro-text h1{
+    font-size: 5em;
+}
+
+.intro-text h2{
+    font-size: 3em;
+}
 
 
 /*********************/
@@ -115,4 +131,17 @@ body, html {
 }
 
 footer{
+    padding: 2.5em;
+    background-color: #2d2d30;
+    opacity: 0.9;
+    color: #d5d5d5 !important;
 }
+
+footer:hover{
+    color: #fff !important;
+}
+
+.glyphicon-chevron-up{
+    color: #d5d5d5 !important;
+}
+
