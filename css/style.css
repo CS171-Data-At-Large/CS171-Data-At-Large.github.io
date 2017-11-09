@@ -10,10 +10,15 @@ p {
     font-size: 1.2em;
 }
 
+label {
+    margin: 2em;
+}
+
 .section{
     height: 100vh;
     padding: 2.5em;
 }
+
 
 /*********************/
 /*  Navbar Display */
@@ -107,6 +112,47 @@ body, html {
 /*  The Internet Age */
 /*********************/
 .bg-3{
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+.axis text {
+    font-size: 11px;
+}
+
+.internetpath {
+    fill: none;
+    stroke: #1C9A3D;
+    stroke-width: 2px;
+}
+
+.dot {
+    fill: #96AB96;
+    stroke: black;
+}
+
+.axis-title {
+    fill: black;
+    font: 20px sans-serif;
+    font-weight: bold;
+}
+
+/*********************/
+/*  TOOLTIP OVERLAY  */
+/*********************/
+
+.d3-tip {
+    line-height: 1;
+    padding: 12px;
+    background: rgba(89, 89, 89, 0.8);
+    color: #f2f2f2;
+    border-radius: 8px;
+    font-family: sans-serif;
+
 }
 
 /*********************/
