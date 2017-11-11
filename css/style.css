@@ -15,7 +15,7 @@ label {
 }
 
 .section{
-    height: 100vh;
+    /*height: 100vh;*/
     padding: 2.5em;
 }
 
@@ -126,13 +126,12 @@ body, html {
 
 .internetpath {
     fill: none;
-    stroke: #1C9A3D;
-    stroke-width: 2px;
+    stroke: #667292;
+    stroke-width: 3px;
 }
 
 .dot {
-    fill: #96AB96;
-    stroke: black;
+    fill: #667292;
 }
 
 .axis-title {

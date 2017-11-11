@@ -3,36 +3,51 @@ var internetUseVis;
 var internetConcernVis;
 
 // Date parser to convert strings to date objects
-var parseDate = d3.timeParse("%Y");
+var parseYear = d3.timeParse("%Y");
+var parseQuarter = d3.timeParse("%b-%y");
 
 // ********** Use the Queue.js library to read two files **********//
 queue()
-    .defer(d3.csv, "data/number_of_internet_users_2000_to_2016.csv")
-    .defer(d3.csv, "data/internet-usage-time-in-us-2010-2016.csv")
+    .defer(d3.csv, "data/us-households-with-internet-access-2000-2016.csv")
+    .defer(d3.csv, "data/us-monthly-time-spent-online-via-computer-2014-2017-by-age.csv")
+    .defer(d3.csv, "data/us-mobile-broadband-subscriptions-2004-2016.csv")
+    .defer(d3.csv, "data/us-daily-time-spent-on-internet-access-via-smartphone-2013-2017.csv")
     .defer(d3.csv, "data/top_internet_usage_concerns_2017.csv")
 
     .await(createVisPart1);
 
-function createVisPart1(error, userData, minData, concernData) {
+function createVisPart1(error, householdData, mindesktopData, mobileData, minmobileData, concernData) {
     if(error) { console.log(error); }
     if(!error) {
         // --> PROCESS DATA
-        // Convert data types of userData
-        userData.forEach(function (entry) {
-            entry.year = parseDate(entry.year);
-            entry.num_users = +entry.num_users;
+        // Convert data types
+        householdData.forEach(function (entry) {
+            entry.date = parseYear(entry.date);
+            entry.value = +entry.value;
         });
 
-        // Convert data types of minData
-        minData.forEach(function(entry){
-            entry.year = parseDate(entry.year);
-            entry.Desktop = +entry.Desktop;
-            entry.Smartphone = +entry.Smartphone;
-            entry.Tablet = +entry.Tablet;
+        mindesktopData.forEach(function(entry){
+            entry.date = parseQuarter(entry.date);
+            entry.value = +entry.value;
+            entry.Age2_11 = +entry.Age2_11;
+            entry.Age12_17 = +entry.Age12_17;
+            entry.Age18_24 = +entry.Age18_24;
+            entry.Age25_34 = +entry.Age25_34;
+            entry.Age35_49 = +entry.Age35_49;
+            entry.Age50_64 = +entry.Age50_64;
+            entry.Age65 = +entry.Age65;
+
         });
 
+        mobileData.forEach(function (entry) {
+            entry.date = parseYear(entry.date);
+            entry.value = +entry.value;
+        });
 
-        // Wrangle it for stacked area chart
+        minmobileData.forEach(function(entry){
+            entry.date = parseQuarter(entry.date);
+            entry.value = +entry.value;
+        });
 
         // Convert data types of concernData
         concernData.forEach(function (entry) {
@@ -44,14 +59,14 @@ function createVisPart1(error, userData, minData, concernData) {
             return b.share_respondents - a.share_respondents;
         });
 
-        internetUseVis = new InternetUseVis("vis-internet-use", userData, minData);
+        internetUseVis = new InternetUseVis("vis-internet-use", householdData, mindesktopData, mobileData, minmobileData);
         internetConcernVis = new InternetConcernsVis("vis-internet-concerns", concernData);
 
 
         // Redraw the graphs on window resize to make the size dynamic
         window.addEventListener("resize", function (event) {
             internetConcernVis.redraw();
+            internetUseVis.redraw();
         })
     }
 }
-

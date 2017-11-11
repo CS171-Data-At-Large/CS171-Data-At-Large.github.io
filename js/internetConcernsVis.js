@@ -21,10 +21,15 @@ InternetConcernsVis = function(_parentElement, _data){
 InternetConcernsVis.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 20, right: 200, bottom: 300, left: 200 };
+    vis.margin = { top: 20, right: 200, bottom: 40, left: 500 };
 
-    vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right,
-        vis.height = 500 - vis.margin.top - vis.margin.bottom;
+    if ($("#" + vis.parentElement).width() - vis.margin.right - vis.margin.left > 100){
+        vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
+    }
+    else{
+        vis.width = 100;
+    }
+    vis.height = 500 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -35,13 +40,13 @@ InternetConcernsVis.prototype.initVis = function(){
 
 
     // Scales and axes
-    vis.x = d3.scaleBand()
-        .rangeRound([0, vis.width])
+    vis.x = d3.scaleLinear()
+        .range([0,vis.width]);
+
+    vis.y = d3.scaleBand()
+        .rangeRound([0, vis.height])
         .paddingInner(0.2)
         .domain(d3.range(0,9));
-
-    vis.y = d3.scaleLinear()
-        .range([vis.height,0]);
 
     vis.xAxis = d3.axisBottom()
         .scale(vis.x);
@@ -58,9 +63,14 @@ InternetConcernsVis.prototype.initVis = function(){
 
     // Axis title
     vis.svg.append("text")
-        .attr("x", -50)
-        .attr("y", -8)
+        .attr("x", (vis.width/2))
+        .attr("y", vis.height + 40)
         .text("Share of Respondents");
+
+    // // Tooltip placeholder
+    // vis.tool_tip = d3.tip()
+    //     .attr("class", "d3-tip")
+    //     .offset([15, 15]);
 
 
     // (Filter, aggregate, modify data)
@@ -74,7 +84,6 @@ InternetConcernsVis.prototype.initVis = function(){
 
 InternetConcernsVis.prototype.wrangleData = function(){
     var vis = this;
-    console.log(vis.displayData);
 
     // Update the visualization
     vis.updateVis();
@@ -89,7 +98,7 @@ InternetConcernsVis.prototype.updateVis = function(){
     var vis = this;
 
     // Update domains
-    vis.y.domain([0, d3.max(vis.displayData, function(d){ return d.share_respondents})]);
+    vis.x.domain([0, d3.max(vis.displayData, function(d){ return d.share_respondents})]);
 
     var bars = vis.svg.selectAll(".share")
         .data(this.displayData);
@@ -99,38 +108,33 @@ InternetConcernsVis.prototype.updateVis = function(){
 
         .merge(bars)
         .transition()
-        .attr("width", vis.x.bandwidth())
-        .attr("height", function(d){
-            return vis.height - vis.y(d.share_respondents);
+        .attr("height", vis.y.bandwidth())
+        .attr("width", function(d){
+            return vis.x(d.share_respondents);
         })
-        .attr("x", function(d, index){
-            return vis.x(index);
+        .attr("y", function(d, index){
+            return vis.y(index);
         })
-        .attr("y", function(d){
-            return vis.y(d.share_respondents);
-        })
+        .attr("x", 0)
         .style("fill", function(d, i){
             if (i<2){
-                return "red";
+                return "#667292";
             }
             else{
-                return"grey";
+                return"#f1e3dd";
             }
         });
 
     bars.exit().remove();
 
     // Call axis function with the new domain
-    vis.svg.select(".y-axis").call(vis.yAxis);
+    vis.svg.select(".x-axis").call(vis.xAxis);
 
-    vis.svg.select(".x-axis").call(vis.xAxis)
+    vis.svg.select(".y-axis").call(vis.yAxis)
         .selectAll("text")
         .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", ".15em")
-        .attr("transform", function(d) {
-            return "rotate(-45)"
-        })
+        .attr("x", "-0.9em")
+        .attr("y", "-0.1em")
         .text(function(d, i){
             return vis.displayData[i]["concerns"];
         });
