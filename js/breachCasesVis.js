@@ -9,6 +9,7 @@ BreachCasesStackedArea = function(_parentElement, _data) {
 
     this.parentElement = _parentElement;
     this.data = _data;
+    this.$graphicContainer = $("#" + _parentElement);
     this.initVis();
 };
 
@@ -138,3 +139,13 @@ BreachCasesStackedArea.prototype.updateVis = function() {
     vis.svg.select(".y-axis").call(vis.yAxis);
 
 };
+
+/*
+ Redraw the graph
+ */
+BreachCasesStackedArea.prototype.redraw = function() {
+    var vis = this;
+
+    vis.$graphicContainer.empty();
+    vis.initVis();
+}

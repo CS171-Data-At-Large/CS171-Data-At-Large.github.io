@@ -82,11 +82,17 @@
                 </div>
 
                 <!-- text associated with internet use -->
-                <div class="col-md-5 text-justify">
-                    <p>some text about how much we depend on the internet now.</p>
+                <div class="col-md-5">
+                    <div id="vis-2">
+                        <div id="vis-internet-activity"></div>
+                    </div>
                 </div>
+            </div>
 
-
+            <div class="row">
+                <!-- text associated with internet use -->
+                <div class="col-md-12 text-justify">
+                    <p>some text about how much we depend on the internet now.</p>
             </div>
 
 
@@ -94,7 +100,9 @@
         <div class="container">
             <h1>Concerns about using the internet</h1>
             <p>Visualization 2 here</p>
-            <div id="vis-internet-concerns"></div>
+            <div id="vis-3">
+                <div id="vis-internet-concerns"></div>
+            </div>
         </div>
     </div>
 
@@ -104,7 +112,23 @@
         <div class="container">
             <h1>Trends in Company Breaches</h1>
             <p>Visualization 3 the stacked area chart and bubble chart here.</p>
-            <div id="vis-breach-cases"></div>
+            <div class="row">
+                <!-- stacked area chart -->
+                <div class="col-md-7">
+                    <div id="vis-4">
+                        <div id="breach-cases-form"></div>
+                        <div id="vis-breach-cases"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <!-- bubble chart -->
+                    <div id="vis-5">
+                        <div id="vis-breach-cases-bubble"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="container">
             <h1>More details about Company Breaches</h1>
@@ -116,12 +140,35 @@
     <div id="consequences" class="bg-5 section">
         <div class="container">
             <h1>Trends in Identity Theft</h1>
-            <p>Visualization 5 polar area chart.</p>
-            <div id="vis-identity-theft"></div>
+            <div class="row">
+                <!-- map chart -->
+                <div class="col-md-7">
+                    <div id="vis-6">
+                        <div id="identity-theft-slider"></div>
+                        <div id="vis-identity-theft"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <p>Potentially a pop-up table with more info</p>
+                </div>
+            </div>
+
         </div>
         <div class="container">
             <h1>How long does it take to resolve identity theft?</h1>
-            <p>Visualization 6 spin disc here</p>
+            <div class="row">
+                <!-- square chart -->
+                <div class="col-md-7">
+                    <div id="vis-7">
+                        <div id="vis-resolve-time"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <p>Text about resolving identity theft</p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -129,7 +176,18 @@
     <div id="recommendations" class="bg-6 section">
         <div class="container">
             <h1>What's going on in the cybersecurity space?</h1>
-            <p>Visualization 7 money pot bar chart.</p>
+            <div class="row">
+                <!-- square chart -->
+                <div class="col-md-7">
+                    <div id="vis-8">
+                        <div id="vis-cybersecurity-spending"></div>
+                    </div>
+                </div>
+
+                <div class="col-md-5">
+                    <p>Text about cybersecurity spending</p>
+                </div>
+            </div>
         </div>
         <div class="container">
             <h1>Recommendations</h1>
@@ -155,8 +213,7 @@
     <script src="js/d3-tip.js"></script>
     <script src="js/queue.min.js"></script>
     <script src="js/d3-annotation.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-
+    <script src="js/d3-scale-chromatic.v1.min.js"></script>
 
     <!--// Add smooth scrolling to all links in navbar and footer-->
     <script>
