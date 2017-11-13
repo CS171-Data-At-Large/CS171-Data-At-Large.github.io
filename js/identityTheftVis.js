@@ -10,6 +10,7 @@ IdentityTheftSquareMap = function(_parentElement, _map, _data) {
     this.parentElement = _parentElement;
     this.map = _map;
     this.data = _data;
+    this.$graphicContainer = $("#" + _parentElement);
     this.initVis();
 };
 
@@ -105,3 +106,13 @@ IdentityTheftSquareMap.prototype.updateVis = function() {
     var vis = this;
 
 };
+
+/*
+ Redraw the graph
+ */
+IdentityTheftSquareMap.prototype.redraw = function() {
+    var vis = this;
+
+    vis.$graphicContainer.empty();
+    vis.initVis();
+}
