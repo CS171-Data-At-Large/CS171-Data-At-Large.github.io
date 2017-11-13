@@ -1,6 +1,7 @@
 // Initialize variables to save the charts later
 var internetUseVis;
 var internetConcernVis;
+var internetActivityVis;
 
 // Date parser to convert strings to date objects
 var parseYear = d3.timeParse("%Y");
@@ -12,11 +13,12 @@ queue()
     .defer(d3.csv, "data/us-monthly-time-spent-online-via-computer-2014-2017-by-age.csv")
     .defer(d3.csv, "data/us-mobile-broadband-subscriptions-2004-2016.csv")
     .defer(d3.csv, "data/us-daily-time-spent-on-internet-access-via-smartphone-2013-2017.csv")
+    .defer(d3.csv, "data/daily_online_activities_2017.csv")
     .defer(d3.csv, "data/top_internet_usage_concerns_2017.csv")
 
     .await(createVisPart1);
 
-function createVisPart1(error, householdData, mindesktopData, mobileData, minmobileData, concernData) {
+function createVisPart1(error, householdData, mindesktopData, mobileData, minmobileData, activityData, concernData) {
     if(error) { console.log(error); }
     if(!error) {
         // --> PROCESS DATA
@@ -49,6 +51,15 @@ function createVisPart1(error, householdData, mindesktopData, mobileData, minmob
             entry.value = +entry.value;
         });
 
+        // Convert data types of activityData
+        activityData.forEach(function(entry){
+            entry.Avg = +entry.Avg;
+            entry.Age_18_29 = +entry.Age_18_29;
+            entry.Age_30_59 = +entry.Age_30_59;
+            entry.Age_60 = +entry.Age_60;
+        });
+
+
         // Convert data types of concernData
         concernData.forEach(function (entry) {
             entry.share_respondents = +entry.share_respondents;
@@ -61,7 +72,7 @@ function createVisPart1(error, householdData, mindesktopData, mobileData, minmob
 
         internetUseVis = new InternetUseVis("vis-internet-use", householdData, mindesktopData, mobileData, minmobileData);
         internetConcernVis = new InternetConcernsVis("vis-internet-concerns", concernData);
-
+        internetActivityVis = new InternetActivityVis("vis-internet-activity", activityData);
 
         // Redraw the graphs on window resize to make the size dynamic
         window.addEventListener("resize", function (event) {

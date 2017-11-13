@@ -161,6 +161,21 @@ body, html {
 
 }
 
+.parcoords {
+    display: block;
+}
+
+.parcoords svg,
+.parcoords canvas {
+    font: 10px sans-serif;
+    position: absolute;
+}
+
+.parcoords canvas {
+    opacity: 0.9;
+    pointer-events: none;
+}
+
 /*********************/
 /*  Consequences */
 /*********************/

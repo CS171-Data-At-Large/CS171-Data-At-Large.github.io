@@ -43,12 +43,12 @@ IdentityTheftSquareMap.prototype.initVis = function() {
     // Define scales
     vis.sizeScale = d3.scaleLinear()
         .domain([0, d3.max(identityTheftByStateArray, function(d) {return d['Number of victims']})])
-        .range([20, vis.size]);
+        .range([10, vis.size]);
 
-    vis.colorScale = d3.scaleThreshold()
+    vis.colorScale = d3.scaleLinear()
         .domain([d3.min(identityTheftByStateArray, function(d) {return d['Victims per 100000 population']}),
             d3.max(identityTheftByStateArray, function(d) {return d['Victims per 100000 population']})])
-        .range(d3.schemeBlues[9]);
+        .range(["#f0f1f5", "#667292"]);
 
     // Add US square map
     vis.states = vis.svg.selectAll("rect.square-map")
@@ -76,7 +76,15 @@ IdentityTheftSquareMap.prototype.initVis = function() {
         .attr("height", vis.size)
         .attr("width", vis.size)
         .attr("fill", "transparent")
-        .attr("stroke", "grey");
+        .attr("stroke", "grey")
+        .on("mouseover", function(d) {
+            vis.tooltip.text("State: " + d.state)
+        });
+
+    // Tooltips
+    vis.tooltip = vis.svg.append("text")
+        .attr("x", 310)
+        .attr("y", -5);
 
     vis.wrangleData();
 
