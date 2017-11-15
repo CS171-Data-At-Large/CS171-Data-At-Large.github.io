@@ -1,7 +1,9 @@
 // Initialize variables to save the charts later
-var internetUseVis;
+var internetUseMapVis;
+var internetUseLineVis;
 var internetConcernVis;
 var internetActivityVis;
+var lineData;
 
 // Date parser to convert strings to date objects
 var parseYear = d3.timeParse("%Y");
@@ -9,45 +11,30 @@ var parseQuarter = d3.timeParse("%b-%y");
 
 // ********** Use the Queue.js library to read two files **********//
 queue()
-    .defer(d3.csv, "data/us-households-with-internet-access-2000-2016.csv")
-    .defer(d3.csv, "data/us-monthly-time-spent-online-via-computer-2014-2017-by-age.csv")
-    .defer(d3.csv, "data/us-mobile-broadband-subscriptions-2004-2016.csv")
-    .defer(d3.csv, "data/us-daily-time-spent-on-internet-access-via-smartphone-2013-2017.csv")
-    .defer(d3.csv, "data/daily_online_activities_2017.csv")
-    .defer(d3.csv, "data/top_internet_usage_concerns_2017.csv")
+    .defer(d3.csv, "data/internet-use/internet_user.csv")
+    .defer(d3.csv, "data/internet-use/cellular_user.csv")
+    .defer(d3.json, "data/internet-use/internet_user.json")
+    .defer(d3.json, "data/internet-use/cellular_user.json")
+    .defer(d3.json, "data/internet-use/world-topo.json")
+    .defer(d3.csv, "data/internet-use/daily_online_activities_2017.csv")
+    .defer(d3.csv, "data/internet-use/top_internet_usage_concerns_2017.csv")
 
     .await(createVisPart1);
 
-function createVisPart1(error, householdData, mindesktopData, mobileData, minmobileData, activityData, concernData) {
+function createVisPart1(error, internetData, mobileData, internetJSON, mobileJSON, worldMapData, activityData, concernData) {
     if(error) { console.log(error); }
     if(!error) {
         // --> PROCESS DATA
-        // Convert data types
-        householdData.forEach(function (entry) {
-            entry.date = parseYear(entry.date);
+
+        // Convert data types of internetJSON
+        internetJSON.forEach(function(entry){
+            entry.year = parseYear(entry.year);
             entry.value = +entry.value;
         });
 
-        mindesktopData.forEach(function(entry){
-            entry.date = parseQuarter(entry.date);
-            entry.value = +entry.value;
-            entry.Age2_11 = +entry.Age2_11;
-            entry.Age12_17 = +entry.Age12_17;
-            entry.Age18_24 = +entry.Age18_24;
-            entry.Age25_34 = +entry.Age25_34;
-            entry.Age35_49 = +entry.Age35_49;
-            entry.Age50_64 = +entry.Age50_64;
-            entry.Age65 = +entry.Age65;
-
-        });
-
-        mobileData.forEach(function (entry) {
-            entry.date = parseYear(entry.date);
-            entry.value = +entry.value;
-        });
-
-        minmobileData.forEach(function(entry){
-            entry.date = parseQuarter(entry.date);
+        // Convert data types of mobileJSON
+        mobileJSON.forEach(function(entry){
+            entry.year = parseYear(entry.year);
             entry.value = +entry.value;
         });
 
@@ -70,14 +57,17 @@ function createVisPart1(error, householdData, mindesktopData, mobileData, minmob
             return b.share_respondents - a.share_respondents;
         });
 
-        internetUseVis = new InternetUseVis("vis-internet-use", householdData, mindesktopData, mobileData, minmobileData);
+        internetUseMapVis = new InternetUseMapVis("vis-internet-use-map", internetData, mobileData, worldMapData);
+        internetUseLineVis = new InternetUseLineVis("vis-internet-use-line", internetJSON, mobileJSON);
         internetConcernVis = new InternetConcernsVis("vis-internet-concerns", concernData);
         internetActivityVis = new InternetActivityVis("vis-internet-activity", activityData);
 
         // Redraw the graphs on window resize to make the size dynamic
         window.addEventListener("resize", function (event) {
             internetConcernVis.redraw();
-            internetUseVis.redraw();
+            internetUseMapVis.redraw();
+            internetUseLineVis.redraw();
+            internetActivityVis.redraw();
         })
     }
 }

@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Kanit|Raleway" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/nouislider.css">
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
     <!--container for navbar-->
@@ -24,7 +26,6 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#myPage">HOME</a></li>
-                    <li><a href="#equifax">THE EQUIFAX CASE</a></li>
                     <li><a href="#about-internet">ABOUT THE INTERNET</a></li>
                     <li><a href="#data-breaches">CYBERSECURITY THREATS</a></li>
                     <li><a href="#consequences">CONSEQUENCES</a></li>
@@ -39,77 +40,84 @@
     <div class="intro-text">
         <h1>Data at Large</h1>
         <h2>How protected is your data?</h2>
+        <br>
+        <br>
+        <br>
+        <a href="#about-internet" class="btn btn-circle page-scroll">
+            <i class="fa fa-angle-double-down animated"></i>
+        </a>
+
     </div>
 
 
-    <!-- Container (Equifax Section) -->
-    <div id="equifax" class="bg-2 section">
-        <div class="container">
-            <h1>Texts about EQUIFAX CASE as introduction</h1>
-            <p>Equifax on Sept. 7 announced the cybersecurity incident, one of the largest in history. Unauthorized data access occurred from mid-May through July 2017. The breach was discovered on July 29.
+    <!--&lt;!&ndash; Container (Equifax Section) &ndash;&gt;-->
+    <!--<div id="equifax" class="bg-2 section">-->
+        <!--<div class="container">-->
+            <!--<h1>Texts about EQUIFAX CASE as introduction</h1>-->
+            <!--<p>Equifax on Sept. 7 announced the cybersecurity incident, one of the largest in history. Unauthorized data access occurred from mid-May through July 2017. The breach was discovered on July 29.-->
 
-                The personally identifiable information (PII) that was accessed includes these details:
+                <!--The personally identifiable information (PII) that was accessed includes these details:-->
 
-                Names
-                Social Security numbers
-                Birth dates
-                Addresses
-                Driver’s license numbers (in some cases)
-                The company detailed the data breach in its press release. Among the key facts:
+                <!--Names-->
+                <!--Social Security numbers-->
+                <!--Birth dates-->
+                <!--Addresses-->
+                <!--Driver’s license numbers (in some cases)-->
+                <!--The company detailed the data breach in its press release. Among the key facts:-->
 
-                A U.S. website application vulnerability was exploited by criminals to gain access to some files.
-                There is currently no evidence of unauthorized activity on core consumer or commercial credit reporting databases.
-                The company is conducting an assessment and providing recommendations on next steps.
-                Get LifeLock protection now.
+                <!--A U.S. website application vulnerability was exploited by criminals to gain access to some files.-->
+                <!--There is currently no evidence of unauthorized activity on core consumer or commercial credit reporting databases.-->
+                <!--The company is conducting an assessment and providing recommendations on next steps.-->
+                <!--Get LifeLock protection now.-->
 
-                "This is clearly a disappointing event for our company, and one that strikes at the heart of who we are and what we do,” Equifax’s chairman and CEO said in the press release. “I apologize to consumers and our business customers for the concern and frustration this causes."
-            </p>
-        </div>
-    </div>
+                <!--"This is clearly a disappointing event for our company, and one that strikes at the heart of who we are and what we do,” Equifax’s chairman and CEO said in the press release. “I apologize to consumers and our business customers for the concern and frustration this causes."-->
+            <!--</p>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <!-- Container (About Section) -->
-    <div id="about-internet" class="bg-3 section">
+    <div id="about-internet" class="bg-2 section">
         <div class="container">
-            <h1>The Rise of the Internet</h1>
-            <p>Visualization 1 and some brief history of internet.</p>
-            <div class="row">
-                <!-- visualization -->
+            <h1>The Rise of the Internet Age</h1>
+            <div class="row" id="vis-1">
+
                 <div class="col-md-7">
-                    <div id="vis-1">
-                        <div id="internet-use-form"></div>
-                        <div id="vis-internet-use"></div>
+                    <div class="slider-group">
+                        <div id="internet-slider-buttons"></div>
+                        <div class="slider" id="internet-use-slider"></div>
                     </div>
-                </div>
 
-                <!-- text associated with internet use -->
+                    <div id="vis-internet-use-map"></div>
+                </div>
                 <div class="col-md-5">
-                    <div id="vis-2">
-                        <div id="internet-activity-form"></div>
-                        <div id="vis-internet-activity"></div>
-                    </div>
+                    <div id="internet-use-buttons"></div>
+                    <div id="vis-internet-use-line"></div>
+                    <p class="text-justify">Since the commercialization of the internet in 1995, % of active internet user rapidly expanded and
+                        continues to expand worldwide. Similarly with the advent of the 1st smartphone in 1996, # of mobile broadband subscriptions per 100 people
+                        consistently grew year after year, and we are relying on our cellular network more and more. The
+                        internet has certainly improved our way of life in too many ways to count. However, it is not
+                        without repercussions. As we take advantage of the conveniences the digital age brings, we are also
+                        exposing ourselves to potential cyber threats. </p>
                 </div>
             </div>
+            <h1>Internet Activities & Concerns</h1>
+            <h2></h2>
+            <div class="row" id="vis-2">
+                <div class="col-md-6">
+                    <div id="internet-activity-form"></div>
+                    <div id="vis-internet-activity"></div>
+                </div>
 
-            <div class="row">
-                <!-- text associated with internet use -->
-                <div class="col-md-12 text-justify">
-                    <p>some text about how much we depend on the internet now.</p>
-            </div>
-
-
-        </div>
-        <div class="container">
-            <h1>Concerns about using the internet</h1>
-            <p>Visualization 2 here</p>
-            <div id="vis-3">
-                <div id="vis-internet-concerns"></div>
+                <div class="col-md-6">
+                    <div id="vis-internet-concerns"></div>
+                </div>
             </div>
         </div>
         </div>
     </div>
 
     <!-- Container (Data Breach Section) -->
-    <div id="data-breaches" class="bg-4 section">
+    <div id="data-breaches" class="bg-3 section">
 
         <div class="container">
             <h1>Trends in Company Breaches</h1>
@@ -142,7 +150,7 @@
     </div>
 
     <!-- Container (Data Breach Section) -->
-    <div id="consequences" class="bg-5 section">
+    <div id="consequences" class="bg-4 section">
         <div class="container">
             <h1>Trends in Identity Theft</h1>
             <div class="row">
@@ -178,7 +186,7 @@
     </div>
 
     <!-- Container (Data Breach Section) -->
-    <div id="recommendations" class="bg-6 section">
+    <div id="recommendations" class="bg-5 section">
         <div class="container">
             <h1>What's going on in the cybersecurity space?</h1>
             <div class="row">
@@ -219,7 +227,10 @@
     <script src="js/queue.min.js"></script>
     <script src="js/d3-annotation.js"></script>
     <script src="js/d3-scale-chromatic.v1.min.js"></script>
-    <script src="https://bl.ocks.org/syntagmatic/raw/3341641/render-queue.js"></script>
+    <script src="js/render-queue.js"></script>
+    <script src="js/topojson.v1.min.js"></script>
+    <script src="js/nouislider.js"></script>
+    <script src="js/wNumb.js"></script>
 
     <!--// Add smooth scrolling to all links in navbar and footer-->
     <script>
@@ -228,7 +239,7 @@
             $('[data-toggle="tooltip"]').tooltip();
 
             // Add smooth scrolling to all links in navbar + footer link
-            $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+            $(".navbar a, .intro-text a[href='#about-internet'] , footer a[href='#myPage']").on('click', function(event) {
 
                 // Make sure this.hash has a value before overriding default behavior
                 if (this.hash !== "") {
@@ -255,7 +266,8 @@
 
 
     <!-- Visualization objects -->
-    <script src="js/internetUseVis.js"></script>
+    <script src="js/internetUseMapVis.js"></script>
+    <script src="js/internetUseLineVis.js"></script>
     <script src="js/internetConcernsVis.js"></script>
     <script src="js/internetDailyActivity.js"></script>
     <script src="js/breachCasesVis.js"></script>

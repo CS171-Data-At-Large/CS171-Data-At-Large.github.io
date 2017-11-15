@@ -21,7 +21,7 @@ InternetConcernsVis = function(_parentElement, _data){
 InternetConcernsVis.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 20, right: 200, bottom: 40, left: 500 };
+    vis.margin = { top: 100, right: 50, bottom: 50, left: 150 };
 
     if ($("#" + vis.parentElement).width() - vis.margin.right - vis.margin.left > 100){
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
@@ -29,7 +29,7 @@ InternetConcernsVis.prototype.initVis = function(){
     else{
         vis.width = 100;
     }
-    vis.height = 500 - vis.margin.top - vis.margin.bottom;
+    vis.height = 385 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")

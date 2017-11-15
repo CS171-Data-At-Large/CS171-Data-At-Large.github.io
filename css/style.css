@@ -7,7 +7,7 @@ h1, h2{
 }
 
 p {
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 label {
@@ -17,7 +17,9 @@ label {
 .section{
     /*height: 100vh;*/
     padding-top: 2.5em;
+    margin: 0px;
 }
+
 
 
 /*********************/
@@ -101,26 +103,88 @@ body, html {
     font-size: 3em;
 }
 
-
-/*********************/
-/*  The Equifax Case */
-/*********************/
-.bg-2{
+.btn-circle {
+    width: 70px;
+    height: 70px;
+    /*margin-top: 15px;*/
+    padding: 7px 16px;
+    border: 2px solid white;
+    border-radius: 100% !important;
+    font-size: 40px;
+    color: white;
+    background: transparent;
+    -webkit-transition: background 0.3s ease-in-out;
+    -moz-transition: background 0.3s ease-in-out;
+    transition: background 0.3s ease-in-out;
+    text-align: center;
+    vertical-align: middle;
+}
+.btn-circle:hover,
+.btn-circle:focus {
+    outline: none;
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+}
+.btn-circle i.animated {
+    -webkit-transition-property: -webkit-transform;
+    -webkit-transition-duration: 1s;
+    -moz-transition-property: -moz-transform;
+    -moz-transition-duration: 1s;
+}
+.btn-circle:hover i.animated {
+    -webkit-animation-name: pulse;
+    -moz-animation-name: pulse;
+    -webkit-animation-duration: 1.5s;
+    -moz-animation-duration: 1.5s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+}
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+    50% {
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@-moz-keyframes pulse {
+    0% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
+    50% {
+        -moz-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    100% {
+        -moz-transform: scale(1);
+        transform: scale(1);
+    }
 }
 
 /*********************/
 /*  The Internet Age */
 /*********************/
-.bg-3{
+.bg-2{
+    background-color: #F9F9F9;
+    color: #2d2d30 !important;
 }
 
-.axis path,
+.bg-2 .axis path,
 .axis line {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
 }
-.axis text {
+.bg-2 .axis text {
     font-size: 11px;
 }
 
@@ -134,11 +198,54 @@ body, html {
     fill: #667292;
 }
 
-.axis-title {
+.bg-2 .axis-title {
     fill: black;
     font: 20px sans-serif;
     font-weight: bold;
 }
+
+
+.btn-group>a {
+    font-size: 12px;
+    display: inline-block;
+    text-decoration: none;
+    color: var(--colorMedium);
+    border-color: #ddd;
+    border-width: 1px;
+    background-color: #f0f0f0;
+    padding: 3px 10px;
+    margin: 2.8em 4px 4px 0;
+
+    border-radius: 12px !important;
+}
+.btn-group>a:hover {
+    color: var(--colorDark);
+}
+
+
+/****************/
+/*  SLIDER  */
+/****************/
+
+/*.noUi-connect{*/
+    /*background: #96AB96;*/
+/*}*/
+
+#internet-use-slider{
+    width: 400px;
+    display: flex;
+    margin: 0.5em;
+}
+
+#internet-use-slider > div{
+    flex:1;
+}
+
+#internet-slider-buttons{
+    width: 400px;
+    padding-left: 100px;
+}
+
 
 /*********************/
 /*  TOOLTIP OVERLAY  */
@@ -157,8 +264,9 @@ body, html {
 /*********************/
 /*  Data Breaches    */
 /*********************/
-.bg-4 {
-
+.bg-3 {
+    background-color: #2d2d30;
+    color: #d5d5d5 !important;
 }
 
 .parcoords {
@@ -248,8 +356,9 @@ body, html {
 /*********************/
 /*  Consequences */
 /*********************/
-.bg-5{
-    /*background: #96858f;*/
+.bg-4{
+    background-color: #F9F9F9;
+    color: #2d2d30 !important;
 }
 
 .square-map {
@@ -258,8 +367,9 @@ body, html {
 /*********************/
 /*  Recommendation */
 /*********************/
-.bg-6{
-
+.bg-5{
+    background-color: #2d2d30;
+    color: white !important;
 }
 
 footer{

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Index Test</title>
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/nouislider.css">
+</head>
+<body>
+    <h1>Test html for visualizations</h1>
+
+    <div class="row" id="vis-1">
+
+        <div class="col-md-7">
+            <div class="slider-group">
+                <div id="internet-slider-buttons"></div>
+                <div class="slider" id="internet-use-slider"></div>
+            </div>
+
+            <div id="vis-internet-use-map"></div>
+        </div>
+        <div class="col-md-5">
+            <div id="internet-use-buttons"></div>
+            <div id="vis-internet-use-line"></div>
+            <p>Since the commercialization of the internet in 1995, </p>
+        </div>
+    </div>
+
+
+    <div class="row" id="vis-2">
+        <div class="col-md-6">
+            <div id="internet-activity-form"></div>
+            <div id="vis-internet-activity"></div>
+        </div>
+
+        <div class="col-md-6">
+            <div id="vis-internet-concerns"></div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Load JS libraries: jQuery, bootstrap, D3, D3 Tooltips -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/d3.min.js"></script>
+    <script src="js/d3-tip.js"></script>
+    <script src="js/queue.min.js"></script>
+    <script src="js/d3-annotation.js"></script>
+    <script src="js/topojson.v1.min.js"></script>
+    <script src="js/nouislider.js"></script>
+    <script src="js/wNumb.js"></script>
+
+
+    <!-- Visualization objects -->
+    <script src="js/internetUseMapVis.js"></script>
+    <script src="js/internetUseLineVis.js"></script>
+    <script src="js/internetConcernsVis.js"></script>
+    <script src="js/internetDailyActivity.js"></script>
+
+    <!--  My JS code  -->
+    <script src="js/main_michelle.js"></script>
+</body>
+</html>
