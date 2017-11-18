@@ -2,9 +2,10 @@ body{
     font-family: 'Raleway', sans-serif;
 }
 
-h1, h2{
+h1, h2, h3{
     font-family: 'Kanit', sans-serif;
 }
+
 
 p {
     font-size: 1em;
@@ -69,7 +70,7 @@ body, html {
     display: block;
 }
 
-.intro-image{
+.background-image{
     /* The image used */
     background: url("../img/img1.png") center no-repeat;
 
@@ -91,8 +92,9 @@ body, html {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -20%);
     color: white;
+    width: 80%;
 }
 
 .intro-text h1{
@@ -100,7 +102,7 @@ body, html {
 }
 
 .intro-text h2{
-    font-size: 3em;
+    font-size: 2em;
 }
 
 .btn-circle {
@@ -200,7 +202,7 @@ body, html {
 
 .bg-2 .axis-title {
     fill: black;
-    font: 20px sans-serif;
+    font-size: 20px;
     font-weight: bold;
 }
 
