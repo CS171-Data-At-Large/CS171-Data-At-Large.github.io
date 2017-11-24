@@ -363,8 +363,14 @@ body, html {
     color: #2d2d30 !important;
 }
 
-.square-map {
+tr:nth-child(even) {
+    background-color: #93d1f2;
 }
+
+.state-tooltip {
+    font-size: 50px;
+}
+
 
 /*********************/
 /*  Recommendation */

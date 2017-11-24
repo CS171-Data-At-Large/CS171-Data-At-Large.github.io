@@ -5,11 +5,15 @@
  *  @param _data            -- Array with all stations of the bike-sharing network
  */
 
-BreachCasesStackedArea = function(_parentElement, _data) {
+BreachCasesStackedArea = function(_parentElement, _dataM, _dataS) {
 
     this.parentElement = _parentElement;
-    this.data = _data;
+    this.dataM = _dataM;
+    this.dataS = _dataS;
     this.$graphicContainer = $("#" + _parentElement);
+    this.duration = 1000;
+    this.ease = d3.easeElasticInOut;
+    this.addDropDownMenu();
     this.initVis();
 };
 
@@ -22,7 +26,7 @@ BreachCasesStackedArea.prototype.initVis = function() {
     var vis = this;
     vis.margin = { top: 40, right: 40, bottom: 60, left: 60 };
 
-    vis.width = 800 - vis.margin.left - vis.margin.right;
+    vis.width = 550 - vis.margin.left - vis.margin.right;
     vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
 
@@ -54,25 +58,38 @@ BreachCasesStackedArea.prototype.initVis = function() {
     vis.svg.append("g")
         .attr("class", "y-axis axis");
 
+    vis.xAxislabel = vis.svg.append("text")
+        .attr("class", "x-axis-label")
+        .attr("x", (vis.width/2 - 30))
+        .attr("y", (vis.height + 40));
 
-    // Initialize stack layout
-    vis.dataCategories = colorScale.domain();
-    vis.stack = d3.stack().keys(vis.dataCategories);
+    vis.yAxislabel = vis.svg.append("text")
+        .attr("class", "y-axis-label")
+        .attr("transform", "translate(-40, 130) rotate(270)")
+        .style("text-anchor", "middle");
 
-    // Rearrange data
-    vis.stackedData = vis.stack(vis.data);
 
     // Stacked area layout
     vis.area = d3.area()
-        .curve(d3.curveCardinal)
+        .curve(d3.curveCatmullRom)
         .x(function(d) { return vis.x(d.data.Year); })
         .y0(function(d) { return vis.y(d[0]); })
         .y1(function(d) { return vis.y(d[1]); });
+
+    vis.singlearea = d3.area()
+        .curve(d3.curveCatmullRom)
+        .x(function(d) { return vis.x(d.data.Year); })
+        .y0(vis.height)
+        .y1(function(d) { return vis.y(d['data'][vis.filter]); });
+
+
 
     // Tooltip placeholder
     vis.tooltip = vis.svg.append("text")
         .attr("x", 10)
         .attr("y", 10);
+
+    vis.filter = "";
 
     vis.wrangleData();
 
@@ -86,8 +103,39 @@ BreachCasesStackedArea.prototype.initVis = function() {
 BreachCasesStackedArea.prototype.wrangleData = function() {
     var vis = this;
 
-    // Currently no data wrangling/filtering needed
-    // vis.displayData = vis.data;
+    if ($("#breach-cases-form option:selected").val() !== vis.selected) {
+        vis.filter = "";
+    }
+
+    vis.selected = $("#breach-cases-form option:selected").val();
+
+    if (vis.selected === 'Method of Leak') {
+        vis.data = vis.dataM;
+    }
+    else {
+        vis.data = vis.dataS;
+    }
+
+    // Initialize stack layout
+    colorScale.domain(d3.keys(vis.data[0]).filter(function(d){ return d != "Year"; }));
+    vis.dataCategories = colorScale.domain();
+    vis.stack = d3.stack().keys(vis.dataCategories);
+
+    // Rearrange data
+    vis.stackedData = vis.stack(vis.data);
+    vis.displayData = [];
+
+    if (vis.filter !== "") {
+        vis.stackedData.forEach(function(d, i) {
+            if (d.key === vis.filter){
+                vis.displayData.push(d);
+            }
+        })
+    }
+    else {
+        vis.displayData = vis.stackedData;
+    }
+
 
     // Update the visualization
     vis.updateVis();
@@ -104,39 +152,78 @@ BreachCasesStackedArea.prototype.updateVis = function() {
 
     // Get the maximum of the multi-dimensional array or in other words, get the highest peak of the uppermost layer
     vis.x.domain([2004, 2017]);
-    vis.y.domain([0, d3.max(vis.stackedData, function(d) {
+    vis.y.domain([0, d3.max(vis.displayData, function(d) {
         return d3.max(d, function(e) {
-            return e[1];
+            if (vis.filter !== "") {
+                return e[1] - e[0];
+            }
+            else {
+                return e[1];
+            }
         });
     })
     ]);
+
+
     vis.dataCategories = colorScale.domain();
 
     // Draw the layers
     vis.categories = vis.svg.selectAll(".area")
-        .data(vis.stackedData);
+        .data(vis.displayData);
 
     vis.categories.enter().append("path")
         .attr("class", "area")
         .merge(vis.categories)
-        .style("fill", function(d,i) {
-            return colorScale(vis.dataCategories[i]);
-
-        })
-        .attr("d", function(d) {
-            return vis.area(d);
-        })
         .on("mouseover", function(d) {
             vis.tooltip.text(d.key);
+        })
+        .on("click", function(d, i) {
+            vis.filter = (vis.filter) ? "" : d.key;
+            vis.wrangleData();
+            bubblechart.wrangleData(vis.filter);
+        })
+        .transition()
+        .duration(vis.duration)
+        .style("fill", function(d,i) {
+            if (vis.filter !== ""){
+                return colorScale(vis.filter);
+            }
+            else {
+                return colorScale(vis.dataCategories[i]);
+            }
+        })
+        .attr("d", function(d) {
+            if (vis.filter !== ""){
+                return vis.singlearea(d);
+            }
+            else {
+                return vis.area(d);
+            }
         });
 
     // Update tooltip text
     vis.categories.exit().remove();
 
+    // Update axes labels
+    vis.svg.select(".x-axis-label")
+        .text("Year");
+
+    vis.svg.select(".y-axis-label")
+        .text("Number of events");
+
 
     // Call axis functions with the new domain
-    vis.svg.select(".x-axis").call(vis.xAxis);
-    vis.svg.select(".y-axis").call(vis.yAxis);
+    vis.svg.select(".x-axis")
+        .transition()
+        .duration(vis.duration)
+        .ease(vis.ease)
+        .call(vis.xAxis);
+
+    vis.svg.select(".y-axis")
+        .transition()
+        .duration(vis.duration)
+        .ease(vis.ease)
+        .call(vis.yAxis);
 
 };
 
@@ -148,4 +235,23 @@ BreachCasesStackedArea.prototype.redraw = function() {
 
     vis.$graphicContainer.empty();
     vis.initVis();
+}
+
+/*
+ Add drop down menu to the DOM
+ */
+BreachCasesStackedArea.prototype.addDropDownMenu = function() {
+    var p = document.getElementById("breach-cases-form");
+    var menu = document.createElement("form");
+    menu.setAttribute("class", "form-inline");
+    var selections = '<div class="form-group">' +
+        '<label for="change-breach-cases-data">Visualize by:  </label>' +
+        '<select class="form-control" id="change-breach-cases-data">' +
+        '<option value="Method of Leak">Method of leak</option>' +
+        '<option value="Data Sensitivity">Sensitivity of leaked data</option>' +
+        '</select>' +
+        '</div>';
+
+    menu.innerHTML = selections;
+    p.appendChild(menu);
 }

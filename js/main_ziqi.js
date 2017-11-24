@@ -1,10 +1,8 @@
 
 // Will be used to the save the loaded JSON data
-var allData = {};
-var allDataArray = [];
+var dataByMethods = {};
+var dataBySensitivity = {};
 
-// Set ordinal color scale
-var colorScale = d3.scaleOrdinal(d3.schemeCategory20);
 
 // Variables for the visualization instances
 var areachart;
@@ -20,54 +18,56 @@ d3.queue()
 
 function createVis(error, data1, data2, data3) {
 
-    console.log(data2);
-
+    console.log(data1);
     // ############# data breaches visualization ###############
     for (var i = 2004; i <= 2017; i++){
-        allData[i] = {'inside job': 0, 'hacked': 0, 'accidentally published': 0,
-            'lost / stolen device or media': 0, 'poor security': 0, 'Year': i};
+        dataByMethods[i] = {'hacked': 0, 'lost / stolen device or media': 0, 'accidentally published': 0,
+            'inside job': 0, 'poor security': 0, 'Year': i};
+
+        dataBySensitivity[i] = {'Credit card information': 0, 'Email password/Health record': 0,
+            'Full bank account details': 0, 'Just email address/Online Information': 0,
+            'SSN/Personal details': 0, 'Year': i};
     }
 
     data1.forEach(function(d) {
         d['No of Records Stolen'] = +d['No of Records Stolen'];
         d['Records Lost'] = +d['Records Lost'];
         d['Year'] = +d['Year'];
-        allData[d['Year']][d['Method of Leak'].trim()]++;
+        dataByMethods[d['Year']][d['Method of Leak'].trim()]++;
+        dataBySensitivity[d['Year']][d['Data Sensitivity'].trim()]++;
 
     });
 
-    colorScale.domain(d3.keys(allData[2004]).filter(function(d){ return d != "Year"; }));
-
-    allDataArray = $.map(allData, function(value, index) {
+    dataByMethods = $.map(dataByMethods, function(value, index) {
         return [value];
     });
 
-    // Instantiate visualization objects here
-    areachart = new BreachCasesStackedArea("vis-breach-cases", allDataArray);
-
-
-    // ############# identity theft visualization ##############
-    var identityTheftByState = {};
-
-    data3.forEach(function(d) {
-        d['Victims per 100000 population'] = +d['Victims per 100000 population'];
-        d['Number of victims'] = +d['Number of victims'];
-        d['Rank'] = +d['Rank'];
-        d['Year'] = +d['Year'];
-        if (d['State'] in identityTheftByState) {
-            identityTheftByState[d['State']]['Victims per 100000 population'] += d['Victims per 100000 population']/9;
-            identityTheftByState[d['State']]['Number of victims'] += d['Number of victims']/9;
-        }
-        else {
-            identityTheftByState[d['State']] = {'State': d['State'],
-                                                'Victims per 100000 population': d['Victims per 100000 population']/9,
-                                                'Number of victims': d['Number of victims']/9};
-        }
+    dataBySensitivity = $.map(dataBySensitivity, function(value, index) {
+        return [value];
     });
 
+    console.log(dataByMethods);
+    console.log(dataBySensitivity);
+
+    // Set ordinal color scale
+    colorScale = d3.scaleOrdinal().range(['#bc795c','#cb9780','#dab5a4','#e9d2c9','#f0e1db','#f8f0ed']);
 
 
+    // Instantiate visualization objects here
+    areachart = new BreachCasesStackedArea("vis-breach-cases", dataByMethods, dataBySensitivity);
+    $("#breach-cases-form").change(function() {
+        areachart.wrangleData();
+        bubblechart.wrangleData("");
+    });
 
-    squaremap = new IdentityTheftSquareMap("vis-identity-theft", data2, identityTheftByState);
+    // ############# bubble chart ##############
+    bubblechart = new BreachCasesBubble("vis-breach-cases-bubble", data1);
+
+    // ############# identity theft visualization #############
+
+    console.log(data3);
+
+    squaremap = new IdentityTheftSquareMap("vis-identity-theft", data2, data3);
+    linechart = new IdentityTheftLine("vis-identity-theft-line", data3)
 
 }
