@@ -50,7 +50,7 @@ function createVis(error, data1, data2, data3) {
     console.log(dataBySensitivity);
 
     // Set ordinal color scale
-    colorScale = d3.scaleOrdinal().range(['#bc795c','#cb9780','#dab5a4','#e9d2c9','#f0e1db','#f8f0ed']);
+    colorScale = d3.scaleOrdinal().range(['#667292','#8d9db6','#bccad6','#f1e3dd','#e6e6e6']);
 
 
     // Instantiate visualization objects here

@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="663ed40f-7050-4c53-b973-41400f10bb6e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/css/style.css" afterPath="$PROJECT_DIR$/css/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index2.html" afterPath="$PROJECT_DIR$/index2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/breachCasesVis.js" afterPath="$PROJECT_DIR$/js/breachCasesVis.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/identityTheftVis.js" afterPath="$PROJECT_DIR$/js/identityTheftVis.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/breachCasesBubbleVis.js" afterPath="$PROJECT_DIR$/js/breachCasesBubbleVis.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/main_ziqi.js" afterPath="$PROJECT_DIR$/js/main_ziqi.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -24,7 +20,7 @@
       <file leaf-file-name="index2.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="239">
+            <state relative-caret-position="-216">
               <caret line="177" column="32" lean-forward="false" selection-start-line="177" selection-start-column="32" selection-end-line="177" selection-end-column="32" />
               <folding />
             </state>
@@ -41,13 +37,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="breachCasesBubbleVis.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="breachCasesBubbleVis.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/breachCasesBubbleVis.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+            <state relative-caret-position="251">
+              <caret line="46" column="17" lean-forward="false" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
               <folding>
-                <marker date="1511496111039" expanded="true" signature="3200:3213" ph="..." />
+                <marker date="1511502416192" expanded="true" signature="3480:3493" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hackerInfoVis.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/js/hackerInfoVis.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="94">
+              <caret line="52" column="80" lean-forward="false" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="80" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -63,11 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main_ziqi.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main_ziqi.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/main_ziqi.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
+            <state relative-caret-position="362">
+              <caret line="52" column="90" lean-forward="false" selection-start-line="52" selection-start-column="90" selection-end-line="52" selection-end-column="90" />
               <folding />
             </state>
           </provider>
@@ -86,8 +94,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/css/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1680">
-              <caret line="369" column="14" lean-forward="false" selection-start-line="369" selection-start-column="14" selection-end-line="369" selection-end-column="14" />
+            <state relative-caret-position="-57">
+              <caret line="327" column="1" lean-forward="true" selection-start-line="327" selection-start-column="1" selection-end-line="327" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -122,7 +130,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/js/main.js" />
-        <option value="$PROJECT_DIR$/js/main_ziqi.js" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/css/style.css" />
         <option value="$PROJECT_DIR$/js/identityTheftVis.js" />
@@ -130,6 +137,7 @@
         <option value="$PROJECT_DIR$/js/breachCasesVis.js" />
         <option value="$PROJECT_DIR$/index2.html" />
         <option value="$PROJECT_DIR$/js/breachCasesBubbleVis.js" />
+        <option value="$PROJECT_DIR$/js/main_ziqi.js" />
       </list>
     </option>
   </component>
@@ -247,12 +255,12 @@
       <workItem from="1510176266647" duration="275000" />
       <workItem from="1510433966250" duration="900000" />
       <workItem from="1510446661147" duration="7536000" />
-      <workItem from="1511456365866" duration="5743000" />
+      <workItem from="1511456365866" duration="8322000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16630000" />
+    <option name="totallyTimeSpent" value="19209000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="6" />
@@ -456,34 +464,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1680">
-          <caret line="369" column="14" lean-forward="false" selection-start-line="369" selection-start-column="14" selection-end-line="369" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/main_ziqi.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="39" column="0" lean-forward="false" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/js/identityTheftLineVis.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="671">
-          <caret line="151" column="33" lean-forward="false" selection-start-line="151" selection-start-column="33" selection-end-line="151" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/js/identityTheftVis.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="502">
           <caret line="52" column="32" lean-forward="false" selection-start-line="52" selection-start-column="32" selection-end-line="52" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-57">
+          <caret line="327" column="1" lean-forward="true" selection-start-line="327" selection-start-column="1" selection-end-line="327" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -496,9 +488,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/js/hackerReasonVis.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2780">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/identityTheftLineVis.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="671">
+          <caret line="151" column="33" lean-forward="false" selection-start-line="151" selection-start-column="33" selection-end-line="151" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
+        <state relative-caret-position="-216">
           <caret line="177" column="32" lean-forward="false" selection-start-line="177" selection-start-column="32" selection-end-line="177" selection-end-column="32" />
           <folding />
         </state>
@@ -506,11 +516,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/breachCasesBubbleVis.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="0" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        <state relative-caret-position="251">
+          <caret line="46" column="17" lean-forward="false" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
           <folding>
-            <marker date="1511496111039" expanded="true" signature="3200:3213" ph="..." />
+            <marker date="1511502416192" expanded="true" signature="3480:3493" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/hackerInfoVis.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="94">
+          <caret line="52" column="80" lean-forward="false" selection-start-line="52" selection-start-column="74" selection-end-line="52" selection-end-column="80" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/js/main_ziqi.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="362">
+          <caret line="52" column="90" lean-forward="false" selection-start-line="52" selection-start-column="90" selection-end-line="52" selection-end-column="90" />
+          <folding />
         </state>
       </provider>
     </entry>
