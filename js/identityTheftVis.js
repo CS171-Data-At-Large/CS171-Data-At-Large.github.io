@@ -45,12 +45,29 @@ IdentityTheftSquareMap.prototype.initVis = function() {
 
 
     // Tooltips
-    vis.tooltip = vis.svg.append("text")
+    vis.tooltip1 = vis.svg.append("text")
         .attr("class", "state-tooltip")
         .attr("x", 350)
-        .attr("y", 10)
+        .attr("y", 0)
+        .attr("stroke", "#8d9db6")
         .style("font-size", "25px")
         .style("font-weight", 10)
+        .style("text-anchor", "middle");
+
+    vis.tooltip2 = vis.svg.append("text")
+        .attr("class", "state-tooltip-victims")
+        .attr("x", 350)
+        .attr("y", 25)
+        .style("font-size", "15px")
+        .style("font-weight", 5)
+        .style("text-anchor", "middle");
+
+    vis.tooltip3 = vis.svg.append("text")
+        .attr("class", "state-tooltip-density")
+        .attr("x", 350)
+        .attr("y", 45)
+        .style("font-size", "15px")
+        .style("font-weight", 5)
         .style("text-anchor", "middle");
 
     vis.wrangleData();
@@ -131,17 +148,28 @@ IdentityTheftSquareMap.prototype.updateVis = function() {
         .attr("y", function(d) {return (d.row-1) * vis.size - vis.size/2; })
         .attr("height", vis.size)
         .attr("width", vis.size)
-        .attr("fill", "transparent")
+        .attr("fill", "e6e6e6")
+        .attr("fill-opacity", 0)
         .attr("stroke", "#e6e6e6")
+        .attr("stroke-width", 2)
         .on("mouseover", function(d) {
-            vis.tooltip
-                .attr("class", "state-tooltip")
+            vis.tooltip1.attr("class", "state-tooltip")
                 .text(d.state);
+            vis.tooltip2.attr("class", "state-tooltip-victims")
+                .text(d3.format(".2f")(vis.displayData[d.state]['Number of victims']) + " victims per year");
+            vis.tooltip3.attr("class", "state-tooltip-density")
+                .text(d3.format(".2f")(vis.displayData[d.state]['Victims per 100000 population']) + " victims in every 100,000 people");
+
+            d3.select(this).style("fill-opacity", 0.2);
+        })
+        .on("mouseout", function(d) {
+            d3.select(this).style("fill-opacity", 0);
         })
         .on("click", function(d) {
             vis.selected = d.state;
             linechart.wrangleData(vis.selected);
         });
+
 };
 
 /*

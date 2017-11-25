@@ -37,6 +37,10 @@ BreachCasesStackedArea.prototype.initVis = function() {
         .append("g")
         .attr("transform", "translate(" + vis.margin.left + "," + vis.margin.top + ")");
 
+    vis.legendsvg = d3.select("#breach-cases-form").append("svg")
+        .attr("width", 1200)
+        .attr("height", 50)
+        .append("g");
 
     // Scales and axes
     vis.x = d3.scaleLinear()
@@ -82,13 +86,6 @@ BreachCasesStackedArea.prototype.initVis = function() {
         .y0(vis.height)
         .y1(function(d) { return vis.y(d['data'][vis.filter]); });
 
-
-
-    // Tooltip placeholder
-    vis.tooltip = vis.svg.append("text")
-        .attr("x", 10)
-        .attr("y", 10);
-
     vis.filter = "";
 
     vis.wrangleData();
@@ -119,6 +116,7 @@ BreachCasesStackedArea.prototype.wrangleData = function() {
     // Initialize stack layout
     colorScale.domain(d3.keys(vis.data[0]).filter(function(d){ return d != "Year"; }));
     vis.dataCategories = colorScale.domain();
+    console.log(vis.dataCategories);
     vis.stack = d3.stack().keys(vis.dataCategories);
 
     // Rearrange data
@@ -174,8 +172,13 @@ BreachCasesStackedArea.prototype.updateVis = function() {
     vis.categories.enter().append("path")
         .attr("class", "area")
         .merge(vis.categories)
-        .on("mouseover", function(d) {
-            vis.tooltip.text(d.key);
+        .on("mouseover", function(d){
+            d3.select(this).style("stroke","white")
+                .style("stroke-width",3.5);
+        })
+        .on("mouseout", function(d){
+            d3.select(this).style("stroke","white")
+                .style("stroke-width",0.8);
         })
         .on("click", function(d, i) {
             vis.filter = (vis.filter) ? "" : d.key;
@@ -183,7 +186,10 @@ BreachCasesStackedArea.prototype.updateVis = function() {
             bubblechart.wrangleData(vis.filter);
         })
         .transition()
-        .duration(vis.duration)
+        .duration(vis.duration / 2)
+        .style("fill-opacity", 0)
+        .transition()
+        .duration(vis.duration / 2)
         .style("fill", function(d,i) {
             if (vis.filter !== ""){
                 return colorScale(vis.filter);
@@ -192,6 +198,7 @@ BreachCasesStackedArea.prototype.updateVis = function() {
                 return colorScale(vis.dataCategories[i]);
             }
         })
+        .style("fill-opacity", 1)
         .attr("d", function(d) {
             if (vis.filter !== ""){
                 return vis.singlearea(d);
@@ -199,9 +206,61 @@ BreachCasesStackedArea.prototype.updateVis = function() {
             else {
                 return vis.area(d);
             }
-        });
+        })
+        .style("stroke", "white")
+        .style("stroke-width", 0.3);
 
-    // Update tooltip text
+
+    // Add legends
+    vis.legend = vis.legendsvg.selectAll(".legend")
+        .data(vis.dataCategories);
+
+    vis.legend.enter().append("rect")
+        .attr("class", "legend")
+        .merge(vis.legend)
+        .attr("x", function(d,i) {
+            if (i == 0) {
+                return 30;
+            }
+            else {
+                var offset = 30 + i * 45;
+                for (var j = 0; j < i; j++) {
+                    offset += vis.dataCategories[j].length * 6.5 + 17;
+                }
+                return offset;
+            }
+        })
+        .attr("y", 10)
+        .attr("fill", function(d) { return colorScale(d); })
+        .attr("height", 20)
+        .attr("width", 40);
+
+    vis.legendLabels = vis.legendsvg.selectAll(".legend-labels")
+        .data(vis.dataCategories);
+
+    vis.legendLabels.enter().append("text")
+        .attr("class", "legend")
+        .merge(vis.legendLabels)
+        .attr("x", function(d,i) {
+            if (i == 0) {
+                return 75;
+            }
+            else {
+                var offset = 75 + i * 45;
+                for (var j = 0; j < i; j++) {
+                    offset += vis.dataCategories[j].length * 6.5 + 17;
+                }
+                return offset;
+            }
+        })
+        .attr("y", 25)
+        .text(function(d) { return d; })
+        .style("text-anchor", "start");
+
+    vis.legendLabels.exit().remove;
+
+    vis.legend.exit().remove();
+
     vis.categories.exit().remove();
 
     // Update axes labels
@@ -210,6 +269,7 @@ BreachCasesStackedArea.prototype.updateVis = function() {
 
     vis.svg.select(".y-axis-label")
         .text("Number of events");
+
 
 
     // Call axis functions with the new domain
@@ -254,4 +314,5 @@ BreachCasesStackedArea.prototype.addDropDownMenu = function() {
 
     menu.innerHTML = selections;
     p.appendChild(menu);
+
 }

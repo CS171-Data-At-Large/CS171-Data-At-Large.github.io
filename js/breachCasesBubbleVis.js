@@ -22,10 +22,10 @@ BreachCasesBubble = function(_parentElement, _data) {
 
 BreachCasesBubble.prototype.initVis = function() {
     var vis = this;
-    vis.margin = { top: 105, right: 40, bottom: 40, left: 100 };
+    vis.margin = { top: 40, right: 40, bottom: 60, left: 60 };
 
-    vis.width = 600 - vis.margin.left - vis.margin.right;
-    vis.height = 455 - vis.margin.top - vis.margin.bottom;
+    vis.width = 550 - vis.margin.left - vis.margin.right;
+    vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
 
     // SVG drawing area

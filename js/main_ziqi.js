@@ -18,7 +18,6 @@ d3.queue()
 
 function createVis(error, data1, data2, data3) {
 
-    console.log(data1);
     // ############# data breaches visualization ###############
     for (var i = 2004; i <= 2017; i++){
         dataByMethods[i] = {'hacked': 0, 'lost / stolen device or media': 0, 'accidentally published': 0,
@@ -46,9 +45,6 @@ function createVis(error, data1, data2, data3) {
         return [value];
     });
 
-    console.log(dataByMethods);
-    console.log(dataBySensitivity);
-
     // Set ordinal color scale
     colorScale = d3.scaleOrdinal().range(['#667292','#8d9db6','#bccad6','#f1e3dd','#e6e6e6']);
 
@@ -64,8 +60,6 @@ function createVis(error, data1, data2, data3) {
     bubblechart = new BreachCasesBubble("vis-breach-cases-bubble", data1);
 
     // ############# identity theft visualization #############
-
-    console.log(data3);
 
     squaremap = new IdentityTheftSquareMap("vis-identity-theft", data2, data3);
     linechart = new IdentityTheftLine("vis-identity-theft-line", data3)
