@@ -1,5 +1,6 @@
 <!doctype html>
 <html>
+
 <head>
 	<meta charset="utf-8">
 	<meta name="description" content="">
@@ -10,8 +11,8 @@
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/stylecp.css">
 </head>
-<br>
 
+<body>
 	<!--
 			- Implementation of own sketch or tree visualization
 	-->
@@ -20,20 +21,15 @@
 			<div class="col-sm-3" id="selections">
 				<form class="form">
 					<div class="form-group">
-						<label>Color by:</label>
-						<select class="form-control" id="color-type">
-							<option value="Year">Year</option>
-							<option value="Organization">Organization Type</option>
-							<option value="Method of Leak">Method of Leak</option>
-							<option value="Data Sensitivity">Data Sensitivity</option>
-						</select>
+						</br>
+						<label>Click on Axis Title to color by selected axis.</label>
 						</br>
 						</br>
 						<label>Select Axes to Include:</label>
 						</br>
-						<input type="checkbox" class="AxesCheckbox" value="Year" checked="checked">Year
+						<input type="checkbox" class="AxesCheckbox" value="Year of Occurrence" checked="checked" onchange="updateAxes()">Year
 						</br>
-						<input type="checkbox" class="AxesCheckbox" value="Organization" checked="checked">Organization
+						<input type="checkbox" class="AxesCheckbox" value="Organization Type" checked="checked" onchange="updateAxes()">Organization
 						</br>
 						<input type="checkbox" class="AxesCheckbox" value="Number of Records Lost" checked="checked"> Number of Records Lost
 						</br>
@@ -41,6 +37,7 @@
 						</br>
 						<input type="checkbox" class="AxesCheckbox" value="Data Sensitivity" checked="checked"> Data Sensitivity
 					</div>
+
 				</form>
 			</div>
 			<div class="col-sm-9" id="chart-area">
@@ -48,18 +45,18 @@
 		</div>
 	</div>
 
-
 	<!-- Load JS libraries -->
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/queue.min.js"></script>
 	<script src="https://bl.ocks.org/syntagmatic/raw/3341641/render-queue.js"></script>
-	<script src="js/topojson.js"></script>
 	<script src="js/d3.min.js"></script>
 	<script src="js/d3-scale-chromatic.min.js"></script>
 
 	<!-- Choropleth and second visualization -->
-	<script src="js/mainbackup.js"></script>
+	<script src="js/DataBreachParallelCoord.js"></script>
+	<script src="js/maincp.js"></script>
+
 
 </body>
 </html>
