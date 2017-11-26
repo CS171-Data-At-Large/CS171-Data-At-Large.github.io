@@ -13,10 +13,11 @@ d3.queue()
     .defer(d3.csv, "data/company_data_breachs_updated_2017.csv")
     .defer(d3.json, "data/us_map.json")
     .defer(d3.csv, "data/identity_theft_by_state.csv")
+    .defer(d3.csv, "data/time_to_resolve_identity_theft_2015.csv")
     .await(createVis);
 
 
-function createVis(error, data1, data2, data3) {
+function createVis(error, data1, data2, data3, data4) {
 
     // ############# data breaches visualization ###############
     for (var i = 2004; i <= 2017; i++){
@@ -62,6 +63,11 @@ function createVis(error, data1, data2, data3) {
     // ############# identity theft visualization #############
 
     squaremap = new IdentityTheftSquareMap("vis-identity-theft", data2, data3);
-    linechart = new IdentityTheftLine("vis-identity-theft-line", data3)
+    linechart = new IdentityTheftLine("vis-identity-theft-line", data3);
+
+
+    // ############# time-to-resolve visualization #############
+
+    flipsquares = new TimeToResolveSquares("vis-resolve-time", data4);
 
 }

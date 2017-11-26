@@ -116,7 +116,6 @@ BreachCasesStackedArea.prototype.wrangleData = function() {
     // Initialize stack layout
     colorScale.domain(d3.keys(vis.data[0]).filter(function(d){ return d != "Year"; }));
     vis.dataCategories = colorScale.domain();
-    console.log(vis.dataCategories);
     vis.stack = d3.stack().keys(vis.dataCategories);
 
     // Rearrange data

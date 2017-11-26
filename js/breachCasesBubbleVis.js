@@ -127,7 +127,6 @@ BreachCasesBubble.prototype.updateVis = function() {
         vis.counter[year] = 0;
     }
 
-
     vis.bubbles.enter().append("circle")
         .attr("class", "circle")
         .merge(vis.bubbles)
