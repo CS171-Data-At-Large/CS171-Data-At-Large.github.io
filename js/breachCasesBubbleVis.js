@@ -22,10 +22,10 @@ BreachCasesBubble = function(_parentElement, _data) {
 
 BreachCasesBubble.prototype.initVis = function() {
     var vis = this;
-    vis.margin = { top: 105, right: 40, bottom: 40, left: 100 };
+    vis.margin = { top: 40, right: 40, bottom: 60, left: 60 };
 
-    vis.width = 600 - vis.margin.left - vis.margin.right;
-    vis.height = 455 - vis.margin.top - vis.margin.bottom;
+    vis.width = 550 - vis.margin.left - vis.margin.right;
+    vis.height = 400 - vis.margin.top - vis.margin.bottom;
 
 
     // SVG drawing area
@@ -42,6 +42,9 @@ BreachCasesBubble.prototype.initVis = function() {
 
     vis.y = d3.scaleLinear()
         .range([vis.height, 0]);
+
+    vis.radius = d3.scaleLinear()
+        .range([2, 10]);
 
     vis.xAxis = d3.axisBottom()
         .scale(vis.x);
@@ -112,11 +115,17 @@ BreachCasesBubble.prototype.updateVis = function() {
     var vis = this;
 
     vis.x.domain([2004, 2017]);
-    vis.y.domain([0, d3.max(vis.data, function(d) { return d['Records Lost']/1000000;})
-    ]);
+    vis.y.domain([0, 35]);
+    vis.radius.domain([d3.min(vis.displayData, function(d){return d["Records Lost"];})+1,
+                       d3.max(vis.displayData, function(d){return d["Records Lost"];})+1]);
 
     vis.bubbles = vis.svg.selectAll(".circle")
         .data(vis.displayData);
+
+    vis.counter = {};
+    for (var year=2004; year<=2017; year++) {
+        vis.counter[year] = 0;
+    }
 
     vis.bubbles.enter().append("circle")
         .attr("class", "circle")
@@ -135,8 +144,10 @@ BreachCasesBubble.prototype.updateVis = function() {
         .transition()
         .duration(vis.duration)
         .attr("cx", function(d) { return vis.x(d.Year);})
-        .attr("cy", function(d) { return vis.y(d['Records Lost']/1000000)})
-        .attr("r", 8)
+        .attr("cy", function(d) {
+            vis.counter[d.Year] += 1;
+            return vis.y(vis.counter[d.Year])})
+        .attr("r", function(d) { return vis.radius(d["Records Lost"])})
         .attr("fill", function(d) {
             return colorScale(d[vis.selected]);
         });
@@ -160,7 +171,7 @@ BreachCasesBubble.prototype.updateVis = function() {
         .text("Year");
 
     vis.svg.select(".y-axis-label")
-        .text("Records Lost");
+        .text("Index");
 
 
 };

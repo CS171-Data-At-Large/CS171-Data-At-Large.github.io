@@ -113,8 +113,6 @@ IdentityTheftLine.prototype.wrangleData = function(_selected) {
         vis.displayData[d.Year]['Victims'] += d['Number of victims']
     });
 
-    console.log(vis.selected, vis.filteredData);
-
     vis.displayData = $.map(vis.displayData, function(value, index) {
         return [value];
     });

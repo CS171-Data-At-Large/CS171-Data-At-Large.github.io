@@ -62,6 +62,10 @@ body {
   opacity: 1;
 }
 
+.title:hover {
+  font-weight: bold;
+}
+
 .axis.active .title {
   font-weight: bold;
 }
