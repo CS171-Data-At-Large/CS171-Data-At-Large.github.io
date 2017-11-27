@@ -54,16 +54,10 @@ var types = {
 
 var dimensions = [
     {
-        key: "Organization",
-        type: types["String"],
-        description: "Organization Type"
-    },
-
-    {
         key: "Method of Leak",
         type: types["String"],
         description: "Method of Leak",
-        axis: d3.axisRight()
+        axis: d3.axisLeft()
             .tickFormat(function(d,i) {
                 return d;
             })
@@ -78,10 +72,19 @@ var dimensions = [
             })
     },
     {
+        key: "Organization",
+        type: types["String"],
+        description: "Organization Type",
+        axis: d3.axisRight()
+            .tickFormat(function(d,i) {
+                return d;
+            })
+    },
+    {
         key: "Year",
         description: "Year of Occurrence",
         type: types["Date"],
-        axis: d3.axisLeft()
+        axis: d3.axisRight()
             .tickFormat(function(d,i) {
                 return formatTime(d);
             })

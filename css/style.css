@@ -410,6 +410,11 @@ body, html {
     fill: #222;
 }
 
+#checkbox-control p{
+    font-size: 14px;
+    font-weight: bold;
+}
+
 #vis-breach-cases-parallel .axis line,
 .axis path {
     fill: none;
@@ -442,6 +447,10 @@ body, html {
 }
 
 #vis-breach-cases-parallel .axis:hover .title {
+    font-weight: bold;
+}
+
+#vis-breach-cases-parallel .title:hover {
     font-weight: bold;
 }
 

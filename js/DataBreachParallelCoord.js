@@ -31,7 +31,7 @@ DataBreachParallelCoord = function(_parentElement, _data, _dimensionData, _typeD
 DataBreachParallelCoord.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = {top: 66, right: 110, bottom: 20, left: 80};
+    vis.margin = {top: 66, right: 110, bottom: 20, left: 130};
 
     vis.width = document.getElementById(vis.parentElement).offsetWidth - vis.margin.left - vis.margin.right;
     vis.height = 340 - vis.margin.top - vis.margin.bottom;
@@ -213,7 +213,7 @@ DataBreachParallelCoord.prototype.updateVis = function(){
     color.domain(vis.colorData[vis.selectedval].domain)
         .range(vis.colorData[vis.selectedval].range);
 
-    d3.selectAll(".axis."+ vis.selectedval +" .tick text")
+    d3.selectAll(".axis."+ vis.selectedval.replace(/ /g, "_") +" .tick text")
         .style("fill", color);
 
     vis.axes.exit().remove();
@@ -358,9 +358,9 @@ DataBreachParallelCoord.prototype.addCheckbox = function() {
     var selections = '<div class="form-group">' +
         '<p><strong>Click on Axis Title to color by selected axis.</strong></p>' +
         '<p><strong>Select Axes to Include:</strong></p>' +
-        '<input type="checkbox" class="AxesCheckbox" value="Organization Type" checked="checked" onchange="updateAxes()">Organization Type</br>' +
         '<input type="checkbox" class="AxesCheckbox" value="Method of Leak" checked="checked" onchange="updateAxes()"> Method of Leak </br>' +
         '<input type="checkbox" class="AxesCheckbox" value="Data Sensitivity" checked="checked" onchange="updateAxes()"> Data Sensitivity </br>' +
+        '<input type="checkbox" class="AxesCheckbox" value="Organization Type" checked="checked" onchange="updateAxes()">Organization Type</br>' +
         '<input type="checkbox" class="AxesCheckbox" value="Year of Occurrence" checked="checked" onchange="updateAxes()">Year of Occurrence</br>' +
         '<input type="checkbox" class="AxesCheckbox" value="Number of Records Lost" checked="checked" onchange="updateAxes()"> Records Lost </br>' +
         '</div>';
