@@ -210,6 +210,9 @@ DataBreachParallelCoord.prototype.updateVis = function(){
 
     // Add and store a brush for each axis.
 
+    color.domain(vis.colorData[vis.selectedval].domain)
+        .range(vis.colorData[vis.selectedval].range);
+
     d3.selectAll(".axis."+ vis.selectedval +" .tick text")
         .style("fill", color);
 
@@ -355,11 +358,11 @@ DataBreachParallelCoord.prototype.addCheckbox = function() {
     var selections = '<div class="form-group">' +
         '<p><strong>Click on Axis Title to color by selected axis.</strong></p>' +
         '<p><strong>Select Axes to Include:</strong></p>' +
-        '<input type="checkbox" class="AxesCheckbox" value="Year of Occurrence" checked="checked" onchange="updateAxes()">Year </br>' +
         '<input type="checkbox" class="AxesCheckbox" value="Organization Type" checked="checked" onchange="updateAxes()">Organization Type</br>' +
-        '<input type="checkbox" class="AxesCheckbox" value="Number of Records Lost" checked="checked"> Records Lost </br>' +
-        '<input type="checkbox" class="AxesCheckbox" value="Method of Leak" checked="checked"> Method of Leak </br>' +
-        '<input type="checkbox" class="AxesCheckbox" value="Data Sensitivity" checked="checked"> Data Sensitivity' +
+        '<input type="checkbox" class="AxesCheckbox" value="Method of Leak" checked="checked" onchange="updateAxes()"> Method of Leak </br>' +
+        '<input type="checkbox" class="AxesCheckbox" value="Data Sensitivity" checked="checked" onchange="updateAxes()"> Data Sensitivity </br>' +
+        '<input type="checkbox" class="AxesCheckbox" value="Year of Occurrence" checked="checked" onchange="updateAxes()">Year of Occurrence</br>' +
+        '<input type="checkbox" class="AxesCheckbox" value="Number of Records Lost" checked="checked" onchange="updateAxes()"> Records Lost </br>' +
         '</div>';
 
     menu.innerHTML = selections;

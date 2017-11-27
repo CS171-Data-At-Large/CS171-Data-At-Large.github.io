@@ -54,15 +54,6 @@ var types = {
 
 var dimensions = [
     {
-        key: "Year",
-        description: "Year of Occurrence",
-        type: types["Date"],
-        axis: d3.axisLeft()
-            .tickFormat(function(d,i) {
-                return formatTime(d);
-            })
-    },
-    {
         key: "Organization",
         type: types["String"],
         description: "Organization Type"
@@ -84,6 +75,15 @@ var dimensions = [
         axis: d3.axisRight()
             .tickFormat(function(d,i) {
                 return d;
+            })
+    },
+    {
+        key: "Year",
+        description: "Year of Occurrence",
+        type: types["Date"],
+        axis: d3.axisLeft()
+            .tickFormat(function(d,i) {
+                return formatTime(d);
             })
     },
     {
