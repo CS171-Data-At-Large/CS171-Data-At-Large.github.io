@@ -31,10 +31,10 @@ DataBreachParallelCoord = function(_parentElement, _data, _dimensionData, _typeD
 DataBreachParallelCoord.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = {top: 66, right: 110, bottom: 20, left: 130};
+    vis.margin = {top: 80, right: 110, bottom: 20, left: 130};
 
     vis.width = document.getElementById(vis.parentElement).offsetWidth - vis.margin.left - vis.margin.right;
-    vis.height = 340 - vis.margin.top - vis.margin.bottom;
+    vis.height = 500 - vis.margin.top - vis.margin.bottom;
     vis.innerHeight = vis.height - 2;
 
     vis.devicePixelRatio = window.devicePixelRatio || 1;
@@ -356,6 +356,7 @@ DataBreachParallelCoord.prototype.addCheckbox = function() {
     var p = document.getElementById("checkbox-control");
     var menu = document.createElement("form");
     var selections = '<div class="form-group">' +
+        '<br><br><br><br>' +
         '<p><strong>Click on Axis Title to color by selected axis.</strong></p>' +
         '<p><strong>Select Axes to Include:</strong></p>' +
         '<input type="checkbox" class="AxesCheckbox" value="Method of Leak" checked="checked" onchange="updateAxes()"> Method of Leak </br>' +
