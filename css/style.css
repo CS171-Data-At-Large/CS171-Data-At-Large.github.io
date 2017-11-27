@@ -415,6 +415,10 @@ body, html {
     fill: #222;
 }
 
+#checkbox-control p{
+    font-size: 14px;
+}
+
 #vis-breach-cases-parallel .axis line,
 .axis path {
     fill: none;
@@ -450,6 +454,10 @@ body, html {
     font-weight: bold;
 }
 
+#vis-breach-cases-parallel .title:hover {
+    font-weight: bold;
+}
+
 #vis-breach-cases-parallel .axis:hover .tick text {
     opacity: 1;
 }
@@ -477,6 +485,8 @@ body, html {
     font-size: 10px;
     overflow: auto;
 }
+
+
 
 /*********************/
 /*  Consequences */

@@ -15,7 +15,7 @@ var svg = d3.select("#chart-area").append("svg")
 */
 
 var margin = {top: 66, right: 220, bottom: 20, left: 88},
-    width = document.getElementById("vis-breach-cases-parallel").parentNode.parentElement.clientWidth - margin.left - margin.right,
+    width = document.getElementById("vis-breach-cases-parallel").parentNode.parentElement.clientWidth - 1.5*margin.left - 1.5*margin.right,
     height = 340 - margin.top - margin.bottom,
     innerHeight = height - 2;
 
@@ -144,7 +144,7 @@ var axes1 = svg.selectAll(".axis1")
 
 //console.log(axes);
 
-d3.csv("./data/company_data_breachs_updated_2017.csv", function(error, data) {
+d3.csv("./data/company_data_breachs_updated_2017_xz.csv", function(error, data) {
     if (error) throw error;
 
     data.forEach(function(d) {
