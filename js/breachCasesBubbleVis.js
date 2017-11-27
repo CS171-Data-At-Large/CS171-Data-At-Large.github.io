@@ -117,7 +117,7 @@ BreachCasesBubble.prototype.updateVis = function() {
     vis.x.domain([2004, 2017]);
     vis.y.domain([0, 35]);
     vis.radius.domain([d3.min(vis.displayData, function(d){return d["Records Lost"];})+1,
-                       d3.max(vis.displayData, function(d){return d["Records Lost"];})+1]);
+        d3.max(vis.displayData, function(d){return d["Records Lost"];})+1]);
 
     vis.bubbles = vis.svg.selectAll(".circle")
         .data(vis.displayData);
@@ -158,7 +158,7 @@ BreachCasesBubble.prototype.updateVis = function() {
         .transition()
         .duration(vis.duration)
         .ease(vis.ease)
-        .call(vis.xAxis);
+        .call(vis.xAxis.tickFormat(d3.format("d")));
 
     vis.svg.select(".y-axis")
         .transition()

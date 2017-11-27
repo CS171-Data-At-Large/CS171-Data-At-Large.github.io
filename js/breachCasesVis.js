@@ -276,7 +276,7 @@ BreachCasesStackedArea.prototype.updateVis = function() {
         .transition()
         .duration(vis.duration)
         .ease(vis.ease)
-        .call(vis.xAxis);
+        .call(vis.xAxis.tickFormat(d3.format("d")));
 
     vis.svg.select(".y-axis")
         .transition()
