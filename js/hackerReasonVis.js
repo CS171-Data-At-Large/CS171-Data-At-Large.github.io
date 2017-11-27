@@ -171,7 +171,7 @@ HackerReasonVis.prototype.updateVis = function(){
 
             vis.svg.append('text')
                 .attr('class', 'toolCircle')
-                .attr('dy', -50) // hard-coded. can adjust this to adjust text vertical alignment in tooltip
+                .attr('dy', -70) // hard-coded. can adjust this to adjust text vertical alignment in tooltip
                 .html(toolTipHTML(data)) // add text to the circle.
                 .style('font-size', '.9em')
                 .style('text-anchor', 'middle'); // centres text in tooltip
@@ -197,7 +197,7 @@ HackerReasonVis.prototype.updateVis = function(){
             // leave off 'dy' attr for first tspan so the 'dy' attr on text element works. The 'dy' attr on
             // tspan effectively imitates a line break.
             if (i === 0) tip += '<tspan x="0" font-weight="bold" font-size="1.5em">' +  data.data[key] + '</tspan>';
-            else tip += '<tspan x="0" dy="1.2em">'+ data.data[key] + '</tspan>';
+            else tip += '<tspan x="0" dy="1.1em">'+ data.data[key] + '</tspan>';
             i++;
         }
 
