@@ -128,8 +128,8 @@ TimeToResolveSquares.prototype.addButtons = function() {
     var p = document.getElementById(vis.parentElement);
 
     p.innerHTML = '<div class="btn-group" role="group">' +
-        '<a class="btn btn-secondary wide" id="button-show">Show all</a>' +
-        '<a class="btn btn-secondary wide" id="button-reset">Reset</a>' +
+        '<a class="btn wide" id="button-show">Show all</a>' +
+        '<a class="btn wide" id="button-reset">Reset</a>' +
         '</div>';
 
 

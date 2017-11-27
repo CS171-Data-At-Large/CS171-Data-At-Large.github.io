@@ -33,7 +33,6 @@ InternetUseMapVis.prototype.preInitVis = function() {
     vis.addPlayButton();
 
     vis.initVis();
-    //vis.animateVis();
 }
 
 /*
@@ -43,7 +42,7 @@ InternetUseMapVis.prototype.preInitVis = function() {
 InternetUseMapVis.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 0, right: 45, bottom: 40, left: 70 };
+    vis.margin = { top: 0, right: 45, bottom: -20, left: 70 };
 
     if ($("#" + vis.parentElement).width() - vis.margin.right - vis.margin.left > 200){
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
@@ -51,7 +50,7 @@ InternetUseMapVis.prototype.initVis = function(){
     else{
         vis.width = 300;
     }
-        vis.height = 650 - vis.margin.top - vis.margin.bottom;
+        vis.height = 540 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -142,7 +141,7 @@ InternetUseMapVis.prototype.initVis = function(){
         .attr("transform", function (d, i) {
             var iconHeight = vis.legendRectSize + vis.legendSpacing;
             var horz = i * 3.7 * iconHeight - 65;
-            var vert = vis.height/1.25;
+            var vert = vis.height/1.19;
             return "translate(" + horz + "," + vert + ")";
         })
         .style('fill', function (d) {
@@ -174,7 +173,7 @@ InternetUseMapVis.prototype.initVis = function(){
     vis.wrangleData();
 
     // Listen to data change
-    $('.btn-secondary').click( function() {
+    $('#vis-1 .btn-secondary').click( function() {
         $(this).addClass('active').siblings().removeClass('active');
         vis.selection = d3.select(this).property("id");
 
@@ -217,12 +216,18 @@ InternetUseMapVis.prototype.initVis = function(){
     //     }
     // });
 
-    // // Listen to play
-    // vis.playButton = document.getElementById('play-internet-map');
-    //
-    // vis.playButton.addEventListener('click', function(){
-    //     vis.animateVis();
-    // })
+    // Listen to play
+    vis.playButton = document.getElementById('play-internet-map');
+    vis.pauseButton = document.getElementById('pause-internet-map');
+
+    vis.playButton.addEventListener('click', function(){
+        vis.animateVis();
+    });
+
+    vis.pauseButton.addEventListener('click', function(){
+        vis.play = false;
+        clearInterval(vis.playSequence);
+    })
 
 
 }
@@ -234,30 +239,6 @@ InternetUseMapVis.prototype.initVis = function(){
 
 InternetUseMapVis.prototype.wrangleData = function(){
     var vis = this;
-    // vis.displayData = vis.selectedData;
-    // var attributeArray = [];
-    // var countries = vis.mapData.objects.countries.geometries;
-    // for (var i in countries) {
-    //     for (var j in vis.selectedData) {
-    //         if (countries[i].properties.id === vis.selectedData[j].CountryCode) {
-    //             for (var k in vis.selectedData[i]) {
-    //                 if (k !== 'CountryName' && k !== 'CountryCode') {
-    //                     if (attributeArray.indexOf(k) === -1) {
-    //                         attributeArray.push(k);
-    //                     }
-    //                     countries[i].properties[k] = Number(vis.selectedData[j][k])
-    //                 }
-    //             }
-    //             break;
-    //         }
-    //     }
-    // }
-    //
-    //
-    //
-    // // Convert TopoJSON to GeoJSON (target object = 'countries')
-    // vis.displayData = topojson.feature(vis.mapData, vis.mapData.objects.countries).features;
-
     // Update the visualization
     vis.updateVis();
 }
@@ -290,22 +271,6 @@ InternetUseMapVis.prototype.updateVis = function(){
     // }
     //
     // vis.svg.call(vis.tool_tip);
-
-    // vis.map.selectAll(".world-map-path")
-    //     .data(vis.displayData)
-    //     .attr("fill", function (d) {
-    //         if(d){
-    //             if (isNaN(d.properties[vis.currentYear])) {
-    //                 return "#f1e3dd";
-    //             }
-    //             else {
-    //                 return vis.color(d.properties[vis.currentYear]);
-    //             }
-    //         }
-    //         else{
-    //             return "#f1e3dd";
-    //         }
-    //     });
 
 
     // Render the world  by using the path generator
@@ -398,7 +363,7 @@ InternetUseMapVis.prototype.updateVis = function(){
         .attr("transform", function (d, i) {
             var iconHeight = vis.legendRectSize + vis.legendSpacing;
             var horz = i * 3.7 * iconHeight - 65;
-            var vert = vis.height/1.25;
+            var vert = vis.height/1.19;
             return "translate(" + horz + "," + vert + ")";
         })
         .text(function (d) {
@@ -418,7 +383,7 @@ InternetUseMapVis.prototype.updateVis = function(){
         .attr("transform", function (d, i) {
             var iconHeight = vis.legendRectSize + vis.legendSpacing;
             var horz = i * 3.7 * iconHeight - 65;
-            var vert = vis.height/1.25;
+            var vert = vis.height/1.19;
             return "translate(" + horz + "," + vert + ")";
         })
         .text(function (d) {
@@ -447,7 +412,7 @@ InternetUseMapVis.prototype.updateVis = function(){
         .attr("transform", function (d, i) {
             var iconHeight = vis.legendRectSize + vis.legendSpacing;
             var horz = 3.7 * iconHeight - 160;
-            var vert = vis.height/1.25 + (-10);
+            var vert = vis.height/1.19 + (-10);
             return "translate(" + horz + "," + vert + ")";
         })
         .text(vis.captionObj[0].title);
@@ -486,12 +451,12 @@ InternetUseMapVis.prototype.addDataButtons = function() {
 InternetUseMapVis.prototype.addPlayButton = function() {
     var vis = this;
     var p = document.getElementById("internet-slider-buttons");
-    p.innerHTML = '<span class="btn btn-play">\n' +
+    p.innerHTML = '<span class="btn btn-play" id="play-internet-map">\n' +
         '<i class="fa fa-youtube-play animated"></i>\n' +
         '</span>' +
-        '<span class="btn btn-pause">\n' +
+        '<span class="btn btn-pause" id="pause-internet-map">\n' +
         '<i class="typcn typcn-media-pause animated"></i>\n' +
-        '</span>';;
+        '</span>';
 }
 
 /*
@@ -537,7 +502,6 @@ InternetUseMapVis.prototype.animateVis = function() {
             if (vis.currentYear < 2016){
                 vis.currentYear++;
                 vis.yearSlider.noUiSlider.set(vis.currentYear);
-                document.getElementById('internet-clock').innerHTML = vis.currentYear;
                 vis.updateVis();
             }
             else{

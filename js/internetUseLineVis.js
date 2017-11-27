@@ -92,6 +92,9 @@ InternetUseLineVis.prototype.initVis = function(){
     vis.visTitle = vis.svg.append("text")
         .attr("class", "chart-title");
 
+    vis.visTitlePrefix = vis.svg.append("text")
+        .attr("class", "chart-title-prefix");
+
     // listen to changes
     vis.selection = d3.select(".btn-secondary.active").property("id");
 
@@ -214,22 +217,27 @@ InternetUseLineVis.prototype.updateVis = function(){
             }
         });
 
+    vis.svg.select(".chart-title-prefix")
+        .attr("x", 110)
+        .attr("y", -70)
+        .text("World Average");
+
     vis.svg.select(".chart-title")
         .attr("x", function(){
             if (vis.selection === "percent-internet-user"){
-                return vis.width/5;
+                return 80;
             }
             else {
-                return vis.width/7;
+                return 30;
             }
         })
-        .attr("y", -60)
+        .attr("y", -50)
         .text(function(){
             if (vis.selection === "percent-internet-user"){
-                return "World Avg of Active Internet User ";
+                return "% Active Internet User";
             }
             else {
-                return "World Avg # Mobile Broadband Subscriptions"
+                return "# Mobile Broadband Subscriptions"
             }
         });
 

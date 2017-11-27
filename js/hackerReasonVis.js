@@ -21,7 +21,7 @@ HackerReasonVis = function(_parentElement, _data){
 HackerReasonVis.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 50, right: 10, bottom: 50, left: 10 };
+    vis.margin = { top: 50, right: 10, bottom: 0, left: 10 };
 
     if ($("#" + vis.parentElement).width() - vis.margin.right - vis.margin.left > 100){
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;

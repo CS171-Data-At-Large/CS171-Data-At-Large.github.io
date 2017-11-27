@@ -22,7 +22,7 @@ HackerInfoVis = function(_parentElement, _data1, _data2, _data3){
 HackerInfoVis.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = { top: 10, right: 10, bottom: 10, left: 10 };
+    vis.margin = { top: 10, right: 10, bottom: 0, left: 10 };
 
     if ($("#" + vis.parentElement).width() - vis.margin.right - vis.margin.left > 100){
         vis.width = $("#" + vis.parentElement).width() - vis.margin.left - vis.margin.right;
