@@ -30,7 +30,8 @@ TimeToResolveSquares.prototype.initVis = function() {
     vis.size = 40;
     vis.gap = 5;
 
-    colorScale.domain(["Days", "Weeks", "Months", "Years", "Still not resolved"]);
+    vis.colorScale = d3.scaleOrdinal().range(['#e1c3b7','#b4bacb','#b56a4a','#495269','#667f7f']);
+    vis.colorScale.domain(["Days", "Weeks", "Months", "Years", "Still not resolved"]);
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -101,6 +102,12 @@ TimeToResolveSquares.prototype.updateVis = function() {
         .attr("class", "instruction instruction-line3")
         .text("");
 
+    vis.svgtext.append("text")
+        .attr("x", 20)
+        .attr("y", 340)
+        .attr("class", "instruction instruction-line4")
+        .text("");
+
 
     vis.squares = vis.svg.selectAll(".rect")
         .data(vis.displayData);
@@ -108,7 +115,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
     vis.squares.enter().append("rect")
         .attr("class", "rect")
         .on("click", function(d) {
-            d3.select(this).transition().style("fill", colorScale(d.Type));
+            d3.select(this).transition().style("fill", vis.colorScale(d.Type));
 
             d3.select(".instruction-line0")
                 .transition().duration(500)
@@ -119,6 +126,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
                 .style("opacity", 0)
                 .transition().duration(1000)
                 .style("opacity", 1)
+                .style("fill", "black")
                 .text("Like " + d.Proportion + "% of the victims,");
 
             if (d.Type === "Still not resolved") {
@@ -127,6 +135,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
                     .style("opacity", 0)
                     .transition().duration(3000)
                     .style("opacity", 1)
+                    .style("fill", vis.colorScale(d.Type))
                     .text("you still have not resolved your theft.")
             }
             else {
@@ -135,10 +144,15 @@ TimeToResolveSquares.prototype.updateVis = function() {
                     .style("opacity", 0)
                     .transition().duration(3000)
                     .style("opacity", 1)
+                    .style("fill", vis.colorScale(d.Type))
                     .text("it will take you " + d.Type.toLowerCase() + " to resolve the theft.")
             }
 
             d3.select(".instruction-line3")
+                .transition().duration(500)
+                .style("opacity", 0);
+
+            d3.select(".instruction-line4")
                 .transition().duration(500)
                 .style("opacity", 0);
 
@@ -168,6 +182,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
             .style("opacity", 0)
             .transition().duration(1000)
             .style("opacity", 1)
+            .style("fill", "black")
             .text("Each square represents an identity theft event.");
 
         d3.select(".instruction-line2")
@@ -175,9 +190,14 @@ TimeToResolveSquares.prototype.updateVis = function() {
             .style("opacity", 0)
             .transition().duration(3000)
             .style("opacity", 1)
+            .style("fill", "black")
             .text("Click on a square to see how long it will take you to resolve.");
 
         d3.select(".instruction-line3")
+            .transition().duration(500)
+            .style("opacity", 0)
+
+        d3.select(".instruction-line4")
             .transition().duration(500)
             .style("opacity", 0)
 
@@ -188,7 +208,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
             .duration(function(d,i) {return 40*i;})
             .ease(d3.easeQuad)
             .style("fill", function(d) {
-                return colorScale(d.Type);
+                return vis.colorScale(d.Type);
             })
 
         d3.select(".instruction-line0")
@@ -196,13 +216,16 @@ TimeToResolveSquares.prototype.updateVis = function() {
             .style("opacity", 0)
             .transition().duration(1000)
             .style("opacity", 1)
+            .style("fill", vis.colorScale(vis.data[0].Time))
             .text("34% of the victims took days to resolve the theft;");
+
 
         d3.select(".instruction-line1")
             .transition().duration(500)
             .style("opacity", 0)
             .transition().duration(2000)
             .style("opacity", 1)
+            .style("fill", vis.colorScale(vis.data[1].Time))
             .text("53% of the victims took weeks to resolve the theft;");
 
         d3.select(".instruction-line2")
@@ -210,13 +233,23 @@ TimeToResolveSquares.prototype.updateVis = function() {
             .style("opacity", 0)
             .transition().duration(3000)
             .style("opacity", 1)
-            .text("4% of the victims took months to resolve the theft;");
+            .style("fill", vis.colorScale(vis.data[2].Time))
+            .text("7% of the victims took months to resolve the theft;");
 
         d3.select(".instruction-line3")
             .transition().duration(500)
             .style("opacity", 0)
             .transition().duration(4000)
             .style("opacity", 1)
+            .style("fill", vis.colorScale(vis.data[3].Time))
+            .text("4% of the victims took years to resolve the theft;");
+
+        d3.select(".instruction-line4")
+            .transition().duration(500)
+            .style("opacity", 0)
+            .transition().duration(5000)
+            .style("opacity", 1)
+            .style("fill", vis.colorScale(vis.data[4].Time))
             .text("2% of the victims still have not resolved the theft.");
 
     });

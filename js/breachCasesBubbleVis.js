@@ -44,7 +44,7 @@ BreachCasesBubble.prototype.initVis = function() {
         .range([vis.height, 0]);
 
     vis.radius = d3.scaleLinear()
-        .range([2, 10]);
+        .range([3, 15]);
 
     vis.xAxis = d3.axisBottom()
         .scale(vis.x);
@@ -72,10 +72,9 @@ BreachCasesBubble.prototype.initVis = function() {
 
     vis.colorScale = d3.scaleOrdinal().range(['#bc795c','#cb9780','#dab5a4','#e9d2c9','#f0e1db','#f8f0ed']);
 
-    // Tooltip placeholder
-    vis.tip = d3.select("body").append("div")
-        .attr("class", "tooltip")
-        .style("opacity", 0);
+    vis.tip = d3.tip()
+        .attr("class", "d3-tip")
+        .offset([-10, 0]);
 
     vis.wrangleData("");
 
@@ -127,19 +126,17 @@ BreachCasesBubble.prototype.updateVis = function() {
         vis.counter[year] = 0;
     }
 
+    vis.tip.html(function(d) { return '<strong style="color:#bccad6">' + d.Entity + '</strong><br>' + d.Story; });
+    vis.svg.call(vis.tip);
+
     vis.bubbles.enter().append("circle")
         .attr("class", "circle")
         .merge(vis.bubbles)
         .on("mouseover", function(d) {
-            var content = d.Story;
-            var text = "<span style='color:#e9d2c9'>" + d.Entity + "</span><br>" + content;
-            vis.tip.style("opacity", .9)
-                .style("left", (d3.event.pageX) + "px")
-                .style("top", (d3.event.pageY) + "px");
-            vis.tip.html(text);
+            vis.tip.show(d);
         })
         .on("mouseout", function(d) {
-            vis.tip.style("opacity", 0);
+            vis.tip.hide(d);
         })
         .transition()
         .duration(vis.duration)
