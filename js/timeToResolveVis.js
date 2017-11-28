@@ -43,7 +43,8 @@ TimeToResolveSquares.prototype.initVis = function() {
     vis.svgtext = d3.select("#square-flip-text").append("svg")
         .attr("width", 1000)
         .attr("height", vis.height + vis.margin.top + vis.margin.bottom)
-        .append("g");
+        .append("g")
+        .attr("transform", "translate(-20,-100)");
 
     vis.wrangleData();
 
@@ -156,6 +157,10 @@ TimeToResolveSquares.prototype.updateVis = function() {
                 .transition().duration(500)
                 .style("opacity", 0);
 
+            vis.showAll(4000);
+
+            vis.svg.selectAll(".rect").on("click")
+
         })
         .merge(vis.squares)
         .transition()
@@ -203,8 +208,8 @@ TimeToResolveSquares.prototype.updateVis = function() {
 
     });
 
-    $("#button-show").click(function() {
-        d3.selectAll(".rect").transition()
+    vis.showAll = function(delay) {
+        d3.selectAll(".rect").transition().delay(delay)
             .duration(function(d,i) {return 40*i;})
             .ease(d3.easeQuad)
             .style("fill", function(d) {
@@ -212,7 +217,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
             })
 
         d3.select(".instruction-line0")
-            .transition().duration(500)
+            .transition().delay(delay).duration(500)
             .style("opacity", 0)
             .transition().duration(1000)
             .style("opacity", 1)
@@ -221,7 +226,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
 
 
         d3.select(".instruction-line1")
-            .transition().duration(500)
+            .transition().delay(delay).duration(500)
             .style("opacity", 0)
             .transition().duration(2000)
             .style("opacity", 1)
@@ -229,7 +234,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
             .text("53% of the victims took weeks to resolve the theft;");
 
         d3.select(".instruction-line2")
-            .transition().duration(500)
+            .transition().delay(delay).duration(500)
             .style("opacity", 0)
             .transition().duration(3000)
             .style("opacity", 1)
@@ -237,7 +242,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
             .text("7% of the victims took months to resolve the theft;");
 
         d3.select(".instruction-line3")
-            .transition().duration(500)
+            .transition().delay(delay).duration(500)
             .style("opacity", 0)
             .transition().duration(4000)
             .style("opacity", 1)
@@ -245,14 +250,14 @@ TimeToResolveSquares.prototype.updateVis = function() {
             .text("4% of the victims took years to resolve the theft;");
 
         d3.select(".instruction-line4")
-            .transition().duration(500)
+            .transition().delay(delay).duration(500)
             .style("opacity", 0)
             .transition().duration(5000)
             .style("opacity", 1)
             .style("fill", vis.colorScale(vis.data[4].Time))
             .text("2% of the victims still have not resolved the theft.");
 
-    });
+    };
 
 
 };
@@ -271,11 +276,10 @@ TimeToResolveSquares.prototype.redraw = function() {
 TimeToResolveSquares.prototype.addButtons = function() {
     var vis = this;
 
-    var p = document.getElementById(vis.parentElement);
+    var p = document.getElementById("square-flip-text");
 
-    p.innerHTML = '<div class="btn-group" role="group">' +
-        '<a class="btn btn-secondary wide" id="button-show">Show all</a>' +
-        '<a class="btn btn-secondary wide" id="button-reset">Reset</a>' +
+    p.innerHTML = '<br><br><div class="btn-group" role="group">' +
+        '<a class="btn btn-secondary wide" id="button-reset"> Reset Visualization </a>' +
         '</div>';
 
 
