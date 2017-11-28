@@ -31,10 +31,10 @@ DataBreachParallelCoord = function(_parentElement, _data, _dimensionData, _typeD
 DataBreachParallelCoord.prototype.initVis = function(){
     var vis = this;
 
-    vis.margin = {top: 66, right: 110, bottom: 20, left: 130};
+    vis.margin = {top: 80, right: 110, bottom: 10, left: 130};
 
     vis.width = document.getElementById(vis.parentElement).offsetWidth - vis.margin.left - vis.margin.right;
-    vis.height = 340 - vis.margin.top - vis.margin.bottom;
+    vis.height = 400 - vis.margin.top - vis.margin.bottom;
     vis.innerHeight = vis.height - 2;
 
     vis.devicePixelRatio = window.devicePixelRatio || 1;
@@ -356,13 +356,13 @@ DataBreachParallelCoord.prototype.addCheckbox = function() {
     var p = document.getElementById("checkbox-control");
     var menu = document.createElement("form");
     var selections = '<div class="form-group">' +
-        '<p><strong>Click on Axis Title to color by selected axis.</strong></p>' +
-        '<p><strong>Select Axes to Include:</strong></p>' +
-        '<input type="checkbox" class="AxesCheckbox" value="Method of Leak" checked="checked" onchange="updateAxes()"> Method of Leak </br>' +
-        '<input type="checkbox" class="AxesCheckbox" value="Data Sensitivity" checked="checked" onchange="updateAxes()"> Data Sensitivity </br>' +
-        '<input type="checkbox" class="AxesCheckbox" value="Organization Type" checked="checked" onchange="updateAxes()">Organization Type</br>' +
-        '<input type="checkbox" class="AxesCheckbox" value="Year of Occurrence" checked="checked" onchange="updateAxes()">Year of Occurrence</br>' +
-        '<input type="checkbox" class="AxesCheckbox" value="Number of Records Lost" checked="checked" onchange="updateAxes()"> Records Lost </br>' +
+        '<br>' +
+        '<pre><p><strong>Click on axis title to color by the chosen axis, brush to select, and/or use checkboxes to select axes to include in the plot:</strong></p>' +
+        '<input type="checkbox" class="AxesCheckbox" value="Method of Leak" checked="checked" onchange="updateAxes()"> Method of Leak &#9' +
+        '<input type="checkbox" class="AxesCheckbox" value="Data Sensitivity" checked="checked" onchange="updateAxes()"> Data Sensitivity &#9' +
+        '<input type="checkbox" class="AxesCheckbox" value="Organization Type" checked="checked" onchange="updateAxes()">Organization Type &#9' +
+        '<input type="checkbox" class="AxesCheckbox" value="Year of Occurrence" checked="checked" onchange="updateAxes()">Year of Occurrence &#9' +
+        '<input type="checkbox" class="AxesCheckbox" value="Number of Records Lost" checked="checked" onchange="updateAxes()"> Records Lost &#9 </pre>' +
         '</div>';
 
     menu.innerHTML = selections;
