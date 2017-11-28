@@ -482,6 +482,10 @@ body, html {
     overflow: auto;
 }
 
+#vis-5 {
+    margin-bottom: 2em;
+}
+
 /*********************/
 /*  Consequences */
 /*********************/
