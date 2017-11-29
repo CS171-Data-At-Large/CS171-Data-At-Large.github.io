@@ -175,7 +175,7 @@ body, html {
 
 #about {
     height: 100vh;
-    padding-top: 5em;
+    padding-top: 8em;
 }
 
 #about h2{
@@ -187,8 +187,9 @@ body, html {
     border-color: #DDDDDD;
     border-radius: 6px;
     box-shadow: 0 2px 2px rgba(0,0,0,0.05);
-    margin-bottom: 20px;
-    height: 28em;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    height: 22em;
     padding: 1em;
 }
 
