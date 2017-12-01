@@ -69,6 +69,31 @@ BreachCasesBubble.prototype.initVis = function() {
         .attr("transform", "translate(-45, 140) rotate(270)")
         .style("text-anchor", "middle");
 
+    // Add legend
+    vis.svg.append("circle")
+        .attr("cx", 15)
+        .attr("cy", 20)
+        .attr("r", 6)
+        .style("fill", "grey");
+
+    vis.svg.append("circle")
+        .attr("cx", 37)
+        .attr("cy", 20)
+        .attr("r", 10)
+        .style("fill", "grey");
+
+    vis.svg.append("circle")
+        .attr("cx", 70)
+        .attr("cy", 20)
+        .attr("r", 14)
+        .style("fill", "grey");
+
+    vis.svg.append("text")
+        .attr("x", 93)
+        .attr("y", 25)
+        .text("Records lost");
+
+
 
     vis.colorScale = d3.scaleOrdinal().range(['#bc795c','#cb9780','#dab5a4','#e9d2c9','#f0e1db','#f8f0ed']);
 
