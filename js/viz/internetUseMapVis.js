@@ -50,7 +50,7 @@ InternetUseMapVis.prototype.initVis = function(){
     else{
         vis.width = 300;
     }
-        vis.height = 540 - vis.margin.top - vis.margin.bottom;
+        vis.height = 450 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")
@@ -66,7 +66,7 @@ InternetUseMapVis.prototype.initVis = function(){
     //********** Create projection **********//
     vis.projection = d3.geoMercator()
         .translate([vis.width/2, vis.height/2])
-        .scale(vis.width/5)
+        .scale(vis.width/6)
         .rotate([-5,0, 0])
         .center([10, 20]);
 

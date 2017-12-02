@@ -35,7 +35,7 @@ InternetUseLineVis.prototype.initVis = function(){
     else{
         vis.width = 100;
     }
-    vis.height = 400 - vis.margin.top - vis.margin.bottom;
+    vis.height = 350 - vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")

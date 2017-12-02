@@ -16,12 +16,6 @@ label {
     margin: 2em;
 }
 
-.section{
-    /*height: 100vh;*/
-    padding-top: 2.5em;
-    margin: 0px;
-}
-
 .padding-0{
     padding-right:0;
     padding-left:0;
@@ -59,6 +53,24 @@ label {
 }
 
 
+#fp-nav ul li a span,
+.fp-slidesNav ul li a span {
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+    height: 4px;
+    width: 4px;
+    border: 0;
+    background: #5cadd6;
+    left: 50%;
+    top: 50%;
+    margin: -2px 0 0 -2px;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -o-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
 /*********************/
 /*   Home Section    */
 /*********************/
@@ -67,12 +79,11 @@ body, html {
     margin: 0;
 }
 
-.background-image{
+.bg-img{
     /* The image used */
-    background: url("../img/img1.png") no-repeat center center fixed;;
+    background: url("../img/img1.png") no-repeat center center fixed;
 
     filter: grayscale(60%) brightness(60%); /* make photos black and white */
-    /*opacity: 0.8;*/
 
     /* Full height and width */
     height: 100%;
@@ -170,34 +181,32 @@ body, html {
 }
 
 /*********************/
-/*   Intro Section    */
+/*   About Section    */
 /*********************/
-
-#about {
-    height: 100vh;
-    padding-top: 8em;
+#section-about{
+    padding-top: 3em;
 }
 
-#about h2{
+#section-about h2{
     color: #87bdd8;
 }
 
-#about .panel{
+#section-about .panel{
     background-color: #ffffff;
     border-color: #DDDDDD;
-    border-radius: 6px;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.05);
+    border-radius: 2em;
+    box-shadow: 0 3px 3px rgba(0,0,0,0.05);
     margin-bottom: 2em;
     margin-top: 2em;
-    height: 22em;
+    height: 24em;
     padding: 1em;
 }
 
-#about .panel p{
+#section-about .panel p{
     font-size: 1em;
 }
 
-#about .panel h3{
+#section-about .panel h3{
     font-size: 1.2em;
     text-align: center;
     color: #87bdd8;
@@ -291,7 +300,7 @@ body, html {
     padding: 0.02em;
     border: 2px solid #667292;
     border-radius: 100% !important;
-    font-size: 2em;
+    font-size: 1.5em;
     color: #667292;
     background: white;
     -webkit-transition: background 0.3s ease-in-out;
@@ -305,53 +314,58 @@ body, html {
 .btn-pause:hover,
 .btn-pause:focus{
     outline: none;
-    color: #667292;
-    background: rgba(255, 255, 255, 0.1);
+    color: #1a1a1a;
+    border: 2px solid #1a1a1a;
+    background: rgba(255, 255, 255, 0.3);
 }
-.btn-play i.animated{
-    -webkit-transition-property: -webkit-transform;
-    -webkit-transition-duration: 1s;
-    -moz-transition-property: -moz-transform;
-    -moz-transition-duration: 1s;
-}
-.btn-play:hover i.animated{
-    -webkit-animation-name: pulse;
-    -moz-animation-name: pulse;
-    -webkit-animation-duration: 1.5s;
-    -moz-animation-duration: 1.5s;
-    -webkit-animation-iteration-count: infinite;
-    -moz-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
-    -moz-animation-timing-function: linear;
-}
-@-webkit-keyframes pulse {
-    0% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
-    50% {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
-    }
-    100% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
-}
-@-moz-keyframes pulse {
-    0% {
-        -moz-transform: scale(1);
-        transform: scale(1);
-    }
-    50% {
-        -moz-transform: scale(1.1);
-        transform: scale(1.1);
-    }
-    100% {
-        -moz-transform: scale(1);
-        transform: scale(1);
-    }
-}
+/*.btn-play i.animated{*/
+    /*-webkit-transition-property: -webkit-transform;*/
+    /*-webkit-transition-duration: 1s;*/
+    /*-moz-transition-property: -moz-transform;*/
+    /*-moz-transition-duration: 1s;*/
+/*}*/
+/*.btn-play:hover i.animated{*/
+    /*-webkit-animation-name: pulse;*/
+    /*-moz-animation-name: pulse;*/
+    /*-webkit-animation-duration: 1.5s;*/
+    /*-moz-animation-duration: 1.5s;*/
+    /*-webkit-animation-iteration-count: infinite;*/
+    /*-moz-animation-iteration-count: infinite;*/
+    /*-webkit-animation-timing-function: linear;*/
+    /*-moz-animation-timing-function: linear;*/
+/*}*/
+/*@-webkit-keyframes pulse {*/
+    /*0% {*/
+        /*-webkit-transform: scale(1);*/
+        /*transform: scale(1);*/
+    /*}*/
+    /*50% {*/
+        /*-webkit-transform: scale(1.1);*/
+        /*transform: scale(1.1);*/
+    /*}*/
+    /*100% {*/
+        /*-webkit-transform: scale(1);*/
+        /*transform: scale(1);*/
+    /*}*/
+/*}*/
+/*@-moz-keyframes pulse {*/
+    /*0% {*/
+        /*-moz-transform: scale(1);*/
+        /*transform: scale(1);*/
+    /*}*/
+    /*50% {*/
+        /*-moz-transform: scale(1.1);*/
+        /*transform: scale(1.1);*/
+    /*}*/
+    /*100% {*/
+        /*-moz-transform: scale(1);*/
+        /*transform: scale(1);*/
+    /*}*/
+/*}*/
+
+/*********************/
+/*  Hacker Section */
+/*********************/
 
 #vis-hacker-info{
     margin-top: 3.5em;
@@ -377,12 +391,6 @@ body, html {
     font-family: sans-serif;
 
 }
-
-
-/*#vis-internet-activity .y-axis,*/
-/*#vis-internet-concerns .y-axis{*/
-/*font-family: 'Raleway';*/
-/*}*/
 
 /*********************/
 /*Data Breache Section*/
@@ -507,6 +515,13 @@ tr:nth-child(even) {
     font-style: italic;
 }
 
+#identity-theft-slider {
+    width: 85%;
+}
+
+#identity-theft-slider .noUi-connect {
+    background: #8d9db6;
+}
 
 /*********************/
 /*  Recommendations */
@@ -516,7 +531,7 @@ tr:nth-child(even) {
     color: #87bdd8;
 }
 
-#recommendations .panel{
+#section-recommendations .panel{
     background-color: #ffffff;
     border-color: #DDDDDD;
     border-radius: 6px;
@@ -527,11 +542,11 @@ tr:nth-child(even) {
 
 }
 
-#recommendations .panel p{
+#section-recommendations .panel p{
     font-size: 1em;
 }
 
-#recommendations .panel h2{
+#section-recommendations .panel h2{
     font-size: 1.4em;
     text-align: center;
     color: #87bdd8;
@@ -542,7 +557,7 @@ tr:nth-child(even) {
 
 }
 
-#recommendations .panel img{
+#section-recommendations .panel img{
     position: absolute;
     left: 50%;
     top: 50%;

@@ -24,8 +24,8 @@ IdentityTheftLine.prototype.initVis = function() {
     var vis = this;
     vis.margin = { top: 20, right: 20, bottom: 60, left: 70 };
 
-    vis.width = 380 - vis.margin.left - vis.margin.right;
-    vis.height = 220 - vis.margin.top - vis.margin.bottom;
+    vis.width = 450 - vis.margin.left - vis.margin.right;
+    vis.height = 320 - vis.margin.top - vis.margin.bottom;
 
 
     // SVG drawing area
