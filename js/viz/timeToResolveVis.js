@@ -155,7 +155,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
         .attr("y", function(d, i) { return Math.floor(i / 10) * (vis.size + vis.gap); })
         .attr("height", vis.size)
         .attr("width", vis.size)
-        .attr("fill", "grey")
+        .attr("fill", "black")
         .style("opacity", vis.opacity);
 
     vis.squares.exit().remove();
@@ -164,7 +164,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
         d3.selectAll(".rect").transition()
             .duration(function(d,i) {return 40*i;})
             .ease(d3.easeQuad)
-            .style("fill", "grey")
+            .style("fill", "black")
             .style("opacity", vis.opacity);
 
         d3.selectAll(".rect")
@@ -347,7 +347,10 @@ TimeToResolveSquares.prototype.updateVis = function() {
         d3.selectAll(".rect")
             .style("stroke-width", 0)
             .on("mouseover", function(d) {
-                if (d3.select(this).style("fill") !== "rgb(128, 128, 128)") {
+
+                console.log(d3.selectAll(".rect").filter(function(d,i) {return i==99;}).style("fill"));
+
+                if (d3.selectAll(".rect").filter(function(d,i) {return i==99;}).style("fill") === "rgb(156, 121, 160)") {
                     d3.selectAll(".rect")
                         .style("opacity", function(i) {
                             if (i.Type === d.Type) {
