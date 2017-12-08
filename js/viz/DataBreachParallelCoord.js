@@ -18,12 +18,10 @@ DataBreachParallelCoord = function(_parentElement, _data, _dimensionData, _typeD
     this.displayDimensions = _dimensionData;
     this.colorData = _colorData;
     this.selectedval = this.displayDimensions[0].key;
-    this.addCheckbox();
-
 
     // DEBUG RAW DATA
-    console.log(this.data);
-    console.log(this.dimensions);
+    // console.log(this.data);
+    // console.log(this.dimensions);
 
     this.initVis();
 }
@@ -35,7 +33,6 @@ DataBreachParallelCoord.prototype.initVis = function(){
 
     vis.width = document.getElementById(vis.parentElement).offsetWidth - vis.margin.left - vis.margin.right;
     vis.height = 400 - vis.margin.top - vis.margin.bottom;
-    vis.innerHeight = vis.height - 2;
 
     vis.devicePixelRatio = window.devicePixelRatio || 1;
 
@@ -69,7 +66,7 @@ DataBreachParallelCoord.prototype.initVis = function(){
     vis.ctx.lineWidth = 1.5;
     vis.ctx.scale(vis.devicePixelRatio, vis.devicePixelRatio);
 
-    vis.wrangleData();
+    vis.initText();
 };
 
 /*
@@ -78,20 +75,22 @@ DataBreachParallelCoord.prototype.initVis = function(){
 
 DataBreachParallelCoord.prototype.wrangleData = function(){
     var vis = this;
-
+    //console.log("---wrangling data");
     // In the first step no data wrangling/filtering needed
+
     vis.displayData = vis.data;
+
     vis.displayDimensions = [];
 
     vis.dimensions.forEach(function(d){
-        console.log(d.description, $.inArray(d.description, choices));
+        //console.log(d.description, $.inArray(d.description, choices));
         if ($.inArray(d.description, choices) > -1){
             vis.displayDimensions.push(d);
         }
     });
-    console.log(choices);
+    //console.log(choices);
 
-    console.log(vis.displayDimensions);
+    //console.log(vis.displayDimensions);
     vis.selectedval = vis.displayDimensions[0].key;
     // Update the visualization
     vis.updateVis();
@@ -120,7 +119,7 @@ DataBreachParallelCoord.prototype.updateVis = function(){
         //.attr("class", "axis ")
         .attr("transform", function(d,i) { return "translate(" + vis.xscale(i) + ")"; })
         .each(function(d) {
-            console.log(d.scale.range());
+            //console.log(d.scale.range());
             vis.renderAxis = "axis" in d
                 ? d.axis.scale(d.scale)  // custom axis
                 : vis.yAxis.scale(d.scale);  // default axis
@@ -167,7 +166,6 @@ DataBreachParallelCoord.prototype.updateVis = function(){
         //.attr("class", "axis ")
         .attr("transform", function(d,i) { return "translate(" + vis.xscale(i) + ")"; })
         .each(function(d) {
-            console.log(d.scale.range());
             vis.renderAxis = "axis" in d
                 ? d.axis.scale(d.scale)  // custom axis
                 : vis.yAxis.scale(d.scale);  // default axis
@@ -194,7 +192,7 @@ DataBreachParallelCoord.prototype.updateVis = function(){
         .text(function(d) { return "description" in d ? d.description : d.key; })
         .on("click", function(d){
             if(d.key !== "Records Lost") {
-                console.log(d.key);
+                //console.log(d.key);
                 vis.selectedval = d.key;
                 color.domain(vis.colorData[d.key].domain)
                     .range(vis.colorData[d.key].range);
@@ -293,7 +291,7 @@ DataBreachParallelCoord.prototype.updateVis = function(){
                 });
             });
 
-        var selected = vis.data.filter(function(d) {
+        vis.displayData = vis.data.filter(function(d) {
             if (actives.every(function(active) {
                     var dim = active.dimension;
                     // test if point is within extents for each active brush
@@ -332,39 +330,146 @@ DataBreachParallelCoord.prototype.updateVis = function(){
          */
 
         vis.ctx.clearRect(0,0,vis.width,vis.height);
-        vis.ctx.globalAlpha = d3.min([0.85/Math.pow(selected.length,0.3),1]);
-        vis.render(selected);
+        vis.ctx.globalAlpha = d3.min([0.85/Math.pow(vis.displayData.length,0.3),1]);
+        vis.render(vis.displayData);
 
     }
 
 };
 
+/*
 DataBreachParallelCoord.prototype.updateAxes = function(){
     var vis = this;
     console.log("--updateAxes");
-
+    vis.svg.selectAll(".axis .brush")
+        .each(function(d) {
+            d3.select(this).call(d.brush.move, null)});
+    vis.displayData = vis.data;
     vis.ctx.clearRect(0,0,vis.width,vis.height);
 
     vis.wrangleData();
 }
-
+*/
 
 /*
  Add drop down menu to the DOM
  */
 DataBreachParallelCoord.prototype.addCheckbox = function() {
     var p = document.getElementById("checkbox-control");
-    var menu = document.createElement("form");
-    var selections = '<div class="form-group">' +
-        '<br>' +
-        '<pre><p><strong>Click on axis title to color by the chosen axis, brush to select, and/or use checkboxes to select axes to include in the plot:</strong></p>' +
-        '<input type="checkbox" class="AxesCheckbox" value="Method of Leak" checked="checked" onchange="updateAxes()"> Method of Leak &#9' +
-        '<input type="checkbox" class="AxesCheckbox" value="Data Sensitivity" checked="checked" onchange="updateAxes()"> Data Sensitivity &#9' +
-        '<input type="checkbox" class="AxesCheckbox" value="Organization Type" checked="checked" onchange="updateAxes()">Organization Type &#9' +
-        '<input type="checkbox" class="AxesCheckbox" value="Year of Occurrence" checked="checked" onchange="updateAxes()">Year of Occurrence &#9' +
-        '<input type="checkbox" class="AxesCheckbox" value="Number of Records Lost" checked="checked" onchange="updateAxes()"> Records Lost &#9 </pre>' +
-        '</div>';
+    //var menu = document.createElement("form");
+    var selections = '<form><div class="form-group">' +
+        '<p><strong>Click on axis title to color by the chosen axis, brush to select, and/or use checkboxes to select axes to include in the plot:</strong></p></br>' +
+        '<input type="checkbox" class="AxesCheckbox" value="Method of Leak" checked="checked" onchange="updateAxes()"> Method of Leak &#9' + '<p class="indent"></p>' +
+        '<input type="checkbox" class="AxesCheckbox" value="Data Sensitivity" checked="checked" onchange="updateAxes()"> Data Sensitivity &#9' + '<p class="indent"></p>' +
+        '<input type="checkbox" class="AxesCheckbox" value="Organization Type" checked="checked" onchange="updateAxes()">Organization Type &#9' +'<p class="indent"></p>' +
+        '<input type="checkbox" class="AxesCheckbox" value="Year of Occurrence" checked="checked" onchange="updateAxes()">Year of Occurrence &#9' + '<p class="indent"></p>' +
+        '<input type="checkbox" class="AxesCheckbox" value="Number of Records Lost" checked="checked" onchange="updateAxes()"> Records Lost &#9 ' +
+        '</div></form>';
 
-    menu.innerHTML = selections;
-    p.appendChild(menu);
+    p.innerHTML = selections;
+    //p.appendChild(menu);
 }
+
+DataBreachParallelCoord.prototype.initText = function() {
+    var vis = this;
+    var p = document.getElementById("checkbox-control");
+    var texts = '<p>' +
+        "To answer the above questions or even more in your mind, let's look into the recent data breaches cases together. </br>" +
+        "You can include/exclude certain variables, color by one column, or filter on selected dimension(s).</br>" +
+        "<strong>Click to start with some examples.</strong> " +
+        '<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></p>';
+    p.innerHTML = texts;
+    //p.appendChild(menu);
+
+    $("#checkbox-control").click(function(){
+        if(currentView <= 2){
+            vis.zoomView()
+        }
+    });
+}
+
+DataBreachParallelCoord.prototype.view1Text = function() {
+    var p = document.getElementById("checkbox-control");
+    var view1texts = '<p>' +
+        "The following view is filtered only to include the SSN/personal Details lost and colored by the method of leak. </br>You may realize that lost or stolen device and hacked events cause the majority loss of such sensitive and private information. </br>" +
+        "This rings a bell for us - sometimes by being more careful with the hardwares can help protect much personal information. </br>" +
+        '<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></p>';
+    p.innerHTML = view1texts;
+    //p.appendChild(menu);
+}
+
+DataBreachParallelCoord.prototype.view2Text = function() {
+    var p = document.getElementById("checkbox-control");
+    var view2texts = '<p>' +
+        "If we look at credit card information lost and again colored by the method of leak - Hacked events appear to be the major cause. </br>" +
+        "This teaches another lesson - we should all be more cautious with our credit cards as they are very vulnerable to hacks. </br>" +
+        "Now click to continue deeper dive into the cases yourself!</br>" +
+        '<i class="fa fa-arrow-circle-right" aria-hidden="true"></i></p>';
+    p.innerHTML = view2texts;
+    //p.appendChild(menu);
+}
+
+
+DataBreachParallelCoord.prototype.zoomView = function() {
+    var vis = this;
+
+    // In the first step no data wrangling/filtering needed
+    //vis.displayData = vis.data;
+
+    var viewVar;
+    vis.displayData = vis.data;
+
+    if (currentView ===0){
+        viewVar = "SSN/Personal details";
+        vis.view1Text();
+    }
+    else if (currentView ===1){
+        viewVar = "Credit card information";
+        vis.view2Text();
+    }
+    vis.displayData = vis.data.filter(function(d) {
+        return d["Data Sensitivity"] == viewVar;
+    });
+    console.log(vis.displayData);
+
+    vis.displayDimensions = [];
+
+    choices = ["Method of Leak", "Data Sensitivity", "Number of Records Lost"];
+
+    vis.dimensions.forEach(function(d){
+        //console.log(d.description, $.inArray(d.description, choices));
+        if ($.inArray(d.description, choices) > -1){
+            vis.displayDimensions.push(d);
+        }
+    });
+    //console.log(choices);
+
+    console.log(vis.displayDimensions);
+    vis.selectedval = "Method of Leak";
+    // Update the visualization
+    if (currentView ==2){
+        vis.addCheckbox();
+        choices = [];
+        d3.selectAll(".AxesCheckbox").each(function(d){
+            cb = d3.select(this);
+            if(cb.property("checked")){
+                choices.push(cb.property("value"));
+            }
+        });
+        vis.wrangleData();
+    }
+    else{
+        vis.updateVis();
+    }
+    currentView += 1;
+    console.log(currentView);
+
+};
+
+$("#checkbox-control").hover(
+    function(){
+        if(currentView<=2) {$(this).css("background-color", "#cccccc")
+        }
+    },
+    function(){$(this).css("background-color", "#f5f5f5")}
+);

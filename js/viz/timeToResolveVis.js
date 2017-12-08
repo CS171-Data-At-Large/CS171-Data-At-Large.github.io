@@ -30,7 +30,8 @@ TimeToResolveSquares.prototype.initVis = function() {
     vis.size = 40;
     vis.gap = 5;
 
-    vis.colorScale = d3.scaleOrdinal().range(['#e1c3b7','#b4bacb','#b56a4a','#495269','#667f7f']);
+    // vis.colorScale = d3.scaleOrdinal().range(['#bb785d','#697596','#edb45e', '#667f7f','#9775bd']);
+    vis.colorScale = d3.scaleOrdinal().range(['#bb785d','#697596','#d9bf8c', '#667f7f','#9c79a0']);
     vis.colorScale.domain(["Days", "Weeks", "Months", "Years", "Still not resolved"]);
 
     // SVG drawing area
@@ -79,44 +80,71 @@ TimeToResolveSquares.prototype.wrangleData = function() {
 TimeToResolveSquares.prototype.updateVis = function() {
     var vis = this;
 
+    vis.types = ["Days", "Weeks", "Months", "Years", "Not-resolved"];
+    vis.opacity = 0.6;
+
     vis.svgtext.append("text")
         .attr("x", 20)
         .attr("y", 220)
         .attr("class", "instruction instruction-line0")
+        .attr("id", "Days")
         .text("");
 
     vis.svgtext.append("text")
         .attr("x", 20)
         .attr("y", 250)
         .attr("class", "instruction instruction-line1")
+        .attr("id", "Weeks")
         .text("Each square represents an identity theft event.");
 
     vis.svgtext.append("text")
         .attr("x", 20)
         .attr("y", 280)
         .attr("class", "instruction instruction-line2")
+        .attr("id", "Months")
         .text("Click on a square to see how long it will take you to resolve.");
 
     vis.svgtext.append("text")
         .attr("x", 20)
         .attr("y", 310)
         .attr("class", "instruction instruction-line3")
+        .attr("id", "Years")
         .text("");
 
     vis.svgtext.append("text")
         .attr("x", 20)
         .attr("y", 340)
         .attr("class", "instruction instruction-line4")
+        .attr("id", "Not-resolved")
         .text("");
-
 
     vis.squares = vis.svg.selectAll(".rect")
         .data(vis.displayData);
 
     vis.squares.enter().append("rect")
         .attr("class", "rect")
+        .attr("id", "squares")
         .on("click", function(d) {
-            d3.select(this).transition().style("fill", vis.colorScale(d.Type));
+            rand = Math.random() * 100;
+            if (rand <= 34) {
+                vis.selected = "Days";
+            }
+            else if (rand <= 87) {
+                vis.selected = "Weeks";
+            }
+            else if (rand <= 94) {
+                vis.selected = "Months";
+            }
+            else if (rand <= 98) {
+                vis.selected = "Years"
+            }
+            else {
+                vis.selected = "Still not resolved"
+            }
+
+            d3.select(this).transition()
+                .style("opacity", vis.opacity)
+                .style("fill", vis.colorScale(vis.selected));
             vis.showSelected(d);
             vis.showAll(4000);
 
@@ -127,7 +155,8 @@ TimeToResolveSquares.prototype.updateVis = function() {
         .attr("y", function(d, i) { return Math.floor(i / 10) * (vis.size + vis.gap); })
         .attr("height", vis.size)
         .attr("width", vis.size)
-        .attr("fill", "grey");
+        .attr("fill", "grey")
+        .style("opacity", vis.opacity);
 
     vis.squares.exit().remove();
 
@@ -135,7 +164,12 @@ TimeToResolveSquares.prototype.updateVis = function() {
         d3.selectAll(".rect").transition()
             .duration(function(d,i) {return 40*i;})
             .ease(d3.easeQuad)
-            .style("fill", "grey");
+            .style("fill", "grey")
+            .style("opacity", vis.opacity);
+
+        d3.selectAll(".rect")
+            .on("mouseover", function(d) {})
+            .on("mouseout", function(d) {});
 
         d3.select(".instruction-line0")
             .transition().duration(500)
@@ -166,7 +200,26 @@ TimeToResolveSquares.prototype.updateVis = function() {
             .style("opacity", 0)
 
         d3.selectAll(".rect").on("click", function(d){
-            d3.select(this).transition().style("fill", vis.colorScale(d.Type));
+            rand = Math.random()*100;
+            if (rand <= 34) {
+                vis.selected = "Days";
+            }
+            else if (rand <= 87) {
+                vis.selected = "Weeks";
+            }
+            else if (rand <= 94) {
+                vis.selected = "Months";
+            }
+            else if (rand <= 98) {
+                vis.selected = "Years"
+            }
+            else {
+                vis.selected = "Still not resolved"
+            }
+
+            d3.select(this).transition()
+                .style("fill", vis.colorScale(vis.selected))
+                .style("opacity", vis.opacity);
             vis.showSelected(d);
             vis.showAll(4000);
         })
@@ -174,6 +227,12 @@ TimeToResolveSquares.prototype.updateVis = function() {
     });
 
     vis.showSelected = function(d) {
+
+        vis.data.forEach(function(d) {
+            if (d.Time === vis.selected) {
+                vis.proportion = +d["Share of respondents "]
+            }
+        });
 
         d3.select(".instruction-line0")
             .transition().duration(500)
@@ -185,15 +244,14 @@ TimeToResolveSquares.prototype.updateVis = function() {
             .transition().duration(1000)
             .style("opacity", 1)
             .style("fill", "black")
-            .text("Like " + d.Proportion + "% of the victims,");
+            .text("Like " + vis.proportion + "% of the victims,");
 
-        if (d.Type === "Still not resolved") {
+        if (vis.selected === "Still not resolved") {
             d3.select(".instruction-line2")
                 .transition().duration(500)
                 .style("opacity", 0)
                 .transition().duration(3000)
                 .style("opacity", 1)
-                .style("fill", vis.colorScale(d.Type))
                 .text("you still have not resolved your theft.")
         }
         else {
@@ -202,8 +260,7 @@ TimeToResolveSquares.prototype.updateVis = function() {
                 .style("opacity", 0)
                 .transition().duration(3000)
                 .style("opacity", 1)
-                .style("fill", vis.colorScale(d.Type))
-                .text("it will take you " + d.Type.toLowerCase() + " to resolve the theft.")
+                .text("it will take you " + vis.selected.toLowerCase() + " to resolve the theft.")
         }
 
         d3.select(".instruction-line3")
@@ -217,12 +274,14 @@ TimeToResolveSquares.prototype.updateVis = function() {
     };
 
     vis.showAll = function(delay) {
+
         d3.selectAll(".rect").transition().delay(delay)
             .duration(function(d,i) {return 40*i;})
             .ease(d3.easeQuad)
             .style("fill", function(d) {
                 return vis.colorScale(d.Type);
             })
+            .style("opacity", vis.opacity);
 
         d3.select(".instruction-line0")
             .transition().delay(delay).duration(500)
@@ -230,43 +289,116 @@ TimeToResolveSquares.prototype.updateVis = function() {
             .transition().duration(1000)
             .style("opacity", 1)
             .style("fill", vis.colorScale(vis.data[0].Time))
-            .text("34% of the victims took days to resolve the theft;");
+            .text("34% of the victims took days to resolve the theft;")
+            .transition().duration(700)
+            .style("fill", "black");
 
 
         d3.select(".instruction-line1")
             .transition().delay(delay).duration(500)
             .style("opacity", 0)
-            .transition().duration(2000)
+            .transition().duration(1500)
             .style("opacity", 1)
             .style("fill", vis.colorScale(vis.data[1].Time))
-            .text("53% of the victims took weeks to resolve the theft;");
+            .text("53% of the victims took weeks to resolve the theft;")
+            .transition().duration(600)
+            .style("fill", "black");
 
         d3.select(".instruction-line2")
             .transition().delay(delay).duration(500)
             .style("opacity", 0)
-            .transition().duration(3000)
+            .transition().duration(2000)
             .style("opacity", 1)
             .style("fill", vis.colorScale(vis.data[2].Time))
-            .text("7% of the victims took months to resolve the theft;");
+            .text("7% of the victims took months to resolve the theft;")
+            .transition().duration(500)
+            .style("fill", "black");
 
         d3.select(".instruction-line3")
             .transition().delay(delay).duration(500)
             .style("opacity", 0)
-            .transition().duration(4000)
+            .transition().duration(2000)
             .style("opacity", 1)
             .style("fill", vis.colorScale(vis.data[3].Time))
-            .text("4% of the victims took years to resolve the theft;");
+            .text("4% of the victims took years to resolve the theft;")
+            .transition().duration(500)
+            .style("fill", "black");
 
         d3.select(".instruction-line4")
             .transition().delay(delay).duration(500)
             .style("opacity", 0)
-            .transition().duration(5000)
+            .transition().duration(2000)
             .style("opacity", 1)
             .style("fill", vis.colorScale(vis.data[4].Time))
-            .text("2% of the victims still have not resolved the theft.");
+            .text("2% of the victims still have not resolved the theft.")
+            .transition().duration(500)
+            .style("fill", function(i) {
+                return "black"
+            });
 
-        d3.selectAll(".rect").on("click", function(){})
+        vis.addHover();
+
+
+        d3.selectAll(".rect").on("click", function(){});
+
     };
+
+    vis.addHover = function() {
+        d3.selectAll(".rect")
+            .style("stroke-width", 0)
+            .on("mouseover", function(d) {
+                if (d3.select(this).style("fill") !== "rgb(128, 128, 128)") {
+                    d3.selectAll(".rect")
+                        .style("opacity", function(i) {
+                            if (i.Type === d.Type) {
+                                return 1;
+                            }
+                            else {
+                                return vis.opacity;
+                            }
+                        })
+                        .style("stroke", "#f0f0f0")
+                        .style("stroke-width", function(i) {
+                            if (i.Type === d.Type) {
+                                return 3;
+                            }
+                            else {
+                                return 0;
+                            }
+                        });
+
+                    if (d.Type === "Still not resolved") {
+                        d3.select("#Not-resolved").style("fill", vis.colorScale(d.Type));
+                        vis.types.forEach(function(i) {
+                            if (i !== "Not-resolved") {
+                                d3.select("#"+i).style("fill", "#f0f0f0");
+                            }
+                        })
+
+                    }
+                    else {
+                        d3.select("#" + d.Type).style("fill", vis.colorScale(d.Type));
+                        vis.types.forEach(function(i) {
+                            if (i !== d.Type) {
+                                d3.select("#"+i).style("fill", "#f0f0f0");
+                            }
+                        })
+                    }
+                }
+
+            })
+            .on("mouseout", function(d) {
+
+                d3.selectAll(".rect")
+                    .style("stroke-width", 0)
+                    .style("opacity", vis.opacity);
+
+                vis.types.forEach(function(i) {
+                    d3.select("#"+i).style("fill", "black");
+                })
+
+            });
+    }
 
 
 };

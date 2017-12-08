@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>p.indent{ padding-left: 1.8em }</style>
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,11 +14,50 @@
     <link rel="stylesheet" href="css/nouislider.css">
     <link rel="stylesheet" href="css/jquery.fullPage.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/drop-theme-arrows.css" />
 
+    <script src="js/library/tether.min.js"></script>
+    <script src="js/library/drop.min.js"></script>
     <script type="text/javascript" src="js/library/jquery.min.js"></script>
     <script type="text/javascript" src="js/library/jquery.fullPage.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+
+            dropInstance = new Drop({
+                target: document.querySelector('.ziqi'),
+                content: '<strong>Ziqi Guo</strong><br>M.E. Computational Science and Engineering<br><a href="https://www.linkedin.com/in/ziqi-guo-974aa69a/" target="_blank">LinkedIn</a> / <a href="https://github.com/ziqiguo" target="_blank">GitHub</a>',
+                classes: 'drop-theme-arrows',
+                position: 'bottom left',
+                openOn: 'hover'
+            })
+
+            dropInstance = new Drop({
+                target: document.querySelector('.cindy'),
+                content: '<strong>Xindi Zhao</strong><br>M.S. Computational Science and Engineering<br><a href="https://www.linkedin.com/in/xindi-zhao-128b2a82/" target="_blank">LinkedIn</a> / <a href="https://github.com/cindyxdz" target="_blank">GitHub</a>',
+                classes: 'drop-theme-arrows',
+                position: 'bottom left',
+                openOn: 'hover'
+            })
+
+            dropInstance = new Drop({
+                target: document.querySelector('.michelle'),
+                content: '<strong>Chia Chi (Michelle) Ho</strong><br>M.S. Computational Science and Engineering<br><a href="https://www.linkedin.com/in/chia-chi-michelle-ho-30543391/" target="_blank">LinkedIn</a> / <a href="https://github.com/MichelleCCHo" target="_blank">GitHub</a>',
+                classes: 'drop-theme-arrows',
+                position: 'bottom left',
+                openOn: 'hover'
+            })
+
+            // variables
+            var $isAnimatedHome = $('#section-home .is-animated'),
+                $isAnimatedAbout = $('#section-about .is-animated'),
+                $isAnimatedAboutFlip = $('#section-about .is-animated-flip'),
+                $isAnimatedHacker = $('#section-hacker-text .is-animated'),
+                $isAnimatedBreachIntro = $('#section-data-breaches-intro .is-animated'),
+                $isAnimatedConsequenceIntro = $('#section-consequences-intro .is-animated'),
+                $isAnimatedRecommendationIntro = $('#section-recommendations-intro .is-animated')
+            ;
+
             $('#wrapper').fullpage({
                 css3: true,
                 navigation: true,
@@ -26,7 +66,59 @@
                 //Design
                 controlArrows: true,
                 verticalCentered: true,
-            });
+
+                //animation
+                afterRender: function(index, nextIndex, direction){
+                    console.log($(this));
+                    $isAnimatedHome.addClass('animated rotateIn');
+                    $isAnimatedHome.eq(0).css('animation-delay', '7s');
+                    $isAnimatedHome.eq(0).css('animation-duration', '2.5s');
+
+                },
+                onLeave: function(index, nextIndex, direction) {
+                    if( index === 1 && nextIndex === 2 ) {
+                        $isAnimatedAbout.addClass('animated fadeInUp');
+                        $isAnimatedAbout.eq(0).css('animation-delay', '0.5s');
+                        $isAnimatedAbout.eq(1).css('animation-delay', '1.5s');
+                        $isAnimatedAbout.eq(2).css('animation-delay', '2.5s');
+
+                        $isAnimatedAboutFlip.addClass('animated flipInY');
+                        $isAnimatedAboutFlip.eq(0).css('animation-delay', '3.5s');
+                        $isAnimatedAboutFlip.eq(1).css('animation-delay', '4.5s');
+                        $isAnimatedAboutFlip.eq(2).css('animation-delay', '5.5s');
+                        $isAnimatedAboutFlip.eq(3).css('animation-delay', '6.5s');
+                    }
+
+                    else if( index === 3 && nextIndex === 4 ) {
+                        $isAnimatedHacker.addClass('animated fadeInUp');
+                        $isAnimatedHacker.eq(0).css('animation-delay', '0.5s');
+                        $isAnimatedHacker.eq(1).css('animation-delay', '2s');
+                        $isAnimatedHacker.eq(2).css('animation-delay', '2s');
+                        $isAnimatedHacker.eq(3).css('animation-delay', '2s');
+                        $isAnimatedHacker.eq(4).css('animation-delay', '2s');
+                    }
+
+                    else if( index === 5 && nextIndex === 6 ) {
+                        $isAnimatedBreachIntro.addClass('animated fadeInUp');
+                        $isAnimatedBreachIntro.eq(0).css('animation-delay', '0.5s');
+                        $isAnimatedBreachIntro.eq(1).css('animation-delay', '2s');
+                        $isAnimatedBreachIntro.eq(2).css('animation-delay', '2s');
+
+                    }
+
+                    else if( index === 8 && nextIndex === 9 ) {
+                        $isAnimatedConsequenceIntro.addClass('animated fadeInUp');
+                        $isAnimatedConsequenceIntro.eq(0).css('animation-delay', '0.5s');
+                        $isAnimatedConsequenceIntro.eq(1).css('animation-delay', '2s');
+                    }
+
+                    else if( index === 11 && nextIndex === 12 ) {
+                        $isAnimatedRecommendationIntro.addClass('animated fadeInUp');
+                        $isAnimatedRecommendationIntro.eq(0).css('animation-delay', '0.5s');
+                        $isAnimatedRecommendationIntro.eq(1).css('animation-delay', '2s');
+                    }
+                }
+                });
 
             $("#myNavbar li a").click(function() {
                 $(this).parent().addClass("active").siblings().removeClass("active");
@@ -35,13 +127,27 @@
 
             $("#fp-nav ul li a").bind('activeChange', function(){
                 var navbarNames = ["#home", "#about", "#internet", "#data-breaches-intro",
-                    "#consequences-intro", "#recommendations-intro"];
+                    "#consequences-intro", "#recommendations-intro", "#about-us"];
 
                 var activePage = $(this).attr("href");
 
                 if(navbarNames.includes(activePage)){
                     var activeLink= "#myNavbar li a[href='" + activePage + "']";
                     $(activeLink).parent().addClass("active").siblings().removeClass("active");
+                }
+                // set navbar to update on last page of the section
+                else if(activePage === "#hacker-viz"){
+                    $("#myNavbar li a[href='#internet']").parent().addClass("active").siblings().removeClass("active");
+                }
+                else if(activePage === "#data-breaches-viz2"){
+                    $("#myNavbar li a[href='#data-breaches-intro']").parent().addClass("active").siblings().removeClass("active");
+                }
+                else if(activePage === "#consequences-viz2"){
+                    $("#myNavbar li a[href='#consequences-intro']").parent().addClass("active").siblings().removeClass("active");
+                }
+
+                else if(activePage === "#recommendations"){
+                    $("#myNavbar li a[href='#recommendations-intro']").parent().addClass("active").siblings().removeClass("active");
                 }
             });
 
@@ -56,7 +162,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#home">CS171</a>
+            <a class="navbar-brand" href="#home">CS171 Data at Large</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
@@ -78,20 +184,26 @@
         <div class="bg-img"></div>
         <div class="intro-text">
             <h1>Data at Large</h1>
-            <h2>A story about cybersecurity threats and creating a safer online existence</h2>
+            <br>
+            <h2 class="line-1 anim-typewriter">A story about cybersecurity threats and creating a safer online existence</h2>
             <br>
             <br>
             <br>
-            <a href="#about" class="btn btn-circle page-scroll">
+            <br>
+            <br>
+            <br>
+            <br>
+            <a href="#about" class="btn btn-circle page-scroll is-animated">
+                <!--<i class="fa fa-long-arrow-down animated"></i>-->
                 <i class="fa fa-angle-double-down animated"></i>
             </a>
         </div>
     </div>
     <div class="section" data-anchor="about" id="section-about">
         <div class="container">
-            <h2 class="text-center">How many hours did you spend online today?</h2>
+            <h2 class="text-center is-animated">How many hours did you spend online today?</h2>
             <br>
-            <p class="text-center">
+            <p class="text-center is-animated">
                 Most of us can't go a day without the internet. The digital age has brought a whole new way of living,
                 a much more convenient way of living. But at what cost? Just how safe is the personal information
                 you entrust to companies every time you use an app or a website?
@@ -99,12 +211,12 @@
             </p>
             <br>
             <br>
-            <p class="text-center">
+            <p class="text-center is-animated">
                 Before heading on to the visualizations, here is a brief summary of what's to come. <br>
             </p>
             <br>
             <div class="row">
-                <div class="col-sm-12 col-md-3">
+                <div class="col-sm-12 col-md-3 is-animated-flip">
                     <div class="panel outline">
                         <p class="text-center">
                             <img src="img/wifi-connection-signal-symbol.svg" width="75">
@@ -118,7 +230,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-3">
+                <div class="col-sm-12 col-md-3 is-animated-flip">
                     <div class="panel outline">
                         <p class="text-center">
                             <img src="img/virus.svg" width="75">
@@ -130,7 +242,7 @@
                             our personal data can be lost/stolen/leaked.</p>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-3">
+                <div class="col-sm-12 col-md-3 is-animated-flip">
                     <div class="panel outline">
                         <p class="text-center">
                             <img src="img/fingerprint.svg" width="75">
@@ -143,7 +255,7 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-sm-12 col-md-3">
+                <div class="col-sm-12 col-md-3 is-animated-flip">
                     <div class="panel outline">
                         <p class="text-center">
                             <img src="img/information.svg" width="75">
@@ -159,12 +271,13 @@
         </div>
     </div>
 
-    <div class="section" data-anchor="internet" id="section-internet">
+    <div class="section extra-margin" data-anchor="internet" id="section-internet">
         <div class="container">
             <h2>Internet has gone viral since 1995</h2>
-            <p>This isn’t news, but you might not realize how drastic the increase in internet activities has been,
-                for both internet and mobile users across the globe. <em> Explore the trend by selecting the type of activities first,
-                    and look into the data on the world map for selected year(s). Play animation to see how the world changes in action! </em>
+            <br>
+            <p class="text-center">This isn’t news, but you might not realize how drastic the increase in internet activities has been.
+                <br>
+                <strong><em> Explore the trend by selecting the type of user. Play animation to see how the world changes in action! </em></strong>
             </p>
 
             <div class="row" id="vis-1">
@@ -189,34 +302,37 @@
     </div>
 
     <div class="section" data-anchor="hacker-intro" id="section-hacker-text">
-        <div class="container">
-            <h2>Along with the growth of the internet, hackers gained more opportunities </h2>
+        <div class="section-intro-text">
+            <h2 class = "is-animated">Along with the growth of the internet, hackers gained more opportunities </h2>
             <br>
+            <h3 class = "is-animated">About hackers: A brief history</h3>
             <br>
-            <br>
-            <h3>About hackers: A brief history</h3>
-            <p class="text-center">The term "hacker" was coined in the 1960s at MIT, where extremely skilled and intelligent individuals practiced
+            <p class="text-center is-animated">The term "hacker" was coined in the 1960s at MIT, where extremely skilled and intelligent individuals practiced
                 hardcore programming. Since most people had no idea what hacking was, the term hacker was actually accepted as a positive label slapped onto
                 computer gurus who could push computer systems beyond the defined limits.
-                <br>
+                <br><br>
             </p>
-            <p>
+            <p class = "text-center is-animated">
                 During the early 1980s, the term “cyberspace” was coined from a novel called “Neuromancer.”
                 A group called the “414s” was one of the earliest hacker groups to ever get raided by the FBI and charged with 60 computer intrusions.
-                <br>
+                <br><br>
             </p>
 
-            <p class="text-center">
+            <p class="text-center is-animated">
                 As time progressed, Hackers found ways to exploit holes in operating systems of local and remote machines,
                 and this exploitation can be used for good and the bad. While majority of hackers do not commit malicious acts against users,
-                hackers do break into systems for a great variety of reasons. <strong> <em>The ones that intentionally retrieve private data
-                may pose real cybersecurity threat to you regardless </em></strong>.
+                hackers do break into systems for a great variety of reasons.
+                <br><br>
+                <strong> <em>The ones that intentionally retrieve private data may pose real cybersecurity threat to you regardless </em></strong>
             </p>
+
         </div>
     </div>
 
-    <div class="section" data-anchor="hacker-viz" id="section-hacker-viz">
+    <div class="section extra-margin extra-extra-margin" data-anchor="hacker-viz" id="section-hacker-viz">
         <div class="container">
+            <p class="text-center hover-instruction"> <strong><em>Hover over the reasons to see details. And hover
+            over the pie charts to see actual survey questions and responses!</em></strong></p>
             <div class="row" id="vis-2">
                 <div class="col-md-6">
                     <div id="vis-hacker-reasons"></div>
@@ -225,11 +341,11 @@
                 <div class="col-md-6 padding-0">
                     <div id="vis-hacker-info"><h3>Did you know that a hackers survey revealed...</h3>
                     </div>
-                    <p class="text-right">
-                        <a href="https://www.helpnetsecurity.com/2002/04/08/the-history-of-hacking/" target="_blank">Information source 1</a>;
-                        <a href="https://www.getcujo.com/blog/7-reasons-hackers-hack/" target="_blank">Information source 2</a>;
-                        <a href="https://thycotic.com/resources/black-hat-2017-survey/" target="_blank">Information source 3</a>.
-                    </p>
+                    <!--<p class="text-right">-->
+                        <!--<a href="https://www.helpnetsecurity.com/2002/04/08/the-history-of-hacking/" target="_blank">Information source 1</a>;-->
+                        <!--<a href="https://www.getcujo.com/blog/7-reasons-hackers-hack/" target="_blank">Information source 2</a>;-->
+                        <!--<a href="https://thycotic.com/resources/black-hat-2017-survey/" target="_blank">Information source 3</a>.-->
+                    <!--</p>-->
 
                 </div>
             </div>
@@ -237,27 +353,29 @@
     </div>
 
     <div class="section" data-anchor="data-breaches-intro" id="section-data-breaches-intro">
-        <div class="container">
-            <h2>Cybersecurity threat is real: Companies are being hacked.</h2>
-            <p class="text-center">
+        <div class="section-intro-text">
+            <h2 class = "is-animated">Cybersecurity threat is real: Companies are being hacked.</h2>
+            <br>
+            <p class="text-center is-animated">
                 With your activeness on the internet and the prevalence of hackers, how often do you think a data breach happen?
             </p>
-            <p class="text-center">
+            <br>
+            <p class="text-center is-animated">
                 The Equifax incident in 2017 impacted over 140 millions of people in the US.
                 You might have heard about the billions of account information stolen from Yahoo revealed in 2016 as well.
                 However, cybersecurity issues come up more often than what you might have imagined, and mostly on large scales.
-                In fact, almost all types of organizations are involved, data can be leak through various methods,
-                and data up to different sensitivity level can be lost through all these incidents.
+                In fact, almost all types of organizations are vulnerable, data can be leaked through various channels,
+                and data as sensitive as your social security number can be stolen.
             </p>
         </div>
     </div>
 
-    <div class="section" data-anchor="data-breaches-viz1" id="section-data-breaches-viz1">
+    <div class="section extra-margin" data-anchor="data-breaches-viz1" id="section-data-breaches-viz1">
         <div class="container">
-            <p>
-                Visualizations below offer an overall view of the data breach cases 2004-2017 by method of leak,
-                organization type or data sensitivity, as well as an opportunity for you to dive into a single case
-                detail by looking at the individual bubbles.
+            <p class="text-center">
+                <strong><em>Visualizations below offer an overall view of the data breach cases 2004-2017.
+                    Click on the layers to explore the data and hover over individual bubbles to read more about each
+                    incident.</em></strong>
 
             </p>
             <div id="breach-cases-form"></div>
@@ -279,14 +397,14 @@
         </div>
     </div>
 
-    <div class="section" data-anchor="data-breaches-viz2" id="section-data-breaches-viz2">
+    <div class="section extra-margin" data-anchor="data-breaches-viz2" id="section-data-breaches-viz2">
         <div class="container">
             <p class="text-center">
                 Is there a particular type of method of leak that yields the most data breach incidents?
                 How are the organization types relate to what type of data is lost or if there is any correlation?
-                <strong><em>Feel free to ask yourself more questions and explore incidents further with the following plot
-                    and uncover your own understanding of the recent data breach cases! </em></strong>
+                <br>
             </p>
+            <br>
             <div id="vis-5">
                 <div id="checkbox-control"></div>
                 <div id="vis-breach-cases-parallel"></div>
@@ -296,9 +414,10 @@
     </div>
 
     <div class="section" data-anchor="consequences-intro" id="section-consequences-intro">
-        <div class="container">
-            <h2>Identity theft crimes appear to be one of major consequences from the cybersecurity threats</h2>
-            <p class="text-justify">
+        <div class="section-intro-text">
+            <h2 class = "is-animated">A major consequence of cybersecurity threats is Identity Theft Crimes</h2>
+            <br>
+            <p class="text-center is-animated">
                 Every year, people report and complain about their identity theft cases throughout the United States.
                 Unfortunately, the overall number of victims has been risen throughout the time as well.
                 There are states where more people get affected, and states where people are more likely being affected.
@@ -316,24 +435,17 @@
         <div class="container">
             <div class="row">
                 <!-- map chart -->
-                <div class="col-md-7">
+                <div class="col-md-12">
                     <div id="vis-6">
-                        <div id="identity-theft-slider"></div>
                         <div id="vis-identity-theft"></div>
-                    </div>
-                </div>
-                <!-- line chart and table -->
-                <div class="col-md-5">
-                    <div id="vis-8">
-                        <div id="vis-identity-theft-line"></div>
-                        <table class="table table-hover table-condensed table-striped" id="table-identity-theft"></table>
+                        <div id="identity-theft-slider"></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="section" data-anchor="consequences-viz2" id="section-consequences-viz2">
+    <div class="section extra-margin" data-anchor="consequences-viz2" id="section-consequences-viz2">
         <div class="container">
             <h2>Identity theft is beyond a momentary loss</h2>
             <p>If you were to be involved in an identity theft case, how long do you expect to get the case resolved?
@@ -356,18 +468,20 @@
     </div>
 
     <div class="section" data-anchor="recommendations-intro" id="section-recommendations-intro">
-        <div class="container">
-            <h2>But there is a silver lining in all of this...</h2>
-            <p class="text-center">
+        <div class="section-intro-text">
+            <h2 class="is-animated">But there is a silver lining in all of this...</h2>
+            <br>
+            <p class="text-center is-animated">
                 Reports have shown that cybersecurity ranks the very top concern of
                 internet usage in 2017 (<a href="https://www-statista-com.ezp-prod1.hul.harvard.edu/statistics/248488/frequency-with-which-us-internet-users-worry-about-online-privacy/" target="_blank">Source</a>),
-                suggesting that there is increasing awareness of cybersecurity issues.
+                suggesting that there is increasing awareness of cybersecurity issues. <br>
+                <br>
                 Perhaps due to this increasing awareness, spending on building a safer cyber space has also been increasing in recent years (<a href="https://www-statista-com.ezp-prod1.hul.harvard.edu/statistics/615450/cybersecurity-spending-in-the-us/" target="_blank">Source</a>).
             </p>
         </div>
     </div>
 
-    <div class="section" data-anchor="recommendations" id="section-recommendations">
+    <div class="section extra-margin" data-anchor="recommendations" id="section-recommendations">
         <div class="container">
             <h2 class="text-center">So what should you do when you've been hacked?</h2>
             <p class="text-center">Hover over the info-boxes to show specific recommendations
@@ -471,8 +585,51 @@
 
     <div class="section" data-anchor="about-us" id="section-about-us">
         <div class="container">
-            <h2>About Us</h2>
+            <div class="row">
+                <div class="col-sm12 col-md-6 rec">
+                    <h2>About Us</h2>
+                    <p>This was a final project for Harvard's CS171 Visualization course, in 2017. The group consists of <span class="person-info michelle">Michelle Ho</span>, <span class="person-info cindy">Xindi Zhao</span> and <span class="person-info ziqi">Ziqi Guo</span>.</p>
+                    <p>We would like to thank our advisor <strong>Zona Kostic</strong>, our Professor <strong>Johanna Beyer</strong>, and every member of the teaching team, for conducting this amazing course and guiding along our project.</p>
+                    <h3>To know more about this project</h3>
+                    <ul>
+                        <li>Watch our screencast
+                            <iframe src="http://www.youtube.com/embed/W7qWa52k-nE"
+                                    width="400" height="250" frameborder="0" allowfullscreen></iframe>
+                        </li>
+                        <li>GitHub repository</li>
+                        <li>Process book</li>
+                    </ul>
+                </div>
+                <div class="col-sm12 col-md-6 rec">
+                    <h2>References</h2>
+                    <h3>Data sources</h3>
+                    <ul>
+                        <li><a href="https://docs.google.com/spreadsheets/d/1Je-YUdnhjQJO_13r8iTeRxpU2pBKuV6RVRHoYCgiMfg/edit#gid=322165570">Information is beautiful: Company data breaches from 2014 to 2017</a></li>
+                        <li>Bureau of Justice Statistics: <a href="https://www.bjs.gov/index.cfm?ty=tp&tid=42">Victims of identity theft in the US</a></li>
+                        <li>Statista: <a href="https://www-statista-com.ezp-prod1.hul.harvard.edu/statistics/276445/number-of-internet-users-in-the-united-states/">Number of internet users in the United States from 2000 to 2016 (in millions)</a></li>
+                        <li>Statista: <a href="https://www-statista-com.ezp-prod1.hul.harvard.edu/statistics/187104/mobile-broadband-subscriptions-per-100-inhabitants-in-the-usa-since-2004/">Mobile broadband subscriptions per 100 inhabitants in the United States from 2004 to 2016</a></li>
+                        <li>Statista: <a href="https://www-statista-com.ezp-prod1.hul.harvard.edu/statistics/441740/time-taken-us-travelers-resolved-identity-theft/">How long did it take you to resolve the issues caused by identity theft</a></li>
+                        <li><a href="https://thycotic.com/resources/black-hat-2017-survey/">2017 Black Hat Hacker Survey</a></li>
 
+                    </ul>
+
+                    <h3>Inspiration and knowledge</h3>
+                    <ul>
+                        <li>Visualization on <a href="http://www.informationisbeautiful.net/visualizations/worlds-biggest-data-breaches-hacks/">world's biggest data breaches</a></li>
+                        <li><a href="https://www.getcujo.com/blog/recent-data-breaches-equifax/">Lessons Learned from 5 Biggest Data Breaches</a></li>
+                        <li>Information about hackers on <a href="https://en.wikipedia.org/wiki/Hacker">Wikipedia</a></li>
+                    </ul>
+                    <h3>Plug-ins</h3>
+                    <ul>
+                        <li><a href="https://d3js.org/">d3.js</a> (interactive visualization library)</li>
+                        <li><a href="https://getbootstrap.com/">Bootstrap</a> (webpage elements)</li>
+                        <li><a href="https://alvarotrigo.com/fullPage/">fullPage.js</a> (webpage layout)</li>
+                        <li><a href="https://refreshless.com/nouislider/">noUiSlider.js</a> (time slider object)</li>
+
+                        <li><a href="http://fontawesome.io/">Font Awesome</a> (icons)</li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -491,38 +648,8 @@
 <script src="js/library/topojson.v1.min.js"></script>
 <script src="js/library/nouislider.js"></script>
 <script src="js/library/wNumb.js"></script>
+<script src="js/library/d3-timer.min.js"></script>
 
-<!--&lt;!&ndash;// Add smooth scrolling to all links in navbar and footer&ndash;&gt;-->
-<!--<script>-->
-    <!--$(document).ready(function(){-->
-        <!--// Initialize Tooltip-->
-        <!--$('[data-toggle="tooltip"]').tooltip();-->
-
-        <!--// Add smooth scrolling to all links in navbar + footer link-->
-        <!--$(".navbar a, .intro-text a[href='#about'] , footer a[href='#myPage']").on('click', function(event) {-->
-
-            <!--// Make sure this.hash has a value before overriding default behavior-->
-            <!--if (this.hash !== "") {-->
-
-                <!--// Prevent default anchor click behavior-->
-                <!--event.preventDefault();-->
-
-                <!--// Store hash-->
-                <!--var hash = this.hash;-->
-
-                <!--// Using jQuery's animate() method to add smooth page scroll-->
-                <!--// The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area-->
-                <!--$('html, body').animate({-->
-                    <!--scrollTop: $(hash).offset().top-->
-                <!--}, 900, function(){-->
-
-                    <!--// Add hash (#) to URL when done scrolling (default click behavior)-->
-                    <!--window.location.hash = hash;-->
-                <!--});-->
-            <!--} // End if-->
-        <!--});-->
-    <!--})-->
-<!--</script>-->
 
 
 <!-- Visualization objects -->

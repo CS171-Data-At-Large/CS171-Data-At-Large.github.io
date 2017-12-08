@@ -29,7 +29,7 @@ HackerReasonVis.prototype.initVis = function(){
     else{
         vis.width = 100;
     }
-    vis.height = 700 - vis.margin.top - vis.margin.bottom;
+    vis.height = 600- vis.margin.top - vis.margin.bottom;
 
     // SVG drawing area
     vis.svg = d3.select("#" + vis.parentElement).append("svg")

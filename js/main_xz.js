@@ -18,14 +18,14 @@ var svg = d3.select("#chart-area").append("svg")
 // Will be used to the save the loaded JSON data
 var allData = [];
 var choices = ["Year of Occurrence", "Organization Type", "Number of Records Lost", "Method of Leak", "Data Sensitivity"];
-
+var currentView = 0;
 // Date parser to convert strings to date objects
 var parseTime = d3.timeParse("%Y");
 var formatTime = d3.timeFormat("%Y");
 
 // Set ordinal color scale
 var color = d3.scaleOrdinal();
-var innerHeight = 254;
+var innerHeight = 310;
 
 var types = {
     "Number": {
@@ -102,12 +102,12 @@ var dimensions = [
 
 var colorDomains = {
     "Data Sensitivity": {
-        "domain": ["Credit card information", "Email password/Health record", "Full bank account details", "Just email address/Online Information", "SSN/Personal details"],
+        "domain": ["Just email address/Online Information","Email password/Health record", "Credit card information", "Full bank account details", "SSN/Personal details"],
         "range":["#5C7C93", '#6F9283', "#8B062B", "#AEABB9", "#96551B"]
     },
     "Method of Leak": {
         "domain": ["hacked", "accidentally published", "inside job", "lost/stolen device or media", "poor security"],
-        "range": ["#5C7C93", '#6F9283', "#8B062B", "#AEABB9", "#AA9982"]
+        "range": ["#5C7C93", "#AEABB9", '#6F9283', "#8B062B", "#AA9982"]
     },
     "Organization": {
         "domain": ["academic", "app", "energy", "financial", "gaming", "government", "healthcare", "legal", "media", "military", "retail", "tech","telecoms", "transport"],
@@ -176,7 +176,7 @@ function d3_functor(v) {
     return typeof v === "function" ? v : function() { return v; };
 };
 
-d3.selectAll(".AxesCheckbox").on("change",updateAxes);
+//d3.selectAll(".AxesCheckbox").on("change",updateAxes);
 
 function updateAxes(){
     choices = [];
@@ -187,6 +187,13 @@ function updateAxes(){
             choices.push(cb.property("value"));
         }
     });
+    d3.selectAll(".axis .brush")
+        .each(function(d) {
+            console.log(d.brush);
+            console.log(d3.select(this));
+            d3.select(this).node().__brush.selection = null;
+            d3.select(this).call(d.brush)});
 
     coordchart.wrangleData();
 }
+

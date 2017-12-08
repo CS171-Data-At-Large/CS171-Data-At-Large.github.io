@@ -22,10 +22,10 @@ IdentityTheftLine = function(_parentElement, _data) {
 
 IdentityTheftLine.prototype.initVis = function() {
     var vis = this;
-    vis.margin = { top: 20, right: 20, bottom: 60, left: 70 };
+    vis.margin = { top: 20, right: 20, bottom: 40, left: 80 };
 
-    vis.width = 450 - vis.margin.left - vis.margin.right;
-    vis.height = 320 - vis.margin.top - vis.margin.bottom;
+    vis.width = 380 - vis.margin.left - vis.margin.right;
+    vis.height = 230 - vis.margin.top - vis.margin.bottom;
 
 
     // SVG drawing area
@@ -69,12 +69,14 @@ IdentityTheftLine.prototype.initVis = function() {
     vis.xAxislabel = vis.svg.append("text")
         .attr("class", "x-axis-label")
         .attr("x", (vis.width/2 - 30))
-        .attr("y", (vis.height + 40));
+        .attr("y", (vis.height + 40))
+        .style("fill", "#bccad6");
 
     vis.yAxislabel = vis.svg.append("text")
         .attr("class", "y-axis-label")
-        .attr("transform", "translate(-60, 70) rotate(270)")
-        .style("text-anchor", "middle");
+        .attr("transform", "translate(-60, 90) rotate(270)")
+        .style("text-anchor", "middle")
+        .style("fill", "#bccad6");
 
     vis.victimPath = vis.svg.append("path")
         .attr("class", "victim-path");
@@ -141,24 +143,17 @@ IdentityTheftLine.prototype.updateVis = function() {
 
     vis.victimPath
         .datum(vis.displayData)
-        .transition()
-        .duration(vis.duration)
-        .ease(vis.ease)
         .attr("d", vis.line)
         .attr("fill", "transparent")
-        .attr("stroke", "#667292")
+        .attr("stroke", "#bccad6")
         .attr("stroke-width", 3);
 
     vis.svg.select(".x-axis")
-        .transition()
-        .duration(vis.duration)
-        .ease(vis.ease)
+        .attr("class", "white-axis")
         .call(vis.xAxis.tickFormat(d3.format("d")));
 
     vis.svg.select(".y-axis")
-        .transition()
-        .duration(vis.duration)
-        .ease(vis.ease)
+        .attr("class", "white-axis")
         .call(vis.yAxis);
 
     vis.svg.select(".x-axis-label")
@@ -174,18 +169,18 @@ IdentityTheftLine.prototype.updateVis = function() {
             }
         });
 
-    var content = '<thead><tr>\n<th scope="row">Year</th>\n<th scope="row">Number of Victims</th></tr></thead>\n<tbody>';
-
-    for (var i=0; i<vis.displayData.length; i++) {
-        var year = vis.displayData[i]["Year"];
-        var nvictims = vis.displayData[i]['Victims'];
-
-        content += '<tr><td class="col-md-2">'+year+'</td><td class="col-md-4">'+nvictims+'</td></tr>\n';
-    }
-
-    content = content + "</tbody";
-
-    document.getElementById("table-identity-theft").innerHTML = content;
+    // var content = '<thead><tr>\n<th scope="row">Year</th>\n<th scope="row">Number of Victims</th></tr></thead>\n<tbody>';
+    //
+    // for (var i=0; i<vis.displayData.length; i++) {
+    //     var year = vis.displayData[i]["Year"];
+    //     var nvictims = vis.displayData[i]['Victims'];
+    //
+    //     content += '<tr><td class="col-md-2">'+year+'</td><td class="col-md-4">'+nvictims+'</td></tr>\n';
+    // }
+    //
+    // content = content + "</tbody";
+    //
+    // document.getElementById("table-identity-theft").innerHTML = content;
 
 
 };

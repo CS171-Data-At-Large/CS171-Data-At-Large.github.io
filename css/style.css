@@ -22,6 +22,34 @@ label {
     padding-top:0;
 }
 
+.section-intro-text {
+    background-color: #F8F8F8;
+    padding: 2em 10em;
+}
+
+.container{
+    padding: 2em 0;
+}
+
+.extra-margin,
+.extra-extra-margin{
+    margin-top: 2em;
+}
+
+.section-intro-text h2{
+    color: #5cadd6 !important;
+}
+
+#section-recommendations h2{
+    color: #5cadd6 !important;
+}
+
+.person-info {
+    font-weight: bold;
+}
+
+
+
 /*********************/
 /*  Navbar Display */
 /*********************/
@@ -180,6 +208,34 @@ body, html {
     }
 }
 
+/* Animation */
+.line-1{
+    position: relative;
+    top: 50%;
+    width: 35em;
+    margin: 0 auto;
+    border-right: 2px solid rgba(255,255,255,.75);
+    font-size: 180%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    transform: translateY(-50%);
+}
+
+/* Animation */
+.anim-typewriter{
+    animation: typewriter 5s steps(80) 1.5s 1 normal both,
+    blinkTextCursor 500ms steps(80) infinite normal;
+}
+@keyframes typewriter{
+    from{width: 0;}
+    to{width: 35em;}
+}
+@keyframes blinkTextCursor{
+    from{border-right-color: rgba(255,255,255,.75);}
+    to{border-right-color: transparent;}
+}
+
 /*********************/
 /*   About Section    */
 /*********************/
@@ -216,17 +272,14 @@ body, html {
 /*  Internet Section */
 /*********************/
 
-.bg-2{
-    background-color: #F8F8F8;
-}
 
-.bg-2 .axis path,
+#section-internet .axis path,
 .axis line {
     fill: none;
     stroke: #000;
     shape-rendering: crispEdges;
 }
-.bg-2 .axis text {
+#section-internet .axis text {
     font-size: 11px;
 }
 /*the line graph*/
@@ -240,7 +293,7 @@ body, html {
     fill: #667292;
 }
 
-.bg-2 .axis-title {
+.axis-title {
     fill: black;
     font-size: 20px;
     font-weight: bold;
@@ -481,7 +534,7 @@ body, html {
     stroke: #fff;
     stroke-width: 1px;
 }
-
+/*
 #vis-breach-cases-parallel pre {
     width: 100%;
     height: 300px;
@@ -489,8 +542,29 @@ body, html {
     tab-size: 40;
     font-size: 10px;
     overflow: auto;
+    text-align: center;
 }
+*/
+#checkbox-control{
+    padding-top: 20px;
+    font-family: Courier;
+    width: 100%;
+    height: 110px;
+    margin: 6px 12px;
+    tab-size: 40;
+    background-color: #f5f5f5;
+    border-color: #cccccc;
+    font-size: 14px;
+    text-align: center;
+}
+#checkbox-control p{
+    display: inline;
+}
+/*
+#checkbox-control:hover {
 
+    background-color: #cccccc;
+}*/
 #vis-5 {
     margin-bottom: 2em;
 }
@@ -516,12 +590,28 @@ tr:nth-child(even) {
 }
 
 #identity-theft-slider {
-    width: 85%;
+    width: 60%;
+    margin-left: 230px;
+    text-align: center;
 }
 
 #identity-theft-slider .noUi-connect {
     background: #8d9db6;
 }
+
+
+.white-axis line{
+    stroke: white;
+}
+
+.white-axis path{
+    stroke: white;
+}
+
+.white-axis text{
+    fill: white;
+}
+
 
 /*********************/
 /*  Recommendations */
@@ -630,4 +720,60 @@ tr:nth-child(even) {
 
 footer .glyphicon-chevron-up{
     font-size: 2em;
+}
+
+.person-info {
+    color: #87bdd8
+}
+
+a {
+    color: #87bdd8
+}
+
+
+.fp-section #vis-hacker-reasons{
+    opacity: 0;
+}
+
+
+.fp-section #vis-hacker-info{
+    opacity: 0;
+}
+
+
+.fp-section .annotation{
+    opacity: 0;
+}
+
+.fp-section.active #vis-hacker-reasons{
+    opacity: 1;
+    transition: opacity 4s;
+    transition-delay: 1s;
+}
+
+
+.fp-section.active #vis-hacker-info{
+    opacity: 1;
+    transition: opacity 4s;
+    transition-delay: 3s;
+}
+
+.fp-section.active .annotation{
+    opacity: 1;
+    transition: opacity 3s;
+    transition-delay: 4.5s;
+}
+
+.fa-arrow-circle-right{
+    font-size: 18pt;
+}
+
+.fp-section .hover-instruction{
+    opacity: 0;
+}
+
+.fp-section.active .hover-instruction{
+    opacity: 1;
+    transition: opacity 1s;
+    transition-delay: 6s;
 }

@@ -63,8 +63,7 @@ function createVis(error, data1, data2, data3, data4) {
     // ############# identity theft visualization #############
 
     squaremap = new IdentityTheftSquareMap("vis-identity-theft", data2, data3);
-    linechart = new IdentityTheftLine("vis-identity-theft-line", data3);
-
+    linechart = new IdentityTheftLine("tooltip-holder", data3);
 
     // ############# time-to-resolve visualization #############
 

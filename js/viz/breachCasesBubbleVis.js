@@ -74,24 +74,28 @@ BreachCasesBubble.prototype.initVis = function() {
         .attr("cx", 15)
         .attr("cy", 20)
         .attr("r", 6)
-        .style("fill", "grey");
+        .style("fill", "transparent")
+        .style("stroke", "#e0e2e4");
 
     vis.svg.append("circle")
         .attr("cx", 37)
         .attr("cy", 20)
         .attr("r", 10)
-        .style("fill", "grey");
+        .style("fill", "transparent")
+        .style("stroke", "#e0e2e4");
 
     vis.svg.append("circle")
         .attr("cx", 70)
         .attr("cy", 20)
         .attr("r", 14)
-        .style("fill", "grey");
+        .style("fill", "transparent")
+        .style("stroke", "#e0e2e4");
 
     vis.svg.append("text")
         .attr("x", 93)
         .attr("y", 25)
-        .text("Records lost");
+        .text("Records lost")
+        .style("fill", "grey");
 
 
 

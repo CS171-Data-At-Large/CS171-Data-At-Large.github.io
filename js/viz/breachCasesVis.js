@@ -254,7 +254,8 @@ BreachCasesStackedArea.prototype.updateVis = function() {
         })
         .attr("y", 25)
         .text(function(d) { return d; })
-        .style("text-anchor", "start");
+        .style("text-anchor", "start")
+        .style("fill", "grey");
 
     vis.legendLabels.exit().remove;
 
