@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CS171 Data at Large: Process Book</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body{
+            background-color: #F8F8F8;
+        }
+        h1{
+            color: #5cadd6;
+        }
+        p, div.container li{
+            font-size: 1.3em;
+        }
+
+        table {
+            width:60%;
+            margin: auto;
+        }
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+            font-size: 1.3em;
+        }
+        table#t01 tr:nth-child(even) {
+            background-color: #eee;
+        }
+        table#t01 tr:nth-child(odd) {
+            background-color:#fff;
+        }
+        table#t01 th {
+            background-color: #667292;
+            color: white;
+        }
+    </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+<!--navbar-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#processNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Back to Project Page</a>
+        </div>
+        <div class="collapse navbar-collapse" id="processNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#overview-motivation">Overview & Motivation</a></li>
+                <li><a href="#goals-questions">Goals & Questions</a></li>
+                <li><a href="#sources">Data Sources</a></li>
+                <li><a href="#design-evolution">Design Evolution</a></li>
+                <li><a href="#logistics">Logistics</a></li>
+                <li><a href="#conclusion">Closing Thoughts</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--home section-->
+<div id="home">
+    <div class="container text-center">
+        <br>
+        <br>
+        <h1>Process Book for Project Data at Large</h1>
+        <br>
+        <br>
+        <img src="img/process_book/homepage.png" width="1000px">
+    </div>
+</div>
+
+<!--overview and motivation section-->
+<div id="overview-motivation">
+    <div class="container">
+        <br>
+        <br>
+        <h1 class="text-center">Overview & Motivation</h1>
+        <p class="text-justify">
+            Internet has become an integral part of modern life. As we take advantage of the conveniences that the digital age offers,
+            we are becoming increasingly vulnerable to cybercrimes such as fraud and identity theft. Inspired by the recent data breach
+            incident from Equinfax that affected over 143 million people in the United States and a
+            <a href="http://www.informationisbeautiful.net/visualizations/worlds-biggest-data-breaches-hacks/" target="_blank">
+                visualization of company data breach cases</a>, we would like to investigate and understand
+            the increasingly serious issues with data breaches, use visualizations to raise the public’s awareness in monitoring the safety
+            of their personal data, and offer approaches in cybersecurity protection.
+            <br>
+            <br>
+            The project is consisted of 4 main parts: We begin by describing the rise of the Internet age and transitioning to a
+            brief background of hackers and why they hack. Subsequently, we show selected incidents of company data breaches to make the
+            point that the data we implicitly entrust to companies are susceptible to cyberattacks. The consequences of these data breaches
+            are often cybercrimes on an individual level, so we follow up by visualizing identity theft trends and the time needed to resolve
+            it. Lastly, we aim to make suggestions on creating a safer online existence.
+        </p>
+    </div>
+
+</div>
+
+<!--goals and question section-->
+<div id="goals-questions">
+    <div class="container">
+        <br>
+        <br>
+        <h1 class="text-center">Goals & Questions</h1>
+        <p class="text-justify">
+            The main goal of this project is to use visualizations to raise the public’s awareness in monitoring the safety
+            of their personal data, and offer recommendations in cybersecurity protection. To do so, we would like to explore the
+            following questions:
+
+            <br>
+            <br>
+            <ol>
+                <li><strong>Concerning the internet and the hackers -- </strong></li>
+                    <ul>
+                        <li>How has internet usage in the U.S. evolved over time? </li>
+                        <li>Who are hackers? Why do they hack? </li>
+                    </ul>
+                <br>
+                <li><strong>Concerning the data that we entrust to companies --  </strong></li>
+                    <ul>
+                        <li>How secure is the data we entrust to companies while we use the internet? </li>
+                        <li>Are incidents of company data breaches increasing over time?  </li>
+                        <li>Which type of breach are companies most susceptible to?  </li>
+                        <li>How sensitive are the data being breached (e.g. contents of emails, credit card information, or social security)?  </li>
+                        <li>Are there certain types of organization more prone to certain type of data breaches?</li>
+                    </ul>
+                <br>
+                <li><strong>Concerning the consequences of data breaches -- </strong></li>
+                    <ul>
+                        <li>What is the trend of identity theft in each state over time? </li>
+                        <li>How long does it take to resolve identity theft issues </li>
+                    </ul>
+                <br>
+                <li><strong>Concerning creating a safer online existence -- </strong></li>
+                    <ul>
+                        <li>What are the steps we can take to improve the safety of our online existence? </li>
+                    </ul>
+                <br>
+            </ol>
+        </p>
+
+        <br>
+        <br>
+
+        <h1 class="text-center">Project Tasks</h1>
+        <p class="text-justify">
+            <ol>
+                <li><strong><em>Data acquisition and wrangling: </em></strong>
+                    Data were acquired from the sources listed in <a href="sources">Data Sources</a> section.
+                    Most of the datasets are fairly clean, so we performed minimal data cleaning in this step.
+
+                    However, many of the datasets came in the form of .xlsx files with multiple excel sheets per data file, which
+                    we converted into .csv or .json files. We also implemented a python script ("WorldBankDataParse.py" in the
+                    data/internet-use folder) to parse data from
+                    <a href="https://data.worldbank.org/indicator/IT.NET.USER.ZS" target="_blank">the World Data Bank</a> into .csv files.
+
+                </li>
+                <br>
+                <li><strong><em>Visualization and interactivity implementation:  </em></strong>
+                    We designed and implemented 10 visualizations, and the details of these visualizations are shown in
+                    <a href="#design-evolution">Design Evolution</a> section.
+                </li>
+                <br>
+                <li><strong><em>Acquisition/production and compilation of texts for storytelling: </em></strong>
+                    We read up on new articles about cybersecurity and collected the ones that we felt helpful for telling a story and making the website more informative.
+
+                </li>
+                <br>
+                <li><strong><em>Website design and implementation: </em></strong>
+                    The layout of the website went through multiple design iterations as we collected user feedback and reflected retrospectively.
+                    We aimed to use web design to facilitate user understanding of how to explore the visualizations as well as the story telling aspect.
+
+                </li>
+                <br>
+            </ol>
+        </p>
+    </div>
+</div>
+<br>
+<br>
+<!--data sources section-->
+<div id="sources">
+    <div class="container">
+        <h1 class="text-center">Data Sources</h1>
+        <p class="text-justify">All of our data sources are listed in the main website. Here, we re-present data sources as they relate to our project sections.</p>
+        <br>
+        <br>
+        <p class="text-justify">
+            <ol>
+                <li><strong>Data Sources for concerning the internet and the hackers -- </strong></li>
+                <ul>
+                    <li>Wold Data Bank: <a href="https://data.worldbank.org/indicator/IT.NET.USER.ZS" target="_blank">Individuals using the Internet (% of population)</a></li>
+                    <li>Wold Data Bank: <a href="https://data.worldbank.org/indicator/IT.CEL.SETS.P2" target="_blank">Mobile cellular subscriptions (per 100 people) </a></li>
+                    <li><a href="https://thycotic.com/resources/black-hat-2017-survey/" target="_blank">2017 Black Hat Hacker Survey</a></li>
+                    <li><a href="https://www.getcujo.com/blog/7-reasons-hackers-hack/" target="_blank">7 reasons why hackers hack</a></li>
+                </ul>
+                <br>
+                <li><strong>Data Sources concerning the data that we entrust to companies --  </strong></li>
+                <ul>
+                    <li><a href="https://docs.google.com/spreadsheets/d/1Je-YUdnhjQJO_13r8iTeRxpU2pBKuV6RVRHoYCgiMfg/edit#gid=322165570" target="_blank">Information is beautiful: Company data breaches from 2004 to 2017</a></li>
+                </ul>
+                <br>
+                <li><strong>Data Sources concerning the consequences of data breaches -- </strong></li>
+                <ul>
+                    <li>Bureau of Justice Statistics: <a href="https://www.bjs.gov/index.cfm?ty=tp&tid=42" target="_blank">Victims of identity theft in the US</a></li>
+                    <li>Statista: <a href="https://www-statista-com.ezp-prod1.hul.harvard.edu/statistics/441740/time-taken-us-travelers-resolved-identity-theft/" target="_blank">How long did it take you to resolve the issues caused by identity theft</a></li>
+                </ul>
+                <br>
+                <li><strong>Concerning creating a safer online existence -- </strong></li>
+                <ul>
+                    <li><a href="https://www.getcujo.com/blog/recent-data-breaches-equifax/" target="_blank">Lessons Learned from 5 Biggest Data Breaches</a></li>
+                </ul>
+                <br>
+            </ol>
+        </p>
+    </div>
+</div>
+
+
+<!--design evolution section-->
+<div id="design-evolution">
+    <div class="container">
+        <br>
+        <br>
+        <h1 class="text-center">Design Evolution</h1>
+        <p class="text-justify">Here, we present the design evolution of each of our 10 visualizations, which were grouped into 6 composite
+            visualizations. As you will see, most visualizations underwent drastic re-designs with the intention to achieve a balance between
+            story telling and visual effect. </p>
+        <div class="container" id="vis-1-evolution">
+            <h2> Visualization 1 - Internet usage </h2>
+            <p class="text-justify">The major point we wanted to make with this visualization is that internet
+                had taken over the world very quickly since its commercialization in 1995. In the initial design, we hoped
+                to achieve this by using a set of graphs that displayed the trend from different perspectives. We imagined
+            that we would use a slide show format to deliver these graphs visually.</p>
+            <h3> Initial design </h3>
+            <div class="text-center">
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="img/process_book/internet_usage_design1.png" height="300px">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="img/process_book/internet_usage_design2.png" height="200px">
+                    </div>
+                </div>
+            </div>
+
+            <h3> Final design </h3>
+            <p class="text-justify">We felt that the initial design, while capable of conveying our point that
+            internet usage had grown tremendously, line and bar charts are not very eye-catching, especially serving as the very first
+            visualization of the project. Therefore, we gathered additional data from the Wrold Data Bank in order to
+            be able to plot a choropleth. We also enabled more interactivity by introducing animation and buttons to
+            switch views. The linear growth in the line chart, coupled with the darkening map, tell a much more attention-grabbing
+            story than the previous design.</p>
+            <div class="text-center">
+                <img src="img/process_book/internet_usage_final_design.png" width="1000px">
+            </div>
+        </div>
+
+        <div class="container" id="vis-2-evolution">
+            <h2>Visualization 2 - About hackers</h2>
+            <h3>Initial design</h3>
+            <p class="text-justify">This is one of the visualizations for which we not only changed the design, but we
+                completely changed the content. Originally, the designed
+            story flow was to visualize various online activities and compare their potential for exposing the user
+            to cybersecurity threats. The design sketch is shown below.</p>
+            <br>
+            <br>
+            <div class="text-center">
+                <img src="img/process_book/online_activities_design1.png" height="200px">
+            </div>
+
+            <p>After having implemented the bar charts, we felt that a plain bar chart was not a very exciting visual transition.
+                Fortunately, we came across a hackers survey that we found interesting and informative. We thought giving some insights
+                into why and how hackers came to be would be a better transition to discussing cybersecurity issues
+                since we wouldn't be nearly as worried about cybersecurity if there weren't any hackers.</p>
+            <h3>Second design</h3>
+            <div class="text-center">
+                <img src="img/process_book/hacker_vis_design1.png" width="1000px">
+            </div>
+
+            <p>This design allows the user to hover over the reasons donut chart to read more about the reasons why
+            hackers hack. It also allows the user to hover over the pie charts to see the results of 3 interesting
+            survey questions that revealed just how easy it is for hackers to hack into a system and how most hackers feel sympathetic/
+            empathetic to other hackers who have been arrested. <br>
+            <br>
+            One problem with this design is the coloring of the pie charts. Each color represents one category of response
+            from the survey, but the color scheme overall does not reflect the message in the annotations.
+                For instance, the annotation, 88% of hackers can break into a system in less than 12 hours,
+                reflects the sum of 3 answers (0-2 hours, 2-6 hours and 6-12 hours). Therefore,
+            we decided to color the pie charts to match the message rather than simply color each response with a different shade. This resulted
+            in the final design as shown below.</p>
+
+            <h3>Final design</h3>
+            <div class="text-center">
+                <img src="img/process_book/hacker_vis_final_design.png" width="1000px">
+            </div>
+
+            <p>In the final design, we also animated the appearance of the charts and annotations to direct viewer attention
+            to the relevant elements.</p>
+        </div>
+
+        <div class="container" id="vis-3-evolution">
+            <h2>Visualization 3 - Data breach cases - Stacked Area/Bubble Chart</h2>
+            <h3>Initial design</h3>
+            <p>The goal of this visualization is to visualize the overall trend of data breach cases and also allow more detailed cross-sectional
+            views of the cases by clicking certain area of the stacked area chart, or referring to the bubble chart in the right.</p>
+            <div class="text-center">
+                <img src="img/process_book/data_breach_vis_1_design1.png" height="300px">
+            </div>
+
+            <h3>Final design</h3>
+            <p>We preserved most of the decisions made in the initial design, with only a few tweaks. As we developed the visualization, we realized that in the
+                bubble chart, the variables which are mapped to the y-axis and size, actually have the same values in the data. Essentially, we only have one dimension
+                to visualize. We tackled this problem by modifying the y-axis to the index of individual breach cases. So essentially we are stacking breach cases into
+                pillars, with the size of the circle indicating the severity of the breach.</p>
+            <p>The interactivity also worked as expected. When an area in the stacked area chart is clicked, the bubble chart filters accordingly to show only
+            the selected category. Both charts are able to listen to the "visualize by" drop-down selection to view different variables.</p>
+            <div class="text-center">
+                <img src="img/process_book/data_breach_vis_1_final_design.png" width="1000px">
+            </div>
+
+        </div>
+
+        <div class="container" id="vis-4-evolution">
+            <h2>Visualization 4 -Data breach cases - Parallel Coordinates</h2>
+            <h3>Initial design</h3>
+            <p>This chart uses the same data as Visualization 3, but it presents the data in a fundamentally different way.
+                The goal of this visualization is to allow the viewers to dive in the dataset and uncover their
+                own understanding. A parallel coordinate chart is a great way for this purpose.
+                Our design allows the viewer to specify the axes, color by different axes and brush on individual axis to filter observations.</p>
+            <div class="text-center">
+                <img src="img/process_book/data_breach_vis_2_design1.png" height="300px">
+            </div>
+            <h3>Final design</h3>
+            <p>The changes we made mainly lie in the animation. In our testing iterations, we received some feedback regarding this graph being too cluttered without a key message.
+            Some also reflected that they were not sure how to use the visualization. Therefore, we decided to adopt a more guided approach. The grey
+            panel in the middle first show instructions (view 1). The viewer is then prompted to click. Upon clicking, the visualization appear with
+                the first default view (view 2), which is meant to show a specific message. The accompanying description and more instruction also appear in the grey
+                panel. We decided to provide 2 default views (view 2 and view 3). Finally, after yet another viewer click, the visualization
+                is revealed in its entirety (view 4) to allow maximum interactivity and user exploration.</p>
+            <div class="text-center">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>View 1</p>
+                        <img src="img/process_book/data_breach_vis_2_final_design_view1.png" width="500px">
+                    </div>
+                    <div class="col-md-6">
+                        <p>View 2</p>
+                        <img src="img/process_book/data_breach_vis_2_final_design_view2.png" width="500px">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>View 3</p>
+                        <img src="img/process_book/data_breach_vis_2_final_design_view3.png" width="500px">
+                    </div>
+                    <div class="col-md-6">
+                        <p>View 4</p>
+                        <img src="img/process_book/data_breach_vis_2_final_design_view4.png" width="500px">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container" id="vis-5-evolution">
+            <h2>Visualization 5 - Trends in identity theft</h2>
+            <h3>Initial design</h3>
+            <div class="text-center">
+                <img src="img/process_book/identity_theft_vis_1_design1.png" height="300px">
+            </div>
+            <h3>Second design</h3>
+            <p class="text-justify">
+                One main drawback of a polar area chart is that viewer would only be visually drawn to the most visible 3-4 slices.
+                Therefore, the polar area chart might not be the most suitable type of graph, especially given that there would have been
+                50 slices to represent 50 states.
+                 <br>
+                <br>
+                For this reason, we re-designed the visualization and used a modified version of a choropleth chart instead.
+                In this design, we represent each state not based on its actual geographical shape but squares with uniform areas.
+                This removes the lie factor that often is associated with choropleths.
+                <br>
+                <br>
+                By clicking on to each area, a line chart and a table corresponding to the state would be displayed to the right of the map to show the trend over the years for the selected state.
+            </p>
+            <div class="text-center">
+                <img src="img/process_book/identity_theft_vis_1_design2.png" height="400px">
+            </div>
+            <h3>Final design</h3>
+            <p class="text-justify">
+                Having implemented the second design, we realized that having a map, a line chart and a table on the same page is a bit overwhelming visually.
+                The line chart and table also served the same purpose. Therefore, we decided to implement the line chart as a tooltip, appearing on mouseover, and remove the table altogether.
+                This created a much cleaner view that allows the user to focus on the spatial distribution first, and then drill down to temporal distribution of specific states.
+            </p>
+            <div class="text-center">
+                <img src="img/process_book/identity_theft_vis_1_final_design.png" height="500px">
+            </div>
+
+        </div>
+
+        <div class="container" id="vis-6-evolution">
+            <h2>Visualization 6 - Time to resolve identity theft cases</h2>
+            <h3>Initial design</h3>
+            <div class="text-center">
+                <img src="img/process_book/resolve_time_design1.png" height="200px">
+            </div>
+            <p class="text-justify">
+                The main point of this visualization is to show the distribution of the time needed to resolve identity
+                theft cases. To avoid ending the project with a rather conventional form of visualization, we wanted to capture audience interest by
+                implementing an interactive/game-like visualization that contain some randomness.
+            </p>
+            <h3>Second design</h3>
+            <p class="text-justify">
+                Since the dart visualization had been implemented in previous projects, we felt that it was best for us
+                to come up with an original design that could end
+                the project on a high note. After consulting with our TF, Zona, the idea that
+                we finally settled on was a grid of squares where the user would be prompted to click. The click would then trigger
+                a series of animation to reveal first a color that represents a category of time spent on resolving identity theft
+                followed by the whole distribution. The first color
+                is randomly chosen based on the distribution of previous victims data.
+            </p>
+            <div class="text-center">
+                <img src="img/process_book/resolve_time_design2.png" height="200px">
+            </div>
+
+            <p class="text-justify">The actual implementation is shown below.</p>
+            <h3>Final design</h3>
+            <div class="text-center">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>View 1</p>
+                        <img src="img/process_book/resolve_time_final_design_view1.png" width="500px">
+                    </div>
+                    <div class="col-md-6">
+                        <p>View 2</p>
+                        <img src="img/process_book/resolve_time_final_design_view2.png" width="500px">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>View 3</p>
+                        <img src="img/process_book/resolve_time_final_design_view3.png" width="500px">
+                    </div>
+                    <div class="col-md-6">
+                        <p>View 4</p>
+                        <img src="img/process_book/resolve_time_final_design_view4.png" width="500px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!--logistics section-->
+<div id="logistics">
+    <div class="container">
+        <h1 class="text-center">Project Logistics</h1>
+        <p class="text-justify">
+            The work load of this project was split evenly across team members, and we were in constant communication
+            to make sure everyone was on the same page and agreed to the designs. While
+            everyone had a fair chunk of all aspects of the project (from web design to implementing
+            visualizations), each member also had focus areas, and they are
+            shown below:
+        </p>
+        <br>
+        <br>
+        <p class="text-center">
+        <table id="t01">
+            <tr>
+                <th>Member</th>
+                <th>Role</th>
+            </tr>
+            <tr>
+                <td>Michelle</td>
+                <td>
+                    Project organization (github repo, overall website design)<br>
+                    Evaluation of project targeting <br>
+                    Design master
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td>Cindy</td>
+                <td>Drawing of sketches and organization of visualization/interaction ideas<br>
+                    Implementation of website animations <br>
+                    Face of the project (presentation and screencast voice-over)
+                </td>
+            </tr>
+            <tr>
+                <td>Ziqi</td>
+                <td>Maintenance of the process book<br>
+                    Preprocessing of the data <br>
+                    Code master
+                </td>
+            </tr>
+        </table>
+        </p>
+
+        <br>
+        <br>
+        <p class="text-justify">
+            We roughly followed the time line below:
+        </p>
+        <div class="text-center">
+            <img src="img/process_book/timeline.png" width="800px">
+        </div>
+
+
+    </div>
+</div>
+
+<!--conclusions section-->
+<div id="conclusion">
+    <div class="container">
+        <br>
+        <br>
+        <h1 class="text-center">Closing Thoughts</h1>
+        <p class="text-justify">
+            We hope that you have not only enjoyed our interactive visualizations but also learned something interesting and practical about
+            protecting your personal cyber space. It has been tremendously fun to apply what we've learned in CS171 and to explore beyond
+            what was taught. Creating complex interactive visualizations and designing both user-friendly and visually appealing website were
+            by no means easy tasks, but it was a great learning journey, and we feel very satisfied with what we've achieved as a team.
+        </p>
+    </div>
+
+</div>
+
+
+<!-- Add footer -->
+<footer class="text-center">
+    <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a><br><br>
+    <p>Website Made By Michelle Ho, Cindy Zhao, Ziqi Guo</p>
+</footer>
+
+
+<!-- Load JS libraries -->
+<script src="js/library/jquery.min.js"></script>
+<script src="js/library/bootstrap.min.js"></script>
+
+<!--// Add smooth scrolling to all links in navbar and footer-->
+<script>
+    $(document).ready(function(){
+        // Initialize Tooltip
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+
+                // Prevent default anchor click behavior
+                event.preventDefault();
+
+                // Store hash
+                var hash = this.hash;
+
+                // Using jQuery's animate() method to add smooth page scroll
+                // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+                $('html, body').animate({
+                    scrollTop: $(hash).offset().top
+                }, 900, function(){
+
+                    // Add hash (#) to URL when done scrolling (default click behavior)
+                    window.location.hash = hash;
+                });
+            } // End if
+        });
+    })
+</script>
+</body>
+</html>
