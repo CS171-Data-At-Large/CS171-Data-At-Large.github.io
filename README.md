@@ -11,7 +11,7 @@ Inspired by the recent data breach incident from Equinfax that affected over 143
 - **Project website:** [cs171-data-at-large.github.io](https://cs171-data-at-large.github.io)
 
 
-- **Screencast video:** 
+- **Screencast video:** [www.youtube.com/embed/u6bRmN7QQkc](https://www.youtube.com/embed/u6bRmN7QQkc)
 
 
 
